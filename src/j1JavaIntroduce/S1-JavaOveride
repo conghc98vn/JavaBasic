@@ -1,0 +1,36 @@
+1. Java là gì?
+Java là một ngôn ngữ lập lập trình, được phát triển bởi Sun Microsystem vào năm 1995, là ngôn ngữ kế thừa trực tiếp từ C/C++ và là một ngôn ngữ lập trình hướng đối tượng.
+Vì sao ngôn ngữ này lại được đặt tên là Java? Java là tên một hòn đảo ở Indonesia – hòn đảo nổi tiếng với loại coffee Peet và cũng là loại nước uống phổ biến của các kỹ sư Sun.
+Ban đầu Ngôn ngữ này được đặt tên là “Oak” (có nghĩa là “Cây sồi” – 1991), nhưng các luật sư của Sun xác định rằng tên đó đã được đăng ký nhãn hiệu nên các nhà phát triển đã phải thay thế bằng một tên mới – và cũng vì lý do trên mà cái tên Java đã ra đời và trở thành tên gọi chính thức của Ngôn ngữ này – Ngôn ngữ Lập trình Java. 
+
+2. Ứng dụng của Java
+Ngày nay Java được sử dụng với các mục đích sau:
+Phát triển ứng dụng cho các thiết bị điện tử thông minh, các ứng dụng cho doanh nghiệp với quy mô lớn.
+Tạo các trang web có nội dung động (web applet), nâng cao chức năng của server.
+Phát triển nhiều loại ứng dụng khác nhau: Cơ sở dữ liệu, mạng, Internet, viễn thông, giải trí,…
+
+3. Những đặc điểm cơ bản của Java
+Tiêu chí hàng đầu của Ngôn ngữ Lập trình Java là “Write Once, Run Anywhere” (Viết một lần, chạy mọi nơi), nghĩa là Java cho phép chúng ta viết code một lần và thực thi được trên các hệ điều hành khác nhau. Ví dụ, chúng ta viết code trên Hệ điều hành Windows và nó có thể thực thi được trên các Hệ điều hành Linux và Mac OS…
+Với đặc điểm nổi bật đó, Java có những đặc điểm cơ bản như sau:
+Đơn giản và quen thuộc: Vì Java kế thừa trực tiếp từ C/C++ nên nó có những đặc điểm của ngôn ngữ này, Java đơn giản vì mặc dù dựa trên cơ sở C++ nhưng Sun đã cẩn thận lược bỏ các tính năng khó nhất của của C++ để làm cho ngôn ngữ này dễ sử dụng hơn.
+Hướng đối tượng và quen thuộc.
+Mạnh mẽ (thể hiện ở cơ chế tự động thu gom rác – Garbage Collection) và an toàn.
+Kiến trúc trung lập, độc lập nền tảng và có tính khả chuyển (Portability).
+Hiệu suất cao.
+Máy ảo (biên dịch và thông dịch).
+Phân tán.
+Đa nhiệm: Ngôn ngữ Java cho phép xâ dựng trình ứng dụng, trong đó nhiều quá trình có thể xảy ra đồng thời. Tính đa nhiệm cho phép các nhà lập trình có thể biên soạn phần mềm đáp ứng tốt hơn, tương tác tốt hơn và thực hiện theo thời gian thực.
+
+4. Các platform cơ bản của Java.
+Java Platform gồm có 3 thành phần chính:
+ + Java Virtual Machine (Java VM): Máy ảo Java.
+ + Java Application Programming Interface (Java API).
+ + Java Development Kit (JDK) gồm trình biên dịch, thông dịch, trợ giúp, soạn tài liệu… và các thư viện chuẩn.
+
+5. Tiêu chuẩn của một môi trường Java điển hình.
+Thông thường, các chương trình Java trải qua 5 giai đoạn chính:
+ + Editor: Lập trình viên viết chương trình và được lưu vào máy tính với định dạng .java.
+ + Compiler: Biên dịch chương trình thành bytecodes (định dạng .class) – nhờ bước trung gian này mà Java được viết 1 lần và chạy trên các hệ điều hành khác nhau.
+ + Class Loader: Đọc file .class chứa mã bytecodes và lưu vào trong bộ nhớ.
+ + Bytecode Verifier: Đảm bảo rằng mã bytecodes là hợp lệ và không vi phạm các vấn đề về bảo mật của Java.
+ + Intepreter: Biên dịch bytecodes thành mã máy để máy tính có thể hiểu được và sau đó thực thi chương trình.

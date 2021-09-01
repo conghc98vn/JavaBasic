@@ -1,0 +1,225 @@
+1. Từ khóa This
+Trong Java, từ khóa this ám chỉ tới các vật thể hiện tại bên trong các phương thức hoặc hàm tạo. Hãy cùng lấy một ví dụ để chứng minh điều này.
+class Main {
+    int instVar;
+
+    Main(int instVar){
+        this.instVar = instVar;
+        System.out.println("this reference = " + this);
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main(8);
+        System.out.println("object reference = " + obj);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+this reference = com.ThisAndThat.MyClass@74a14482
+object reference = com.ThisAndThat.MyClass@74a14482
+Hãy chú ý rằng id vật thể của obj và this là giống nhau.
+Có nghĩa là this chính là tham chiếu cho đối tượng hiện tại.
+Có 3 trường hợp từ khóa this hay được sử dụng.
+
+2. Sử dụng this để định hướng các tham chiếu biến
+Trong Java, không cho phép việc khai báo hai hay nhiều biến có tên giống nhau trong một phậm vi (phạm vi class hay phạm vi phương thức).
+Tuy nhiên, các biến và các tham số thực thể có thể có cùng tên. Giống như:
+class MyClass {
+    // instance variable
+    int age;
+
+    // parameter
+    MyClass(int age){
+        age = age;
+    }
+}
+Trong ví dụ trên, trình biên dịch Java bị từ chối bởi vì tên không rõ ràng. Do đó, để giải quyết vấn đề này, từ khóa this được sử dụng. đầu tiên, hãy cùng xem ví dụ không sử dụng từ khóa this:
+class Main {
+
+    int age;
+    Main(int age){
+        age = age;
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main(8);
+        System.out.println("obj.age = " + obj.age);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+mc.age = 0
+Bạn có lẽ đã mong kết quả là 8, nhưng thay vào đó, bạn lại nhận kết quả là 0.
+
+Đó là bởi vì trình biên dịch bị nhầm lẫn do sự mờ ám trong tên giữa các biến instance và tham số hàm tạo. 
+
+Bây giờ, hãy viết lại đoạn code trên và sử dụng từ khóa this để giải quyết vấn đề này nào.
+
+class Main {
+
+    int age;
+    Main(int age){
+        this.age = age;
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main(8);
+        System.out.println("obj.age = " + obj.age);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+obj.age = 8
+Bây giờ, bạn đã nhận được kết quả như mong đợi. đó là bởi vì khi bạn khởi tạo một đối tượng, trình biên dịch biết được đối tượng nào vừa khởi tạo hàm tạo.
+
+Khi trình biên dịch Java khởi tạo hàm tạo, từ khóa this bên trong hàm tạo được thay thế bởi đối tượng đã gọi hàm tạo. 
+
+Chú ý: Nếu bạn truyền một tham số có tên khác với tên của các biến instance, trình biên dịch sẽ tự động thêm từ khóa this vào. 
+
+Đoạn code này 
+
+lass Main {
+    int age;
+
+    Main(int i) {
+        age = i;
+    }
+}
+Sẽ tương đương với đoạn code sau
+
+class Main {
+    int age;
+
+    Main(int i) {
+        this.age = i;
+    }
+}
+Một cách sử dụng phổ biến khác của từ khóa this là phương setter và getter của class. Lấy ví dụ:
+class Main {
+   String name;
+
+   // setter method
+   void setName( String name ) {
+       this.name = name;
+   }
+
+   // getter method
+   String getName(){
+       return this.name;
+   }
+
+   public static void main( String[] args ) {
+       Main obj = new Main();
+
+       // calling the setter and the getter method
+       obj.setName("cafedevn");
+       System.out.println("obj.name: "+obj.getName());
+   }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+obj.name: cafedevn
+
+3. Sử dụng từ khóa this trong nạp chồng hàm tạo
+Trong khi làm việc với nạp chồng hàm tạo, bạn có thể thấy việc khởi tạo một hàm tạo từ một hàm tạo khác rất hữu dụng.
+Tuy nhiên, các hàm tạo có thể sẽ không được gọi một cách rõ ràng. Do đó, để có thể thực hiện được điều này, bạn có thể sử dụng một dạng khác của từ khóa this là this.
+Dưới đây là một đoạn code:
+
+class Complex {
+
+    private int a, b;
+
+    // constructor with 2 parameters
+    private Complex( int i, int j ){
+        this.a = i;
+        this.b = j;
+    }
+
+    // constructor with single parameter
+    private Complex(int i){
+        // invokes the constructor with 2 parameters
+        this(i, i); 
+    }
+
+    // constructor with no parameter
+    private Complex(){
+        // invokes the constructor with single parameter
+        this(0);
+    }
+
+    @Override
+    public String toString(){
+        return this.a + " + " + this.b + "i";
+    }
+
+    public static void main( String[] args ) {
+  
+        // creating object of Complex class
+        // calls the constructor with 2 parameters
+        Complex c1 = new Complex(2, 3); 
+    
+        // calls the constructor with a single parameter
+        Complex c2 = new Complex(3);
+
+        // calls the constructor with no parameters
+        Complex c3 = new Complex();
+
+        // print objects
+        System.out.println(c1);
+        System.out.println(c2);
+        System.out.println(c3);
+    }
+}
+Ở đây bạn có thể gọi một hàm tạo từ một hàm tạo khác sử dụng từ khóa this.
+
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+2 + 3i
+3 + 3i
+0 + 0i
+Trong chương trinh trên, dù hàm tạo nào được gọi di chăng nữa, hàm tạo được tham số hóa sẽ được gọi cuối cùng. 
+Bạn phải thật cẩn thận trong khi sử dụng this. Các hàm tạo mà để gọi các hàm tạo khác bằng this sẽ thực thi chậm trễ bởi vì việc gọi hàm tạo quá tải khác sẽ tiêu tốn thêm tài nguyên. Nếu class của bạn được sử dụng để khởi tạo vài đối tượng, thì việc sử dụng dạng this là ngon nhất. Một lợi ích to lớn khác của việc sử dụng this là giúp giảm lượng mã trùng lặp. 
+Việc gọi một hàm tạo từ hàm tạo khác được gọi là gọi hàm tạo rõ ràng (explicit constructor invocation).
+
+4. Truyền this giống một đối số
+Nếu bạn cần truyền đối tượng hiện tạo như một đối số tới một phương thức, bạn có thẻ sử dụng this.
+
+class ThisExample {
+    // declare variables
+    int x;
+    int y;
+
+    ThisExample(int x, int y) {
+       // assign values of variables inside constructor
+        this.x = x;
+        this.y = y;
+
+        // value of x and y before calling add()
+        System.out.println("Before passing this to addTwo() method:");
+        System.out.println("x = " + this.x + ", y = " + this.y);
+
+        // call the add() method passing this as argument
+        add(this);
+
+        // value of x and y after calling add()
+        System.out.println("After passing this to addTwo() method:");
+        System.out.println("x = " + this.x + ", y = " + this.y);
+    }
+
+    void add(ThisExample o){
+        o.x += 2;
+        o.y += 2;
+    }
+}
+
+class Main {
+    public static void main( String[] args ) {
+        ThisExample obj = new ThisExample(1, -2);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Before passing this to addTwo() method:
+x = 1, y = -2
+After passing this to addTwo() method:
+x = 3, y = 0
+Ở đây, phương thức addTwo() cùng với this như một đối số được gọi từ bên trong hàm tạo.

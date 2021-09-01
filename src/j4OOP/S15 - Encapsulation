@@ -1,0 +1,106 @@
+1. Tính đóng gói trong Java
+Tính đóng gói là một trong những tính năng chính của lập trình hướng đối tượng. Đóng gói đề cập đến việc đóng gói các thuộc tính và phương thức trong một lớp duy nhất.
+Đóng gói các thuộc tính và phương thức giống nhau trong một lớp cũng giúp ẩn bớt dữ liệu.
+
+2. Đóng gói các thuộc tính và phương thức 
+Nói chung, đóng gói là một quá trình gói code giống nhau ở cùng 1 chỗ.
+
+Trong Java, chúng ta có thể gói các thuộc tính và phương thức hoạt động cùng nhau trong cùng một lớp. Ví dụ:
+
+class Rectangle {
+   int length;
+   int breadth;
+   public void getArea() {}
+}
+Trong chương trình trên, phương thức getArea() tính diện tích hình chữ nhật. Để tính diện tích, nó cần length và breadth. Do đó, thuộc tính dữ liệu length, breadth và phương thức getArea() cùng được chứa trong class Rectangle .
+
+3. Ẩn dữ liệu trong Java
+Ẩn dữ liệu là một cách để hạn chế quyền truy cập của các thành viên dữ liệu bằng cách ẩn các chi tiết thực thi.
+
+Đóng gói cũng cung cấp một cách để ẩn dữ liệu.
+
+Có thể ẩn dữ liệu bằng sự trợ giúp của các access modifiers. Trong Java, có bốn loại access modifier:
+
+Public – hiển thị từ bất cứ đâu
+Private – chỉ hiển thị trong lớp
+Protected – hiển thị trong gói và trong số các subclass của nó
+Default – hiển thị trong gói
+Để tìm hiểu thêm, hãy truy cập Access Modifier trong Java.
+
+3.1 Ví dụ 1: Ẩn dữ liệu bằng cách sử dụng Private Access Modifier
+class Person {
+   private int age;
+
+   public int getAge() {
+      return age;
+   }
+
+   public void setAge(int age) {
+      this.age = age;
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Person p1 = new Person();
+      p1.setAge(24);
+      System.out.println("My age is " + p1.getAge());
+   }
+}
+Kết quả:
+
+My age is 24
+Trong ví dụ trên, chúng ta có một private thuộc tính là age. Vì nó là private nên nó không thể được truy cập từ bên ngoài class. Để truy cập age, chúng ta sử dụng các phương thức public là getAge() và setAge() . Các phương thức này được gọi là phương thức getter và setter.
+
+Nếu chúng ta cố gắng truy cập thuộc tính age từ class Main, chúng ta sẽ gặp lỗi.
+
+p1.age = 24;     // error: age has private access in Person
+Khi làm cho age trở thành private cho phép chúng ta hạn chế truy cập trái phép từ bên ngoài class. Đây là ẩn dữ liệu.
+
+3.2 Ví dụ 2: Ẩn dữ liệu bằng cách sử dụng protected access modifier
+
+class Person {
+ protected String profession;
+
+ protected void displayInfo() {
+   System.out.println("I am a " + profession);
+ }
+}
+
+class Teacher extends Person {
+   public static void main(String[] args) {
+      Teacher t1 = new Teacher();
+      t1.profession = "teacher";
+      t1.displayInfo();
+   }
+
+}
+Kết quả:
+
+I am a teacher
+Trong chương trình trên, chúng ta đã tạo ra một class Person bao gồm một thuộc tính protected là profession và một phương thức protected là displayInfo().
+
+Chúng ta đã truy cập các thành viên này từ class Teacher (đây là một subclass của class Person).
+
+4. Tại sao Java lại có tính đóng gói?
+Trong Java, tính đóng gói giúp chúng ta kết hợp các thuộc tính và phương thức liên quan lại với nhau, điều này làm cho code của chúng ta sáng sủa và dễ đọc hơn.
+Nó giúp kiểm soát việc sửa đổi các thuộc tính dữ liệu của chúng ta. Hãy xem xét một tình huống mà chúng ta muốn thuộc tính age trong một lớp sẽ không âm. Ở đây chúng ta có thể biến age trở nên private và có thể áp dụng logic bên trong phương thức setAge(). Ví dụ:
+class Person {
+   private int age;
+
+   public void setAge(int age) {
+     if (age >= 0) {
+        this.age = age;
+     }
+   }
+}
+Các phương thức getter và setter cung cấp quyền truy cập chỉ đọc hoặc chỉ ghi vào các thuộc tính lớp của chúng tôi. Ví dụ:
+
+getName()   // provides read-only access
+setName()   // provides write-only access
+Nó giúp tách các thành phần của một hệ thống. Các thành phần tách rời này có thể được phát triển, thử nghiệm và gỡ lỗi một cách độc lập và đồng thời. Và mọi thay đổi trong một thành phần cụ thể không có bất kỳ ảnh hưởng nào đến các thành phần khác.
+
+5. So sánh ẩn dữ liệu với việc đóng gói
+Người ta thường coi việc đóng gói là ẩn dữ liệu, nhưng điều đó không hoàn toàn đúng.
+
+Đóng gói đề cập đến việc kết hợp các thuộc tính và phương thức liên quan lại với nhau. Điều này cho phép chúng ta ẩn dữ liệu. Đóng gói trong chính nó không phải là ẩn dữ liệu.

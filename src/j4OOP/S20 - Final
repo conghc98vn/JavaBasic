@@ -1,0 +1,92 @@
+Trong hướng dẫn này, chúng ta sẽ tìm hiểu về các biến, phương thức và lớp final của Java với các ví dụ.
+
+Trong Java, từ khóa final được sử dụng để biểu thị các hằng số. Nó có thể được sử dụng với các biến, phương thức và lớp.
+
+Khi bất kỳ thực thể nào (biến, phương thức hoặc lớp) được khai báo final, nó chỉ có thể được gán một lần. Đó là,
+
+biến final không thể được khởi động lại bằng một giá trị khác
+phương thức final không thể được ghi đè
+lớp final không thể được mở rộng
+
+1. Biến final của Java
+Trong Java, chúng ta không thể thay đổi giá trị của một biến final. Ví dụ,
+class Main {
+  public static void main(String[] args) {
+
+    // create a final variable
+    final int AGE = 32;
+
+    // try to change the final variable
+    AGE = 45;
+    System.out.println("Age: " + AGE);
+  }
+}
+Trong chương trình trên, chúng ta đã tạo một biến final có tên tuổi tác. Và chúng ta đã cố gắng thay đổi giá trị của biến final.
+
+Khi chúng ta chạy chương trình, chúng ta sẽ gặp lỗi biên dịch với thông báo sau.
+
+cannot assign a value to final variable AGE
+    AGE = 45;
+    ^
+Lưu ý : Nên sử dụng chữ hoa để khai báo các biến final trong Java.
+
+2. Phương thức với final của Java
+Trước khi tìm hiểu về các phương thức final và các lớp final, hãy đảm bảo rằng bạn biết về Kế thừa trong Java .
+
+Trong Java, lớp con final không thể ghi đè phương thức này. Ví dụ,
+
+class FinalDemo {
+    // create a final method
+    public final void display() {
+      System.out.println("This is a final method.");
+    }
+}
+
+class Main extends FinalDemo {
+  // try to override final method
+  public final void display() {
+    System.out.println("The final method is overridden.");
+  }
+
+  public static void main(String[] args) {
+    Main obj = new Main();
+    obj.display();
+  }
+}
+Trong ví dụ trên, chúng ta đã tạo một phương thức final có tên display()bên trong lớp FinalDemo. Đây,Chủ yếu lớp kế thừa lớp FinalDemo.
+
+Chúng ta đã cố gắng ghi đè phương thức final trong lớp Chủ yếu. Khi chúng ta chạy chương trình, chúng ta sẽ gặp lỗi biên dịch với thông báo sau.
+
+ display() in Main cannot override display() in FinalDemo
+  public final void display() {
+                    ^
+  overridden method is final
+  
+  3. Lớp với final trong Java
+Trong Java, lớp với final không thể được kế thừa bởi một lớp khác. Ví dụ,
+
+// create a final class
+final class FinalClass {
+  public void display() {
+    System.out.println("This is a final method.");
+  }
+}
+
+// try to extend the final class
+class Main extends FinalClass {
+  public  void display() {
+    System.out.println("The final method is overridden.");
+  }
+
+  public static void main(String[] args) {
+    Main obj = new Main();
+    obj.display();
+  }
+}
+Trong ví dụ trên, chúng ta đã tạo một lớp final có tên FinalClass. Ở đây, chúng ta đã cố gắng kế thừa lớp final bởi lớp Chủ yếu.
+
+Khi chúng ta chạy chương trình, chúng ta sẽ gặp lỗi biên dịch với thông báo sau.
+
+cannot inherit from final FinalClass
+class Main extends FinalClass {
+                   ^

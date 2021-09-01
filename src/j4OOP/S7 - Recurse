@@ -1,0 +1,47 @@
+Trong bài viết này, bạn sẽ tìm hiểu cách để tạo ra hàm đệ quy (recursive function), một hàm mà tự gọi chính nó. Đồng thời, bạn cũng sẽ tìm hiểu thêm về điểm thuận lợi và điểm bất lợi của chúng. 
+
+Một phương thức đệ quy (recursive method) là một phương thức mà nó tự gọi chính nó. Và kỹ thuật này được biết là kỹ thuật đệ quy (recursion)
+
+Một ví dụ vật lý thực tế là việc đặt hai tấm gương hướng song song vào nhau. Bất kì vật thể nào ở giữa chúng sẽ phản chiếu một cách đệ quy. 
+
+Nội dung chính	
+Vậy kỹ thuật đệ quy hoạt động thế nào?
+1. Lấy ví dụ: Giai thừa của một số sử dụng kỹ thuật đệ quy
+2. Những ưu điểm và nhược điểm của kỹ thuật đệ quy
+Vậy kỹ thuật đệ quy hoạt động thế nào?
+
+Trong chương trình ở trên, ban đầu, phương thức recurse() được gọi từ bên trong phương thức chính (gọi thông thường normal method call)
+Đồng thời, phương thức recurse() lại được gọi từ bên trong phương thức recurse() kia. Đây là cuộc gọi đệ quy recursive call.
+Kỹ thuật đệ quy tiếp tục cho tới khi vài điều kiện được đáp ứng để ngăn chặn nó khỏi việc thực thi. Nếu không, đệ quy sẽ xảy ra vô hạn. 
+Do đó, để tránh việc đệ quy vô hạn, câu lệnh điều kiện if…else có thể được sử dụng một nhánh để thực hiện gọi đệ quy còn nhánh còn lại thì ko.
+
+1. Lấy ví dụ: Giai thừa của một số sử dụng kỹ thuật đệ quy
+
+class Factorial {
+
+    static int factorial( int n ) {
+        if (n != 0)  // termination condition
+            return n * factorial(n-1); // recursive call
+        else
+            return 1;
+    }
+
+    public static void main(String[] args) {
+        int number = 4, result;
+        result = factorial(number);
+        System.out.println(number + " factorial = " + result);
+    }
+}
+Khi bạn chạy chương trình trên, kết quả sẽ là:
+
+4 factorial = 24
+Đầu tiên, phương thức factorial được gọi từ phương thức main với number được truyền một đối số. 
+
+Bên cạnh phương thức factorial, giá trịn của n là 4 lúc đầu. Trong suốt lần gọi đệ quy tiếp theo, số 3 được truyền tới phương thức factorial. Quá trình này tiếp diễn cho tới khi n bằng 0. 
+
+Khi n bằng 0, điều kiện if sẽ ngừng và phần else sẽ được thực thi trả về 1 và kết quả tích lũy sẽ được truyền tới phương thức main.
+
+2. Những ưu điểm và nhược điểm của kỹ thuật đệ quy
+Khi một lần gọi đệ quy được thực hiện, bộ nhớ mới được cấp cho các biến được phân vùng trên stack. Khi mỗi lần gọi đệ quy vòng lại, các biến và tham số cũ bị xóa khỏi stack. Do đó, nhìn chung, kỹ thuật đệ quy sử dụng nhiều bộ nhớ hơn và chậm hơn.
+
+Mặt khác, giải pháp đệ quy lại dễ hơn và tốn ít thời gian hơn để viết, sửa lỗi, và bảo trì.

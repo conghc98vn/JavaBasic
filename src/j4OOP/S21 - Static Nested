@@ -1,0 +1,146 @@
+Trong hướng dẫn này, bạn sẽ tìm hiểu về lớp tĩnh lồng nhau với sự trợ giúp của các ví dụ. Bạn cũng sẽ tìm hiểu về cách lớp tĩnh khác với các lớp bên trong.
+Như đã học trong các hướng dẫn trước, chúng ta có thể có một lớp bên trong một lớp khác trong Java. Các lớp như vậy được gọi là các lớp lồng nhau. Trong Java, các lớp lồng nhau có hai loại:
+Lớp không tĩnh lồng nhau (Lớp bên trong)
+Lớp tĩnh lồng nhau.
+Chúng ta đã thảo luận về các lớp bên trong trong hướng dẫn trước. Bạn hãy truy cập Lớp lồng nhau của Java nếu bạn muốn tìm hiểu về các lớp lồng nhau.
+Trong hướng dẫn này, chúng ta sẽ tìm hiểu về các lớp tĩnh lồng nhau.
+
+1. Lớp tĩnh lồng nhau trong Java
+Chúng ta sử dụng từ khóa static để làm cho lớp lồng nhau của chúng ta tĩnh.
+
+Lưu ý: Trong Java, chỉ các lớp lồng nhau mới được phép làm tĩnh.
+
+Giống như các lớp thông thường, các lớp lồng nhau tĩnh có thể bao gồm cả các trường và phương thức tĩnh và không tĩnh. Ví dụ,
+
+Class Animal {
+   static class Mammal {
+      // static and non-static members of Mammal
+   }
+   // members of Animal
+} 
+Các lớp lồng nhau tĩnh được liên kết với lớp bên ngoài.
+
+Để truy cập lớp lồng nhau tĩnh, chúng ta không cần các đối tượng của lớp bên ngoài.
+
+Ví dụ: Lớp lồng nhau tĩnh
+
+class Animal {
+
+// inner class
+   class Reptile {
+      public void displayInfo() {
+        System.out.println("I am a reptile.");
+      }
+   }
+
+// static class
+   static class Mammal {
+      public void displayInfo() {
+        System.out.println("I am a mammal.");
+      }
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      // object creation of the outer class
+      Animal animal = new Animal();
+
+      // object creation of the non-static class
+      Animal.Reptile reptile = animal.new Reptile();
+      reptile.displayInfo();
+
+      // object creation of the static nested class
+      Animal.Mammal mammal = new Animal.Mammal();
+      mammal.displayInfo();
+
+   }
+}
+Đầu ra
+
+I am a reptile.
+I am a mammal.
+Trong chương trình trên, chúng ta có hai lớp lồng nhau Mammal và Reptile bên trong một lớp Animal.
+
+Để tạo một đối tượng của lớp không tĩnh Reptile, chúng ta đã sử dụng
+
+Animal.Reptile reptile = animal.new Reptile()
+Để tạo một đối tượng của lớp tĩnh Động vật có vú, Chúng ta vừa dùng
+
+Animal.Mammal mammal = new Animal.Mammal()
+
+2. Truy cập các thành viên của Lớp từ bên ngoài
+Trong Java, các lớp lồng nhau tĩnh được liên kết với các lớp bên ngoài. Đây là lý do tại sao các lớp lồng nhau tĩnh chỉ có thể truy cập các thành viên lớp (trường và phương thức tĩnh) của lớp bên ngoài.
+
+Hãy xem điều gì sẽ xảy ra nếu chúng ta cố gắng truy cập các trường và phương thức không tĩnh của lớp ở bên ngoài.
+
+Ví dụ: Truy cập các thành viên không tĩnh
+
+class Animal {
+  static class Mammal {
+   public void displayInfo() {
+     System.out.println("I am a mammal.");
+   }
+ }
+
+ class Reptile {
+   public void displayInfo() {
+     System.out.println("I am a reptile.");
+   }
+ }
+
+ public void eat() {
+   System.out.println("I eat food.");
+ }
+}
+
+class Main {
+ public static void main(String[] args) {
+   Animal animal = new Animal();
+   Animal.Reptile reptile = animal.new Reptile();
+   reptile.displayInfo();
+
+   Animal.Mammal mammal = new Animal.Mammal();
+   mammal.displayInfo();
+   mammal.eat();
+ }
+}
+Đầu ra
+
+Main.java:28: error: cannot find symbol
+    mammal.eat();
+          ^
+  symbol:   method eat()
+  location: variable mammal of type Mammal
+1 error
+compiler exit status 1
+Trong ví dụ trên, chúng ta đã tạo một phương thức không tĩnh eat() bên trong lớp Động vật.
+
+Bây giờ, nếu chúng ta cố gắng truy cập eat() bằng cách sử dụng đối tượng mammal, trình biên dịch hiển thị lỗi.
+
+Đó là vì mammal là một đối tượng của một lớp tĩnh và chúng ta không thể truy cập các phương thức không tĩnh từ các lớp tĩnh.
+
+3. Lớp cha tĩnh
+Như đã đề cập ở trên, chỉ các lớp lồng nhau mới có thể là tĩnh. Chúng ta không thể có các lớp cha tĩnh.
+
+Hãy xem điều gì sẽ xảy ra nếu chúng ta cố gắng tạo một lớp cha tĩnh .
+
+static class Animal {
+ public static void displayInfo() {
+   System.out.println("I am an animal");
+ }
+}
+
+class Main {
+ public static void main(String[] args) {
+   Animal.displayInfo();
+ }
+}
+Đầu ra
+
+Main.java:1: error: modifier static not allowed here
+static class Animal {
+       ^
+1 error
+compiler exit status 1
+Trong ví dụ trên, chúng ta đã cố gắng tạo một lớp tĩnh Animal. Vì Java không cho phép lớp cha tĩnh, chúng ta sẽ gặp lỗi.

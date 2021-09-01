@@ -1,0 +1,116 @@
+Trong bài này, ta sẽ học cách sử dụng câu lệnh continue trong Java. Câu lệnh continue bỏ qua lần lặp hiện tại của một vòng lặp.
+Giả sử bạn đang làm việc với các vòng lặp. Đôi khi, bạn muốn bỏ qua một số câu lệnh bên trong vòng lặp hoặc chấm dứt vòng lặp ngay lập tức mà không đánh giá biểu thức kiểm tra.
+Trong các trường hợp như vậy, câu lệnh break và continue được sử dụng. Truy cập trang này để tìm hiểu về  Câu lệnh break trong Java.
+Các câu lệnh continue bỏ qua lần lặp hiện tại của một vòng lặp (vòng lặp for, while và do…while).
+Khi câu lệnh continue được thực hiện, luồng điều khiển lập tức nhảy đến cuối vòng lặp. Sau đó, biểu thức kiểm tra của vòng lặp được đánh giá. Đối với vòng lặp for, câu lệnh cập nhật được thực hiện trước khi đánh giá biểu thức kiểm tra.
+Câu lệnh continue hầu hết được sử dụng với các câu lệnh ra quyết định ( câu lệnh if…else).
+Cú pháp của nó là:
+continue;
+
+1. Câu lệnh continue hoạt động như thế nào? // xem thêm hình trên web
+
+2. Ví dụ 1: câu lệnh continue trong Java
+class Test {
+    public static void main(String[] args) {
+      
+        // for loop
+        for (int i = 1; i <= 10; ++i) {
+
+            // if value of i is between 4 and 9, continue is executed 
+            if (i > 4 && i < 9) {
+                continue;
+            }      
+            System.out.println(i);
+        }   
+    }
+}
+Khi i lớn hơn 4 và nhỏ hơn 9, câu lệnh continue sẽ được thực hiện, chương trình bỏ qua câu lệnh System.out.println(i);.
+
+Khi bạn chạy chương trình, kết quả sẽ là:
+1
+2
+​​​​3
+4
+9
+10
+
+3. Ví dụ 2: câu lệnh continue trong Java
+Chương trình dưới đây tính tổng 5 số dương lớn nhất được nhập từ bàn phím. Nếu người dùng nhập số âm hoặc 0, việc tính toán sẽ bị dừng lại.
+Để lấy input từ người dùng, đối tượng Scanner được sử dụng. Truy cập Input cơ bản trong Java để tìm hiểu thêm về cách lấy input từ người dùng.
+
+import java.util.Scanner;
+
+class AssignmentOperator {
+    public static void main(String[] args) {
+      
+        Double number, sum = 0.0;
+        // create an object of Scanner
+        Scanner input = new Scanner(System.in);
+      
+        for (int i = 1; i < 6; ++i) {
+            System.out.print("Enter a number: ");
+            // takes double type input from the user
+            number = input.nextDouble();
+         
+            // if number is negative, the iteration is skipped
+            if (number <= 0.0) {
+                continue;
+            }
+         
+            sum += number;
+        }
+        System.out.println("Sum = " + sum);
+    }
+}
+Khi chạy chương trình sẽ nhận được kết quả như sau:
+Enter a number: 2.2
+Enter a number: 5.6
+Enter a number: 0
+Enter a number: -2.4
+Enter a number: -3
+Sum = 7.8
+
+4. Câu lệnh continue và vòng lặp lồng nhau trong Java //xem thêm hình trên web
+Trong trường hợp các vòng lặp lồng nhau, câu lệnh continue bỏ qua vòng lặp hiện tại của vòng lặp trong cùng.
+
+5. Câu lệnh continue được dán nhãn
+Các câu lệnh continue từ đầu bài học đến giờ là các câu lệnh continue không có nhãn dán, các câu lệnh như vậy bỏ qua (các) câu lệnh còn lại của vòng lặp trong cùng.
+Có một dạng câu lệnh continue khác là dạng được dán nhãn, có thể sử dụng để bỏ qua (các) câu lệnh nằm ở vòng lặp bên ngoài.
+5.1. Câu lệnh continue có nhãn hoạt động như thế nào? // xem thêm hình trên web
+Ở đây, nhãn là một định danh.
+
+6. Ví dụ 3: Câu lệnh continue có nhãn dán
+/**
+* Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+*
+* @author cafedevn
+* Contact: cafedevn@gmail.com
+* Fanpage: https://www.facebook.com/cafedevn
+* Instagram: https://instagram.com/cafedevn
+* Twitter: https://twitter.com/CafedeVn
+* Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+*/
+
+class LabeledContinue {
+    public static void main(String[] args) {
+
+        // the outer for loop is labeled as label      
+        first:
+        for (int i = 1; i < 6; ++i) {
+            for (int j = 1; j < 5; ++j) {
+                if (i == 3 || j == 2)
+
+                    // skips the iteration of label (outer for loop)
+                    continue first;
+                System.out.println("i = " + i + "; j = " + j); 
+            }
+        } 
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+i = 1; j = 1
+i = 2; j = 1
+i = 4; j = 1
+i = 5; j = 1
+Không nên sử dụng câu lệnh continue có nhãn dán vì như thế code sẽ trở nên khó hiểu hơn. Nếu đang ở trong một tình huống mà phải sử dụng câu lệnh continue có nhãn dán, hãy tái cấu trúc code và cố gắng giải quyết theo một cách khác để làm cho code dễ đọc hơn.

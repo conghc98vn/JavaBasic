@@ -1,0 +1,173 @@
+Trong bài viết này, bạn sẽ học cách làm việc với các mảng trong Java. Bạn sẽ học cách khai báo, khởi tạo và truy cập các phần tử mảng qua các ví dụ.
+Mảng là một nơi chứa các dữ liệu (giá trị) thuộc một kiểu duy nhất. Ví dụ: bạn có thể tạo một mảng chứa 100 giá trị kiểu int.
+Mảng là một cấu trúc cơ bản trong Java cho phép bạn lưu trữ và truy cập tới nhiều giá trị một cách thuận tiện.
+
+1. Làm thế nào để khai báo một mảng?
+Sau đây là cách mà bạn có thể khai báo một mảng trong Java:
+dataType [] arrayName;
+Trong đó:
+dataType có thể là một kiểu dữ liệu cơ bản như: int, char, Double, byte, v.v. hoặc một đối tượng (sẽ được thảo luận trong các chương sau).
+arrayName là một định danh(Một tên do dev đặt).
+Hãy lấy một ví dụ nữa.
+double[] data;
+Ở đây, data là một mảng có thể chứa các giá trị thuộc kiểu Double.
+Nhưng mảng này có thể chứa bao nhiêu phần từ?
+Đó là một câu hỏi hay. Chúng ta còn chưa xác định điều này. Vì thế bước tiếp theo là phân bổ bộ nhớ cho các phần tử mảng.
+data = newDouble[10];
+Độ dài của mảng data là 10. Nghĩa là nó có thể chứa 10 phần tử (trong trường hợp này là 10 giá trị thuộc kiểu Double).
+Lưu ý, một khi độ dài của mảng được xác định thì độ dài đó không thể thay đổi trong chương trình.
+
+Hãy lấy một ví dụ khác:
+int[] age;
+age = new int[5];
+Ở đây, mảng age có thể chứa 5 giá trị thuộc kiểu  int .
+Có thể khai báo và phân bổ bộ nhớ của một mảng trong cùng một câu lệnh. Bạn có thể thay thế hai câu lệnh trên bằng một câu lệnh.
+int[] age = new int[5];
+
+2. Chỉ số mảng trong Java 
+Bạn có thể truy cập tới các phần tử của một mảng bằng cách sử dụng các chỉ số. Hãy xem xét ví dụ trước:
+
+int[] age = new int[5];
+
+Phần tử đầu tiên của mảng là age[0], phần tử thứ hai là age[1], v.v..
+
+Nếu độ dài của một mảng là n, phần tử cuối cùng sẽ là arrayName[n-1]. Vì độ dài của mảng age là 5, nên trong ví dụ trên phần tử cuối cùng của mảng là age[4].
+
+Giá trị mặc định ban đầu của các phần tử trong một mảng là 0 nếu đó là kiểu số và false nếu đó là kiểu boolean. Chúng ta có thể chứng minh điều này như sau:
+class ArrayExample {
+    public static void main(String[] args) {
+    
+        // create an array of length 5  
+        int[] age = new int[5];
+     
+        // access each element of the array using the index number 
+        System.out.println(age[0]);
+        System.out.println(age[1]);
+        System.out.println(age[2]);
+        System.out.println(age[3]);
+        System.out.println(age[4]);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+0
+0
+0
+0
+0
+Có một cách tốt hơn để truy cập tới các phần tử của một mảng bằng cách sử dụng cấu trúc lặp (thông thường ta sẽ sử dụng vòng lặp for ).
+
+class ArrayExample {
+    public static void main(String[] args) {
+
+        // create an array of length 5
+        int[] age = new int[5];
+
+        // accessing elements using for loop
+        for (int i = 0; i < 5; ++i) {
+            System.out.println(age[i]);
+        }
+    }
+}
+
+3. Làm thế nào để khởi tạo mảng trong Java?
+Trong Java, bạn có thể khởi tạo các mảng trong khi khai báo hoặc khởi tạo (hoặc thay đổi giá trị) sau trong chương trình theo ý muốn của mình.
+
+3.1 Khởi tạo một mảng trong khi khai báo
+Sau đây là cách bạn có thể khởi tạo một mảng trong khi khai báo.
+
+int[] age = {12, 4, 5, 2, 5};
+Câu lệnh này tạo ra một mảng và khởi tạo nó trong quá trình khai báo.
+
+Độ dài của mảng được xác định bởi số lượng các giá trị được cung cấp, các giá trị này cách nhau một dấu phẩy. Trong ví dụ này, độ dài của mảng age là 5.
+
+
+Hãy viết một chương trình đơn giản để in các phần tử của mảng này.
+
+class ArrayExample {
+    public static void main(String[] args) {
+
+        // create an array 
+        int[] age = {12, 4, 5, 2, 5};
+
+        // access elements of tha arau
+        for (int i = 0; i < 5; ++i) {
+            System.out.println("Element at index " + i +": " + age[i]);
+        }
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Element at index 0: 12
+Element at index 1: 4
+Element at index 2: 5
+Element at index 3: 2
+Element at index 4: 5
+
+4. Làm thế nào để truy cập tới các phần tử mảng?
+Có thể dễ dàng truy cập và thay đổi các phần tử mảng bằng cách sử dụng chỉ số của mảng. Hãy lấy một ví dụ.
+
+class ArrayExample {
+    public static void main(String[] args) {
+
+        int[] age = new int[5];
+
+        // insert 14 to third element
+        age[2] = 14;
+
+        // insert 34 to first element
+        age[0] = 34;
+
+        for (int i = 0; i < 5; ++i) {
+            System.out.println("Element at index " + i +": " + age[i]);
+        }
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Element at index 0: 34
+Element at index 1: 0
+Element at index 2: 14
+Element at index 3: 0
+Element at index 4: 0
+
+5. Ví dụ: mảng trong Java
+Chương trình dưới đây tính tổng và trung bình cộng của các giá trị được lưu trữ trong một mảng kiểu int.
+class SumAverage {
+    public static void main(String[] args) {
+
+        int[] numbers = {2, -9, 0, 5, 12, -25, 22, 9, 8, 12};
+        int sum = 0;
+        Double average;
+     
+        // for each loop is used to access elements 
+        for (int number: numbers) {
+            sum += number;
+        }
+     
+        int arrayLength = numbers.length;
+
+        // Change sum and arrayLength to double as average is in double
+        average =  ((double)sum / (double)arrayLength);
+
+        System.out.println("Sum = " + sum);
+        System.out.println("Average = " + average);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Sum = 36
+Average = 3.6
+Vài cần lưu ý ở đây:
+
+Vòng lặp for..each được sử dụng để truy cập vào các phần tử của mảng. Tìm hiểu thêm về Cách hoạt động của vòng lặp for…each trong Java.
+Để tính trung bình cộng, các giá trị sum và arrayLength vốn thuộc kiểu int sẽ được chuyển thành kiểu double vì giá trị trung bình cộng thuộc kiểu double. Đây là được gọi là chuyển đổi kiểu dữ liệu (type casting). Hãy tìm hiểu thêm về Chuyển đổi kiểu dữ liệu trong Java.
+Để có được độ dài của một mảng, thuộc tính length  được sử dụng. Ở đây,  numbers.length trả về độ dài của mảng numbers.
+
+6. Mảng đa chiều
+Mảng chúng ta đề cập từ đầu đến bây giờ được gọi là mảng một chiều. Trong Java, bạn có thể khai báo mảng đa chiều. Dưới đây là một ví dụ để khai báo và khởi tạo mảng đa chiều.
+
+double[][] matrix = {{1.2, 4.3, 4.0}, 
+      {4.1, -1.1}
+};
+Ở đây, matrix là một mảng 2 chiều. Truy cập trang này để tìm hiểu chi tiết về Mảng đa chiều trong Java .

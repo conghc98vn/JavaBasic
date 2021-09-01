@@ -1,0 +1,68 @@
+1. Biểu thức trong Java
+Biểu thức bao gồm các biến, toán tử, literals và các lời gọi hàm trả về giá trị đơn. Để tìm hiểu về lời gọi hàm, hãy truy cập các hàm Java.
+
+Hãy lấy một ví dụ,
+int score; 
+score = 90;
+Ở đây, score = 90 là một biểu thức cho ra kết quả kiểu int.
+Double a = 2.2, b = 3.4, result;
+result = a + b - 3.4;
+Ở đây, a + b – 3.4 là một biểu thức.
+if (number1 == number2)
+    System.out.println("Number 1 is larger than number 2");
+Ở đây, number1 == number2 là một biểu thức cho ra kết quả kiểu Boolean. Tương tự, “Number 1 is larger than number 2” là một biểu thức chuỗi.
+
+2. Câu lệnh trong Java
+Câu lệnh bao gồm tất cả những gì tạo thành một đơn vị để thực hiện gì đó. Ví dụ,
+
+int score = 9*5;
+Ở đây, 9*5 là một biểu thức cho kết quả 45 và int score = 9*5; là một câu lệnh.
+Biểu thức là một phần của câu lệnh.
+
+3. Câu lệnh biểu thức 
+Một số biểu thức có thể trở thành câu lệnh bằng cách kết thúc thêm vào cuối biểu thức đó một dấu chấm phẩy (;). Những câu lệnh như vậy được gọi là câu lệnh biểu thức. Ví dụ:
+number = 10;
+Ở đây, number = 10 là một biểu thức còn number = 10; là một câu lệnh mà trình biên dịch có thể thực hiện.
+
+++number;
+Ở đây, ++number là một biểu thức còn ++number; là một câu lệnh.s
+
+4. Câu lệnh khai báo
+Câu lệnh khai báo dùng để khai báo biến. Ví dụ,
+
+Double tax = 9.5;
+Câu lệnh trên khai báo biến tax với giá trị khởi tạo là 9.5.
+Ngoài ra, có các câu lệnh điều khiển được sử dụng trong việc ra quyết định và vòng lặp trong Java. Bạn sẽ tìm hiểu về các câu lệnh điều khiển trong các chương sau.
+
+5. Khối câu lệnh trong Java
+Khối câu lệnh là một nhóm các câu lệnh (0 hoặc nhiều câu lệnh) được đặt trong các dấu ngoặc nhọn { }. Ví dụ,
+
+class AssignmentOperator {
+    public static void main(String[] args) {
+    	
+    	String band = "Beatles";
+    	
+    	if (band == "Beatles") { // start of block
+    		System.out.print("Hey ");
+    		System.out.print("Jude!");
+    	} // end of block
+    }
+}
+Có hai câu lệnh System.out.print(“Hey “); và System.out.print(“Jude!”); bên trong khối câu lệnh được đề cập ở trên.
+
+Một khối câu lệnh có thể không có câu lệnh nào cả. Hãy xem xét các ví dụ sau:
+
+ 
+class AssignmentOperator {
+    public static void main(String[] args) {
+    	
+    	 if (10 > 5) { // start of block	
+ 
+    	 } // end of block
+    }
+}
+class AssignmentOperator {
+    public static void main(String[] args) {  // start of block 	
+
+    } // end of block
+}

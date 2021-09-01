@@ -1,0 +1,308 @@
+1. Toán tử(Operator) trong Java
+Trong bài viết này, bạn sẽ tìm hiểu về các loại toán tử khác nhau trong ngôn ngữ lập trình Java, cú pháp của chúng, cách sử dụng chúng và đi kèm là các ví dụ.
+Toán tử là các ký hiệu đặc biệt (ký tự) thực hiện các phép toán với các số hạng (biến và giá trị). Ví dụ, + là một toán tử thực hiện phép cộng.
+Trong bài viết về Biến trong Java , bạn đã học cách khai báo các biến và gán giá trị cho các biến. Bây giờ, bạn sẽ học cách sử dụng các toán tử để thao tác với các biến.
+
+2. Toán tử gán
+Toán tử gán được sử dụng trong Java để gán giá trị cho các biến. Ví dụ,
+
+int age;
+age = 5;
+Toán tử gán sẽ gán giá trị ở bên phải của nó cho biến ở bên trái. Ở đây, giá trị  5 được gán cho biến age bằng cách sử dụng toán tử =.
+Còn có nhiều toán tử gán khác. Tuy nhiên, để cho đơn giản, chúng ta sẽ tìm hiểu các toán tử gán khác trong phần sau của bài viết này.
+Ví dụ 1: Toán tử gán
+
+class AssignmentOperator {
+    public static void main(String[] args) {
+    	
+    	int number1, number2;
+    	
+    	// Assigning 5 to number1 
+    	number1 = 5;
+    	System.out.println(number1);
+    	    	
+    	// Assigning value of variable number2 to number1
+    	number2 = number1;
+    	System.out.println(number2);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+5
+5
+
+3. Toán tử số học
+Toán tử số học được sử dụng để thực hiện các phép toán như cộng, trừ, nhân, v.v.
+Các toán tử số học trong Java:
+Toán tử	Ý nghĩa
++	Toán tử cộng (cũng được sử dụng để nối chuỗi)
+–	Toán tử trừ
+*	Toán tử nhân
+/	Toán tử chia
+%	Toán tử lấy phần dư
+Ví dụ 2: Toán tử số học
+
+class ArithmeticOperator {
+    public static void main(String[] args) {
+    	
+    	double number1 = 12.5, number2 = 3.5, result;
+    	
+    	// Using addition operator
+    	result = number1 + number2;
+    	System.out.println("number1 + number2 = " + result);
+    	
+    	// Using subtraction operator
+    	result = number1 - number2;
+    	System.out.println("number1 - number2 = " + result);
+    	
+    	// Using multiplication operator
+    	result = number1 * number2;
+    	System.out.println("number1 * number2 = " + result);
+
+    	// Using division operator
+    	result = number1 / number2;
+    	System.out.println("number1 / number2 = " + result);
+    	
+    	// Using remainder operator
+    	result = number1 % number2;
+    	System.out.println("number1 % number2 = " + result);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+number1 + number2 = 16.0
+number1 - number2 = 9.0
+number1 * number2 = 43.75
+number1 / number2 = 3.5714285714285716
+number1 % number2 = 2.0
+Trong ví dụ trên, tất cả các số hạng được sử dụng đều là biến. Tuy nhiên, không nhất thiết phải như vậy. Các số hạng được sử dụng trong các toán tử số học cũng có thể là literals . Ví dụ:
+
+result = number1 + 5.2;
+result = 2.3 + 4.5;
+number2 = number1 -2.9;
+Toán tử + cũng có thể được sử dụng để nối hai hay nhiều chuỗi.
+
+Ví dụ 3: Toán tử số học
+
+class ArithmeticOperator {
+    public static void main(String[] args) {
+    	
+    	String start, middle, end, result;
+    	
+    	start = "Talk is cheap. ";
+    	middle = "Show me the code. ";
+    	end = "- Linus Torvalds";
+    	
+    	result = start + middle + end;
+    	System.out.println(result);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+Talk is cheap. Show me the code. - Linus Torvalds
+
+4. Toán tử một ngôi
+Toán tử một ngôi chỉ thực hiện phép toán với một số hạng.
+Toán tử	Ý nghĩa
++	Cộng một ngôi (toán tử này là không cần thiết vì kể cả khi không sử dụng toán tử này, các số vẫn luôn dương)
+–	Trừ một ngôi; đảo dấu của một biểu thức
+++	Toán tử gia tăng; tăng giá trị lên 1
+—	toán tử giảm; giảm giá trị đi 1
+!	Toán tử bổ sung logic, đảo ngược giá trị boolean
+Ví dụ 4: Toán tử một ngôi
+
+class UnaryOperator {
+    public static void main(String[] args) {
+    	
+    	double number = 5.2, resultNumber;
+    	boolean flag = false;
+    	
+    	System.out.println("+number = " + +number);
+    	// number is equal to 5.2 here.
+    	
+    	System.out.println("-number = " + -number);
+    	// number is equal to 5.2 here.
+    	
+        // ++number is equivalent to number = number + 1
+    	System.out.println("number = " + ++number);
+        // number is equal to 6.2 here.
+
+        // -- number is equivalent to number = number - 1
+    	System.out.println("number = " + --number);
+        // number is equal to 5.2 here.
+
+    	System.out.println("!flag = " + !flag);
+    	// flag is still false.
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
++number = 5.2
+-number = -5.2
+number = 6.2
+number = 5.2
+!flag = true
+Bạn cũng có thể sử dụng toán tử  ++ và — làm tiền tố và hậu tố trong Java. Các toán tử ++ tăng giá trị lên 1 và toán tử — giảm giá trị đi 1.
+
+int myInt = 5;
+++myInt   // myInt becomes 6
+myInt++   // myInt becomes 7
+--myInt   // myInt becomes 6
+myInt--   // myInt becomes 5
+Hiện tại kiến thức vẫn còn đơn giản. Tuy nhiên, có một sự khác biệt cần chú ý trong khi sử dụng toán tử tăng và giảm làm tiền tố và hậu tố. Hãy xem xét ví dụ này,
+
+Ví dụ 5: Toán tử một ngôi
+
+class UnaryOperator {
+    public static void main(String[] args) {
+    	
+    	double number = 5.2;
+
+    	System.out.println(number++);
+    	System.out.println(number);
+
+    	System.out.println(++number);
+    	System.out.println(number);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+5.2
+6.2
+7.2
+7.2
+Khi câu lệnh System.out.println(number++); được thực hiện, giá trị ban đầu được tính toán trước. Sau đó biến number mới tăng giá trị. Đó là lý do tại sao kết quả nhận được là 5.2. Sau đó, khi câu lệnh System.out.println(number); được thự hiện, giá trị sau khi tăng (tức 6.2) được hiển thị.
+Tuy nhiên, khi câu lệnh System.out.println(++number);được thực hiện, biến number sẽ tăng thêm 1 rồi mới được in ra màn hình.
+Tương tự đối với trường hợp toán tử giảm –.
+
+5. Toán tử quan hệ và toán tử bằng
+Các toán tử bằng và toán tử quan hệ xác định mối quan hệ giữa hai số hạng. Nó kiểm tra nếu một số hạng lớn hơn, nhỏ hơn, bằng, không bằng số hạng kia và v.v. Tùy thuộc vào mối quan hệ, nó cho một trong hai kết quả true hoặc false.
+Toán tử	Mô tả	Thí dụ
+==	bằng	5 == 3 được cho kết quả là false
+! =	không bằng	5! = 3 cho kết quả là true
+>	lớn hơn	5> 3 cho kết quả là true
+<	bé hơn	5 <3 cho kết quả là false
+> =	lớn hơn hoặc bằng	5> = 5 cho kết quả là true
+<=	bé hơn hoặc bằng	5 <= 5 cho kết quả là true
+Các toán tử bằng và quan hệ được sử dụng trong việc quyết định xem sẽ làm gì tiếp theo và các vòng lặp (sẽ được thảo luận sau).Giờ, hãy xét 1 ví dụ đơn giản như sau.
+
+Ví dụ 6: Các toán tử bằng và quan hệ
+class RelationalOperator {
+    public static void main(String[] args) {
+    	
+    	int number1 = 5, number2 = 6;
+
+    	if (number1 > number2)
+    	{
+    		System.out.println("number1 is greater than number2.");
+    	}
+    	else
+    	{
+    		System.out.println("number2 is greater than number1.");
+    	}
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+number2 is greater than number1.
+
+Ở đây, chúng ta đã sử dụng toán tử > để kiểm tra xem number1 có lớn hơn number2 hay không.
+Vì number2 lớn hơn number1 , biểu thức number1 > number2 trả kết quả là false.
+Do đó, đoạn code bên trong else được thực hiện và đoạn code bên trong if bị bỏ qua.
+Nếu không hiểu đoạn code trên thì đừng quá lo lắng. Nó sẽ được tìm hiểu một cách chi tiết trong bài viết Java if…else.
+Bây giờ, chỉ cần nhớ rằng các toán tử bằng và quan hệ so sánh hai số hạng và trả giá trị là true hoặc false.
+Ngoài các toán tử quan hệ, còn có một kiểu toán tử so sánh instanceof, nó so sánh một đối tượng với một kiểu xác định. Ví dụ:
+5.1 Toán tử instanceof
+Đây là một ví dụ về toán tử instanceof tác 
+
+class instanceofOperator {
+    public static void main(String[] args) {
+    	
+    	String test = "asdf";
+    	boolean result;
+    	
+    	result = test instanceof String;
+    	System.out.println(result);
+    }
+}
+Khi chạy chương trình, kết quả sẽ là true. Đó là vì biến test là instance của String class.
+Bạn sẽ tìm hiểu thêm về chức năng của các toán tử instanceof  khi đã hiểu về Các class và đối tượng trong Java.
+
+6. Toán tử logic
+Các toán tử logic || (điều kiện-OR) và && (điều kiện-AND) thao tác với các biểu thức boolean. Dưới đây là cách chúng hoạt động.
+Toán tử	Mô tả	Thí dụ
+| |	điều kiện-OR; true nếu một trong các biểu thức boolean là true	false || true trả về kết quả là true
+&&	có điều kiện-AND; true nếu tất cả các biểu thức boolean là true	false && true trả về kết quả false
+Ví dụ 8: Toán tử logic
+
+class LogicalOperator {
+    public static void main(String[] args) {
+    	
+    	int number1 = 1, number2 = 2, number3 = 9;
+    	boolean result;
+    	
+    	// At least one expression needs to be true for result to be true
+    	result = (number1 > number2) || (number3 > number1);
+    	// result will be true because (number1 > number2) is true
+    	System.out.println(result);
+    			
+    	// All expression must be true from result to be true	
+    	result = (number1 > number2) && (number3 > number1);
+    	// result will be false because	(number3 > number1) is false
+    	System.out.println(result);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+true
+false
+Toán tử logic được sử dụng để quyết định thực hiện cái gì đó và có thể sử dụng lại.
+
+7. Toán tử Ternary
+Toán tử điều kiện hoặc toán tử ternary ?: là viết tắt của câu lệnh  if-then-else. Cú pháp của toán tử điều kiện là:
+variable = Expression ? expression1 : expression2
+Dưới đây là cách nó hoạt động.
+
+Nếu biểu thức là true, biểu thức 1 được gán cho biến.
+Nếu biểu thức là false, biểu thức 2 được gán cho biến.
+Ví dụ 9: Toán tử Ternary
+
+class ConditionalOperator {
+    public static void main(String[] args) {
+    	
+    	int februaryDays = 29;
+    	String result;
+    	
+    	result =  (februaryDays == 28) ? "Not a leap year" : "Leap year";
+    	System.out.println(result);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Leap year
+Để tìm hiểu thêm, hãy truy cập toán tử ternary Java .
+
+8. Toán tử Bitwise và Bit Shift
+Để thực hiện các toán tử bitwise và bitshift trong Java, ta sử dụng các toán tử sau:
+
+Toán tử	Mô tả
+~	Phủ định NOT
+<<	Dịch trái
+>>	Dịch phải
+>>>	Bỏ dịch phải
+&	Toán tử AND
+^	Toán tử exclusive OR
+|	Toán tử OR
+Các toán tử này không được sử dụng phổ biến. Truy cập trang này để tìm hiểu thêm về Các toán tử bitwise và bit shift .
+
+8.1 Các toán tử gán khác 
+Chúng ta mới chỉ thảo luận về toán tử gán = trong phần đầu của bài viết. Ngoài toán tử này, có khá nhiều toán tử gán giúp chúng ta viết code gọn hơn.
+
+Toán tử	Thí dụ	Tương đương với
++ =	x + = 5	x = x + 5
+– = =	x – = 5	x = x – 5
+* =	x * = 5	x = x * 5
+/ =	x / = 5	x = x / 5
+% =	x% = 5	x = x / 5
+<< =	x << = 5	x = x << 5
+>> =	x >> = 5	x = x >> 5
+& =	x & = 5	x = x & 5
+^ =	x ^ = 5	x = x ^ 5
+| =	x | = 5	x = x | 5

@@ -1,0 +1,243 @@
+Trong bài hướng dẫn này, chúng ta sẽ tìm hiểu về các interface trong Java. Chúng ta sẽ học cách thực hiện các interface và khi nào sử dụng chúng một cách chi tiết với sự trợ giúp của các ví dụ.
+
+Trong Java, một interface định nghĩa một tập các đặc tả mà các class khác phải thực hiện. Ví dụ:
+
+interface Polygon {
+   public void getArea();
+}
+Ở đây, Polygon là một interface. Chúng ta đã sử dụng từ khóa interface để khai báo một interface. Phương thức getArea() là một specification được định nghĩa trong interface Polygon. Tất cả các class sử dụng interface này phải thực thi phương thức getArea().
+
+Một interface có thể bao gồm các phương thức và hằng số trừu tượng. Lấy ví dụ:
+
+interface Polygon {
+   public static final String color = "blue";
+   
+   public  void getArea();
+}
+Trong ví dụ trên, chúng ta đã tạo ra một Interface Polygon. Nó bao gồm một biến không đổi color và một phương thức trừu tượng getArea().
+
+Điều quan trọng cần lưu ý là, tất cả các phương thức bên trong một interface đều được ngầm định là public và tất cả các thuộc tính đều được ngầm định là public static final. Do đó, không cần thiết phải chỉ định access specifier bên trong các interface. Chẳng hạn như ta có thể viết mã trên là:
+
+interface Polygon {
+   String color = "blue";
+   
+    void getArea();
+}
+
+1. Từ khóa implements trong Interface
+Giống như các class trừu tượng, chúng ta không thể khởi tạo các đối tượng của interface. Tuy nhiên, chúng ta có thể thực thi các interface trong các class khác. Trong Java, chúng ta sử dụng từ khóa implements để thực thi các interface. Ví dụ:
+
+interface Polygon {
+    void getArea(int length, int breadth);
+}
+
+class Rectangle implements Polygon {
+    public void getArea(int length, int breadth) {
+        System.out.println("The area of the rectangle is " + (length * breadth));
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Rectangle r1 = new Rectangle();
+        r1.getArea(5, 6);
+    }
+}
+Kết quả là:
+
+The area of the rectangle is 30
+Trong chương trình trên, chúng ta đã tạo ra một interface Polygon. Interface này có một phương pháp trừu tượng là getArea().
+
+Điều này có nghĩa là bất kỳ class nào thực hiện Polygon đều phải thực thi phương thức getArea().
+
+Lưu ý rằng, class Rectangle ( class thực thi interface Polygon) cũng cần phải thực thi phương thức getArea().
+
+2. Tại sao cần sử dụng Interface?
+Bây giờ chúng ta đã biết interface là gì, hãy tìm hiểu về lý do tại sao interface được sử dụng trong Java.
+
+Các interface cung cấp các specification mà một class (class thực thi nó) phải tuân theo.
+Trong ví dụ trên, chúng ta đã sử dụng getArea() làm specification bên trong interface Polyon. Điều này giống như đặt ra một quy tắc rằng, chúng ta sẽ có thể có được diện tích của mọi đa giác. Vì vậy, bất kỳ class nào thực thi interface Polygon triển khai phương thức getArea().
+
+Tương tự như các class trừu tượng, các interface giúp chúng ta đạt được tính trừu tượng hóa trong Java. Ở đây, chúng ta biết rằng phương thức getArea() giúp tính diện tích của các đa giác nhưng cách tính diện tích đối với mỗi đa giác khác nhau là khác nhau. Do đó, việc thực thi phương thức getArea() là độc lập với nhau.
+Các interface cũng được sử dụng để đạt được tính đa kế thừa trong Java. Nếu một subclass được kế thừa từ hai hoặc nhiều class, thì đó là tính đa kế thừa.
+Trong Java, tính đa kế thừa là không khả thi bằng cách mở rộng các class. Tuy nhiên, một class có thể triển khai nhiều interface. Điều này cho phép chúng ta có được tính năng của tính đa kế thừa trong Java. Ví dụ:
+
+interface Line {
+   ...
+}
+interface Polygon {
+   ...
+}
+class Rectangle implements Line, Polygon{
+   ...
+}
+Ở đây, class Rectangle phải triển khai cả phương thức Line và Polygon.
+
+3. Phương thức private và static trong Interface
+Với việc phát hành Java 8, các interface giờ đây có thể bao gồm các phương thức tĩnh.
+
+Tương tự như một class, chúng ta có thể truy cập các phương thức tĩnh của một interface bằng cách sử dụng các tham chiếu của nó. Ví dụ,
+
+Polygon.staticMethod();
+Ngoài ra, các interface hỗ trợ các phương thức private với việc phát hành Java 9. Bây giờ bạn có thể sử dụng các phương thức private và phương thức private static trong các interface.
+
+Vì bạn không thể khởi tạo interface, các phương thức private được sử dụng làm phương thức hỗ trợ cho các phương thức khác trong các interface.
+
+4. Phương thức default trong các Interface
+Với việc phát hành Java 8, các phương thức được triển khai (các phương thức default) đã được tích hợp bên trong một interface. Trước đó, trong Java tất cả các phương thức đều là phương thức trừu tượng.
+
+Để khai báo các phương thức default bên trong các interface, chúng tôi sử dụng từ khóa default. Ví dụ,
+
+public default void getSides() {
+   // body of getSides()
+}
+
+5. Tại sao cần sử dụng phương thức default?
+Chúng ta hãy lấy một kịch bản để hiểu tại sao các phương thức default được giới thiệu trong Java.
+
+Giả sử, chúng ta cần thêm một phương thức mới trong một interface.
+
+Chúng ta có thể thêm phương thức trong interface của mình một cách dễ dàng mà không cần thực hiện. Tuy nhiên, câu chuyện chưa kết thúc ở đó. Tất cả các class của chúng ta triển khai interface đó phải thực thi phương thức mới thêm vào đó.
+
+Nếu có nhiều class đang thực hiện interface này, chúng ta cần theo dõi tất cả các class này và thực hiện các thay đổi trong chúng hoặc có class không cần phương thức mới đó mà bắt nó phải kế thừa thì rất dư code. Điều này không chỉ tẻ nhạt mà còn dễ bị lỗi.
+
+Để giải quyết điều này, Java đã giới thiệu phương thức default. Các phương thức default được kế thừa như các phương thức thông thường và nó sẽ không bắt buộc phải kể thừa.
+
+Hãy lấy một ví dụ để hiểu rõ hơn về các phương thức default.
+
+6. Ví dụ 2: Phương thức Default
+
+interface  Polygon {
+   void getArea();
+   default void getSides() {
+      System.out.println("I can get sides of polygon.");
+   }
+}
+
+class Rectangle implements Polygon {
+   public void getArea() {
+      int length = 6;
+      int breadth = 5;
+      int area = length * breadth;
+      System.out.println("The area of the rectangle is "+area);
+   }
+
+   public void getSides() {
+      System.out.println("I have 4 sides.");
+   }
+}
+
+class Square implements Polygon {
+   public void getArea() {
+      int length = 5;
+      int area = length * length;
+      System.out.println("The area of the square is "+area);
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Rectangle r1 = new Rectangle();
+      r1.getArea();
+      r1.getSides();
+
+      Square s1 = new Square();
+      s1.getArea();
+   }
+}
+Kết quả
+
+The area of the rectangle is 30
+I have 4 sides
+The area of the square is 25
+Trong ví dụ trên, chúng tôi đã tạo ra một Interface Polygon. Interface Polygon này có một phương thức default là getSides()và một phương thức trừu tượng là getArea().
+
+Class Square sau đó thực hiện Polygon . Class Square triển khai phương thức trừu tượng getArea() và ghi đè phương thức default getSides().
+
+Chúng ta vừa tạo ra một class Square khác cũng triển khai interface Polygon . Ở đây, class Square chỉ cần thực thi phương thức trừu tượng getArea().
+
+7. Ví dụ thực tế về interface
+Chúng ta hãy xem một ví dụ thực tế hơn về Interface trong Java.
+
+// To use the sqrt function
+import java.lang.Math;
+
+interface  Polygon {
+   void getArea();
+  
+ // calculate the perimeter of a Polygon
+   default void getPerimeter(int... sides) {
+      int perimeter = 0;
+      for (int side: sides) {
+         perimeter += side;
+      }
+
+   System.out.println("Perimeter: " + perimeter);
+   }
+}
+
+class Triangle implements Polygon {
+   private int a, b, c;
+   private double s, area;
+
+// initializing sides of a triangle
+   Triangle(int a, int b, int c) {
+      this.a = a;
+      this.b = b;
+      this.c = c;
+      s = 0;
+   }
+
+// calculate the area of a triangle
+   public void getArea() {
+      s = (double) (a + b + c)/2;
+      area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+      System.out.println("Area: " + area);
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Triangle t1 = new Triangle(2, 3, 4);
+
+// calls the method of the Triangle class
+      t1.getArea();
+
+// calls the method of Polygon
+      t1.getPerimeter(2, 3, 4);
+   }
+}
+Đầu ra
+
+Area: 2.9047375096555625
+Perimeter: 9
+Trong chương trình trên, chúng ta đã tạo ra một Interface Polygon. Nó bao gồm một phương thức default getParameter() và một phương thức trừu tượng getArea().
+
+Chúng ta có thể tính toán chu vi của tất cả các đa giác theo cách tương tự vì vậy chúng ta thực thi phần thân phương thức getPerimeter() trong interface Polygon . Bây giờ, tất cả các đa giác thực hiện Polygon có thể sử dụng getPerimeter() để tính chu vi.
+
+Tuy nhiên, vì quy tắc tính diện tích đối với mỗi đa giác khác nhau là khác nhau nên diện tích các đa giác khác nhau sẽ được tính khác nhau. Do đó, interface Polygon bao gồm nhưng không thực thi phương thức getArea(). Và, bất kỳ class nào triển khai interface Polygon đều phải thực thi phương thức getArea().
+
+8. Từ khóa extend trong interface
+Tương tự như các class, interface có thể mở rộng các interface khác. Các từ khóa extends được sử dụng để mở rộng interface. Ví dụ,
+
+interface Line {
+   //members of Line interface
+}
+
+interface Polygon extends Line {
+   //members of Polygon interface and Line interface
+}
+Trong ví dụ trên, interface Polygon mở rộng interface Line. Bây giờ, nếu một class triển khai Polygon, nó sẽ thực thi tất cả các class trừu tượng của cả Line và Polygon.
+
+Lưu ý rằng một interface có thể mở rộng nhiều interface tương tự như một class triển khai nhiều interface. Lấy ví dụ,
+
+interface A {
+   ...
+}
+interface B {
+   ... 
+}
+
+Interface C extends A, B {
+   ...
+}

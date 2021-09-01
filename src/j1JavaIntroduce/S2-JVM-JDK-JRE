@@ -1,0 +1,11 @@
+1. JVM là gì?
+JVM ( Java Virtual Machine- Máy ảo Java) là một máy ảo cho phép máy tính chạy chương trình Java.
+Khi bạn chạy chương trình Java, trước tiên trình biên dịch Java sẽ biên dịch Java code thành bytecode. Sau đó, JVM dịch bytecode thành ngôn ngữ máy (tập hợp các câu lệnh mà CPU của máy tính trực tiếp thực hiện).
+Java là một ngôn ngữ độc lập nền tảng. Bởi vì khi bạn viết Java code, code thật ra được viết cho JVM chứ không phải cho thiết bị vật lý (máy tính). Do JVM thực hiện Java bytecode độc lập với nền tảng, Java là ngôn ngữ độc lập với nền tảng nó đang chạ
+
+2. JRE là gì?
+JRE ( Java Runtime Environment) là gói phần mềm cung cấp các thư viện lớp Java, cùng với Máy ảo Java (JVM), và các thành phần khác để chạy các ứng dụng được viết bằng lập trình Java. JRE là một bộ của JVM.
+Nếu bạn cần chạy các chương trình Java, nhưng không phát triển chúng, JRE là thứ bạn cần.
+
+3. JDK là gì?
+JDK (Java Development Kit- Bộ công cụ phát triển Java) là một bộ công cụ phát triển phần mềm để phát triển các ứng dụng trong Java. Khi bạn tải JDK, JRE cũng được tải xuống và không cần phải tải xuống riêng. Ngoài JRE, JDK cũng chứa một lượng công cụ phát triển (trình biên dịch, JavaDoc, Trình gỡ lỗi Java, v.v.).

@@ -1,0 +1,82 @@
+Trong hướng dẫn này, chúng ta sẽ tìm hiểu về design pattern singleton và cách áp dụng nó trong Java với sự trợ giúp của các ví dụ.
+Singleton là một mẫu thiết kế(design pattern) chứ không phải là một tính năng dành riêng cho Java. Nó đảm bảo rằng chỉ có một thể hiện của một lớp được tạo ra.
+Một mẫu thiết kế(design pattern) giống như thư viện code của chúng ta bao gồm các kỹ thuật code khác nhau được chia sẻ bởi các lập trình viên trên khắp thế giới.
+
+1. Java Singleton
+Đây là cách chúng ta có thể sử dụng singletons trong Java.
+
+Tạo một hàm tạo private để tạo giới hạn một đối tượng từ bên ngoài lớp
+Tạo một thuộc tính private để chỉ truy cập đến đối tượng singleton tại một nơi.
+Tạo một phương thức public staticcho phép chúng ta tạo và truy cập vào đối tượng chúng ta đã tạo. Bên trong phương thức, chúng ta sẽ tạo một điều kiện hạn chế chúng ta tạo nhiều hơn một đối tượng.
+Đây là một ví dụ.
+
+class SingletonExample {
+
+// private field that refers to the object
+   private static SingletonExample singleObject;
+
+   private SingletonExample() {
+      // constructor of the SingletonExample class
+   }
+
+   public static SingletonExample getInstance() {
+      // write code that allows us to create only one object
+      // access the object as per our need
+   }
+}
+Trong ví dụ trên,
+
+private static SingletonExample singleObject – một tham chiếu đến đối tượng của lớp.
+private SingletonExample() – một hàm tạo riêng hạn chế việc tạo các đối tượng từ bên ngoài lớp.
+public static SingletonExample getInstance()– phương thức này trả về tham chiếu đến đối tượng duy nhất của lớp. Kể từ khi phương pháp tĩnh, nó có thể được truy cập bằng cách sử dụng tên lớp.
+
+2. Sử dụng lớp Singleton
+Singletons có thể được sử dụng trong khi làm việc với cơ sở dữ liệu. Chúng có thể được sử dụng để tạo một nhóm kết nối để truy cập cơ sở dữ liệu trong khi sử dụng lại cùng một kết nối cho tất cả các máy khách. Ví dụ,
+
+class Database {
+   private static Database dbObject;
+
+   private Database() {      
+   }
+
+   public static Database getInstance() {
+
+      // create object if it's not already created
+      if(dbObject == null) {
+         dbObject = new Database();
+      }
+
+       // returns the singleton object
+       return dbObject;
+   }
+
+   public void getConnection() {
+       System.out.println("You are now connected to the database.");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Database db1;
+
+      // refers to the only object of Database
+      db1= Database.getInstance();
+      
+      db1.getConnection();
+   }
+}
+Khi chúng ta chạy chương trình, đầu ra sẽ là:
+
+You are now connected to the database.
+Trong ví dụ trên của chúng ta,
+
+Chúng ta đã tạo ra một lớp singleton Database.
+Các dbObject là một trường của lớp. Điều này sẽ tham chiếu đến đối tượng của lớp Database.
+Hàm tạo private Database()ngăn chặn việc tạo đối tượng bên ngoài lớp.
+Phương thức kiểu lớp tĩnh getInstance()trả về thể hiện của lớp với thế giới bên ngoài.
+Bên trong Main, chúng ta có biến loại db1. Chúng ta đang gọi getInstance()bằng cách sử dụng db1 để có được đối tượng duy nhất của Database.
+Phương thức getConnection()chỉ có thể được truy cập bằng cách sử dụng đối tượng của Database.
+Kể từ khi Database có một đối tượng, tất cả các máy khách có thể truy cập cơ sở dữ liệu thông qua một kết nối duy nhất.
+Điều quan trọng cần lưu ý là, chỉ có một vài tình huống (như đăng nhập) trong đó singletons sẽ có ý nghĩa. Ngay cả một kết nối cơ sở dữ liệu thường không nên là một singleton.
+
+Chúng tôi khuyên bạn nên tránh sử dụng singletons nếu bạn không chắc chắn có nên sử dụng nó hay không. Tìm hiểu thêm: Điều gì là xấu về Singleton?

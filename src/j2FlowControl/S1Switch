@@ -1,0 +1,145 @@
+Trong Java, cấu trúc rẽ nhánh if..else..if thực hiện một code trong số nhiều khối code. Câu lệnh switch có thể thay thế cho các cấu trúc rẽ nhánh if..else..if dài, từ đó sẽ làm cho code dễ đọc hơn.
+Cú pháp của câu lệnh switch là:
+switch (variable/expression) {
+case value1:
+   // statements of case1
+   break;
+
+case value2:
+   // statements of case2
+   break;
+
+   .. .. ...
+   .. .. ...
+
+default:
+   // default statements
+}
+Câu lệnh switch tính toán expression(chủ yếu là biến) và so sánh với các giá trị (có thể là biểu thức) của mỗi case.
+Câu lệnh switch  thực hiện tất cả các câu lệnh của case tương ứng.
+Giả sử, giá trị của biến/biểu thức bằng với giá trị2. Trong trường hợp này, tất cả các câu lệnh của case tương ứng được thực hiện.
+Hãy chú ý về việc sử dụng câu lệnh break. Đây là câu lệnh dừng việc thực hiện câu lệnh switch. Các câu lệnh break rất quan trọng vì nếu không sử dụng chúng, tất cả các câu lệnh sau case tương ứng sẽ được thực hiện theo trình tự cho đến khi kết thúc câu lệnh switch.
+
+1. Sơ đồ khối của câu lệnh switch // xem thêm hình trên web
+Cũng cần lưu ý rằng câu lệnh switch trong Java chỉ hoạt động với:
+Các kiểu dữ liệu cơ bản: byte, short, char và int
+Các kiểu liệt kê (liệt kê trong Java)
+String class
+Một vài class bao gồm các kiểu cơ bản: Character, Byte, Short, và Integer.
+
+2. Ví dụ 1: Câu lệnh switch trong Java
+class Main {
+    public static void main(String[] args) {
+
+        int week = 4;
+        String day;
+
+        // switch statement to check day
+        switch (week) {
+            case 1:
+                day = "Sunday";
+                break;
+            case 2:
+                day = "Monday";
+                break;
+            case 3:
+                day = "Tuesday";
+                break;
+
+            // match the value of week
+            case 4:
+                day = "Wednesday";
+                break;
+            case 5:
+                day = "Thursday";
+                break;
+            case 6:
+                day = "Friday";
+                break;
+            case 7:
+                day = "Saturday";
+                break;
+            default:
+                day = "Invalid day";
+                break;
+        }
+        System.out.println("The day is " + day);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+The day is Wednesday
+
+3. Ví dụ 2: Câu lệnh switch trong Java
+Chương trình dưới đây có ba input từ người dùng: 1 toán tử và 2 số. Nó thực hiện tính toán dựa trên các số và toán tử được nhập vào. Sau đó, kết quả được hiển thị trên màn hình.
+
+Chúng tôi đã sử dụng Scanner để lấy input từ người dùng. Để tìm hiểu thêm, hãy truy cập Input cơ bản trong Java.
+
+/**
+* Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+*
+* @author cafedevn
+* Contact: cafedevn@gmail.com
+* Fanpage: https://www.facebook.com/cafedevn
+* Instagram: https://instagram.com/cafedevn
+* Twitter: https://twitter.com/CafedeVn
+* Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+*/
+
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+        char operator;
+        Double number1, number2, result;
+
+        // create an object of Scanner class
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter operator (either +, -, * or /): ");
+
+        // ask user to enter operator
+        operator = scanner.next().charAt(0);
+        System.out.print("Enter number1 and number2 respectively: ");
+
+        // ask user to enter numbers
+        number1 = scanner.nextDouble();
+        number2 = scanner.nextDouble();
+
+        switch (operator) {
+
+            // performs addition between numbers
+            case '+':
+                result = number1 + number2;
+                System.out.print(number1 + "+" + number2 + " = " + result);
+                break;
+
+            // performs subtraction between numbers
+            case '-':
+                result = number1 - number2;
+                System.out.print(number1 + "-" + number2 + " = " + result);
+                break;
+
+            // performs multiplication between numbers
+            case '*':
+                result = number1 * number2;
+                System.out.print(number1 + "*" + number2 + " = " + result);
+                break;
+
+            // performs division between numbers
+            case '/':
+                result = number1 / number2;
+                System.out.print(number1 + "/" + number2 + " = " + result);
+                break;
+
+            default:
+                System.out.println("Invalid operator!");
+                break;
+        }
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Enter operator (either +, -, * or /): *
+Enter number1 and number2 respectively: 1.4
+-5.3
+1.4*-5.3 = -7.419999999999999

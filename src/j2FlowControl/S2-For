@@ -1,0 +1,101 @@
+1. Vòng lặp for trong Java 
+Cú pháp của vòng lặp trong Java là:
+
+for (initialization; testExpression; update)
+{
+    // codes inside for loop's body
+}
+
+2. Vòng lặp hoạt động thế nào?
+Biểu thức khởi tạo(initialization) chỉ được thực hiện một lần.
+Sau đó, biểu thức kiểm tra được đánh giá. Ở đây, biểu thức kiểm tra(testExpression) là một biểu thức boolean.
+Nếu biểu thức kiểm tra trả kết quả là true,
+Phần code trong thân vòng lặp for được thực hiện.
+Sau đó, biểu thức cập nhật(update) được thực hiện.
+Một lần nữa, biểu thức kiểm tra được đánh giá.
+Nếu biểu thức kiểm tra trả kết quả là true, phần code bên trong thân vòng lặp for được thực hiện và biểu thức cập nhật được thực hiện.
+Quá trình này diễn ra cho đến khi biểu thức kiểm tra được cho kết quả false.
+Nếu biểu thức kiểm tra được ước tính false, vòng lặp for chấm dứt.
+
+3. Sơ đồ vòng lặp for // xem thêm hình trên web
+
+4. Ví dụ 1: Vòng lặp for
+// Program to print a sentence 10 times
+
+class Loop {
+    public static void main(String[] args) {
+      
+        for (int i = 1; i <= 10; ++i) {
+            System.out.println("Line " + i);
+        }
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+Line 6
+Line 7
+Line 8
+Line 9
+Line 10
+Ở đây, biến i được khai báo và khởi tạo giá trị 1.
+Sau đó, biểu thức kiểm tra i <= 10 được đánh giá. Vì, đó biểu thức trả kết quả là true nên phần thân của vòng lặp for được thực hiện và  Line 1 được in trên màn hình.
+Sau đó, biểu thức cập nhật ++i được thực hiện. Bây giờ, giá trị của i được tăng lên thành 2. Một lần nữa biểu thức i <= 10 được kiểm tra và câu lệnh bên trong vòng lặp for được thực hiện sẽ in Line 2 trên màn hình.
+Quá trình lặp này diễn ra cho đến khi i bằng 11. Khi i bằng 11, biểu thức i <= 10 là false và vòng lặp for kết thúc.
+
+5. Ví dụ 2: Vòng lặp for
+// Program to find the sum of natural numbers from 1 to 1000.
+
+class Number {
+    public static void main(String[] args) {
+      
+        int sum = 0;
+	   
+        for (int i = 1; i <= 1000; ++i) {
+            sum += i;     // sum = sum + i
+        }
+	   
+        System.out.println("Sum = " + sum);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Sum = 500500
+Ở đây, biến sum được khởi tạo giá trị là 0. Sau đó, trong mỗi lần lặp của vòng lặp for, biến sum được gán là sum +i và giá trị của i được tăng cho đến khi i lớn hơn 1000. Để cho trực quan hơn,
+
+1st iteration: i = 1 and sum = 0+1 = 1
+2nd iteration: i = 2 and sum = 1+2 = 3
+3rd iteration: i = 3 and sum = 3+3 = 6
+4th iteration: i = 4 and sum = 6+4 = 10
+... .. ...
+
+999th iteration: i = 999 and sum = 498501 + 999 = 499500
+1000th iteration: i = 1000 and sum = 499500 + 1000 = 500500
+Để tìm hiểu thêm về biểu thức kiểm tra và cách tính toán, hãy truy cập các toán tử quan hệ và logic .
+
+6. Vòng lặp for vô hạn
+Nếu biểu thức kiểm tra không bao giờ cho kết quả false, vòng lặp for sẽ chạy mãi mãi. Điều này được gọi là vòng lặp for vô hạn. Hãy lấy một ví dụ:
+
+// Infinite for Loop
+
+class Infinite {
+    public static void main(String[] args) {
+      
+        int sum = 0;
+
+        for (int i = 1; i <= 10; --i) {
+            System.out.println("Hello");
+        }
+    }
+}
+Ở đây, biểu thức kiểm tra i <= 10 không bao giờ trả kết quả false và hello được in vô hạn lần (ít nhất, theo lý thuyết là vậy).
+
+Việc khởi tạo biến hay biểu thức cập nhật và biểu thức kiểm tra trong câu lệnh for là không bắt buộc. Đây là một ví dụ khác về vòng lặp for vô hạn.
+
+for ( ; ; ) {
+
+}

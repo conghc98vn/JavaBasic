@@ -1,0 +1,185 @@
+Trong bài hướng dẫn này, chúng ta sẽ tìm hiểu về đa hình, các loại đa hình khác nhau và cách triển khai chúng trong Java với sự trợ giúp của các ví dụ.
+
+Tính đa hình là một khái niệm quan trọng của lập trình hướng đối tượng. Nó đơn giản có nghĩa là nhiều hơn một hình thức. Đó là cùng một thực thể (phương thức, toán tử hoặc đối tượng) nhưng sẽ hoạt động khác nhau trong các tình huống khác nhau. Ví dụ:
+
+Toán tử + trong Java được sử dụng để thực hiện hai chức năng cụ thể. Khi nó được sử dụng với số (số nguyên và số thực), nó sẽ thực hiện phép cộng.
+
+int a = 5;
+int b = 6;
+int sum = a + b;     //  Output = 11
+Và khi chúng ta sử dụng toán tử + với các chuỗi, nó thực hiện nối chuỗi. Ví dụ,
+
+String firstName = "abc ";
+String lastName = "xyz";
+name = firstName + lastName;     //  Output = abc xyz
+
+1. Các kiểu đa hình
+Trong Java, đa hình có thể được chia thành hai kiểu:
+Đa hình lúc runtime
+Đa hình lúc compile-time
+
+2. Đa hình lúc runtime
+Trong Java, tính đa hình lúc runtime có thể đạt được thông qua việc ghi đè phương thức.
+Giả sử cùng một phương thức được tạo ra trong cả superclass và subclass của nó. Trong trường hợp này, phương thức sẽ được gọi phụ thuộc vào đối tượng được sử dụng để gọi phương thức. Ví dụ:
+
+2.1 Ví dụ 1: Ghi đè phượng thức // Xem thêm hình trên web
+
+abstract class Animal {
+   public abstract void makeSound();
+}
+
+class Dog extends Animal {
+   @Override
+   public void makeSound() {
+      System.out.println("Bark bark..");
+   }
+}
+
+class Cat extends Animal {
+   @Override
+   public void makeSound() {
+      System.out.println("Meow meow..");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+     Dog  d1 = new Dog();
+      d1.makeSound();
+
+      Cat c1 = new Cat();
+      c1.makeSound();
+   }
+}
+Kết quả:
+
+Bark bark…
+Meow-meow...
+Để biết cách ghi đè phương thức hoạt động, hãy truy cập Ghi đè phương thức trong Java .
+
+Trong ví dụ trên, phương thức makeSound() có các cách triển khai khác nhau trong hai class khác nhau. Khi chúng ta chạy chương trình,
+
+Biểu thức d1.makeSound() sẽ gọi phương thức của class Dog. Đó là bởi vì d1 là một đối tượng của class Dog.
+Biểu thức c1.makeSound() sẽ gọi phương thức của class Cat . Đó là bởi vì c1 là một đối tượng của class cat.
+
+Phương thức được gọi sẽ được xác định trong suốt quá trình thực hiện chương trình. Do đó, ghi đè phương thức là một đa hình lúc runtime.
+
+3. Đa hình lúc compiler-time
+Đa hình lúc compiler-time có thể đạt được thông qua việc nạp chồng phương thức và nạp chồng toán tử trong Java.
+
+4. Nạp chồng phương thức
+Trong Java đối với một class, chúng ta có thể tạo các phương thức có cùng tên nếu chúng khác nhau về các tham số. Ví dụ:
+
+void func() { ... }
+void func(int a) { ... }
+float func(double a) { ... }
+float func(int a, float b) { ... }
+Điều này được gọi là nạp chồng phương thức trong Java.
+
+Hãy lấy một ví dụ về nạp chồng phương thức.
+
+4.1 Ví dụ 3: Nạp chồng phương thức
+
+class Demo {
+ public void displayPattern(){
+   for(int i = 0; i < 10; i++) {
+     System.out.print("*");
+   }
+ }
+
+ public void displayPattern(char symbol) {
+   for(int i = 0; i < 10; i++) {
+     System.out.print(symbol);
+   }
+ }
+}
+
+class Main {
+ public static void main(String[] args) {
+   Demo d1 = new Demo();
+   d1.displayPattern();
+   System.out.println("\n");
+   d1.displayPattern('#');
+ }
+}
+Kết quả:
+
+**********
+##########
+Trong chương trình trên, displayPattern() là phương thức bị nạp chồng.
+
+Nếu chúng ta gọi phương thức mà không truyền bất kỳ đối số nào, một mẫu * sẽ được tạo.
+Nếu chúng ta gọi phương thức bằng cách truyền một ký tự làm đối số, một mẫu ký tự đó được tạo.
+
+Để biết cách ghi đè phương thức hoạt động, hãy truy cập Ghi đè phương thức trong Java.
+
+4.2 So sánh nạp chồng phương thức với ghi đè phương thức trong Java
+Trong trường hợp ghi đè phương thức, các phương thức nằm trong các class khác nhau. Trong khi đó, với nạp chồng phương thức, các phương thức nằm trong cùng một class.
+Ghi đè phương thức được thực hiện tại lúc runtime trong khi nạp chồng phương thức được thực hiện tại lúc compiler-time.
+
+5. Nạp chồng toán tử
+Một số toán tử trong Java hoạt động khác nhau với các toán hạng khác nhau. Ví dụ:
+
+Toán tử + bị nạp chồng để thực hiện phép cộng số cũng như nối chuỗi và các toán tử như &, | và ! bị nạp chồng cho các hoạt động logic và bitwise.
+
+Hãy xem cách một toán tử bị nạp chồng trong Java như thế nào.
+
+Toán tử + trong Java được sử dụng để thực hiện hai chức năng cụ thể. Khi nó được sử dụng với số (số nguyên và số thực), nó thực hiện phép cộng. Ví dụ:
+
+int a = 5;
+int b = 6;
+int sum = a + b;     //  Output = 11
+Và khi chúng ta sử dụng toán tử + với các chuỗi, nó thực hiện nối chuỗi. Ví dụ,
+
+String firstName = "abc ";
+String lastName = "xyz";
+name = firstName + lastName;     //  Output = abc xyz
+Trong các ngôn ngữ như C ++, chúng ta có thể định nghĩa các toán tử hoạt động khác nhau cho các toán hạng khác nhau. Tuy nhiên, Java không hỗ trợ nạp chồng toán tử do người dùng định nghĩa.
+
+6. Tại sao cần có tính đa hình?
+Tính đa hình cho phép chúng ta tạo mã nhất quán. Ví dụ:
+
+Giả sử chúng ta cần kết xuất một hình tròn và hình vuông. Để làm như vậy, chúng ta có thể tạo một class Polygon và kế thừa hai subclass Circle và Square từ nó. Trong trường hợp này, sẽ hợp lý khi tạo một phương thức có cùng tên render() trong cả hai subclass này thay vì tạo các phương thức có tên khác nhau.
+
+Trong ví dụ về nạp chồng phương thức, chúng ta đã cùng sử dụng một tên phương thức displayPattern() để hiển thị hai mẫu khác nhau cho thống nhất.
+
+Phương thức print() trong Java cũng là một ví dụ về tính đa hình (nạp chồng phương thức). Cùng một phương thức được sử dụng để in các giá trị của các kiểu giá trị khác nhau như char, int, String, vv. Chúng ta cũng có thể sử dụng cùng một phương thức để in nhiều giá trị cùng một lúc.
+
+7. Biến đa hình
+Trong Java, các biến đối tượng (biến instance) biểu thị hoạt động của các biến đa hình. Đó là bởi vì các biến đối tượng của một class có thể dùng để chỉ các đối tượng của class cũng như các đối tượng của các class con của nó. Ví dụ:
+
+class Animal {
+   public void displayInfo() {
+      System.out.println("I am an animal.");
+   }
+}
+
+class Dog extends Animal {
+   @Override
+   public void displayInfo() {
+      System.out.println("I am a dog.");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+    
+     // declaration of object variable a1 of the Animal class
+      Animal a1;
+    
+    // object creation of the Animal class
+      a1 = new Animal();
+      a1.displayInfo();
+    // object creation of the dog class
+      a1 = new Dog();
+      a1.displayInfo();
+   }
+}
+Kết quả:
+
+I am an animal.
+I am a dog.
+Trong ví dụ trên, chúng ta đã tạo một biến đối tượng là a1 của class Animal. Ở đây, a1 là một biến đa hình. Bởi vì:
+
+Trong câu lệnh a1 = new Animal(), a1 dùng để chỉ đối tượng của class Animal .
+Trong câu lệnh a1 = new Dog(), a1 dùng để chỉ đối tượng của class Dog .

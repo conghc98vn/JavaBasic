@@ -1,0 +1,191 @@
+1. Enum
+Trong Java, một enum (viết tắt của liệt kê(enumeration)) là một kiểu tập hợp cố định các giá trị. Chúng ta sử dụng từ khóaenum để khai báo enums. Ví dụ,
+
+enum Size { 
+   SMALL, MEDIUM, LARGE, EXTRALARGE 
+}
+Ở đây, chúng ta đã tạo ra một enum có tên Size.
+
+Các giá trị bên trong dấu ngoặc nhọn được gọi là giá trị của enum (hằng số). Đây là những giá trị duy nhất mà kiểu enum có thể giữ.
+
+Lưu ý: Các hằng số enum thường được biểu thị bằng chữ hoa.
+
+enum Size {
+   SMALL, MEDIUM, LARGE, EXTRALARGE
+}
+
+class Main {
+   public static void main(String[] args) {
+      System.out.println(Size.SMALL);
+      System.out.println(Size.MEDIUM);
+   }
+}
+Đầu ra
+
+SMALL
+MEDIUM
+Như chúng ta có thể thấy từ ví dụ trên, chúng ta sử dụng tên enum để truy cập các giá trị không đổi.
+
+Ngoài ra, chúng ta có thể tạo các biến của các kiểu enum. Ví dụ,
+
+Size pizzaSize;
+Đây, pizzaSize là một biến kiểu Size. Nó chỉ có thể được gán với 4 giá trị.
+
+pizzaSize = Size.SMALL;
+pizzaSize = Size.MEDIUM;
+pizzaSize = Size.LARGE;
+pizzaSize = Size.EXTRALARGE;
+1.1 Ví dụ 1: Java in enum
+
+enum Size {
+ SMALL, MEDIUM, LARGE, EXTRALARGE
+}
+
+class Test {
+ Size pizzaSize;
+ public Test(Size pizzaSize) {
+   this.pizzaSize = pizzaSize;
+ }
+ public void orderPizza() {
+   switch(pizzaSize) {
+     case SMALL:
+       System.out.println("I ordered a small size pizza.");
+       break;
+     case MEDIUM:
+       System.out.println("I ordered a medium size pizza.");
+       break;
+     default:
+       System.out.println("I don't know which one to order.");
+       break;
+   }
+ }
+}
+
+class Main {
+ public static void main(String[] args) {
+   Test t1 = new Test(Size.MEDIUM);
+   t1.orderPizza();
+ }
+}
+Đầu ra
+
+I ordered a medium size pizza.
+Trong chương trình trên, chúng ta đã tạo ra một kiểu enum Size. Sau đó chúng ta đã khai báo một biến pizzaSize với kiểu Size.
+
+Biến pizzaSize chỉ có thể được gán với 4 giá trị (SMALL, MEDIUM, LARGE, EXTRALARGE).
+
+Biến pizzaSize được chỉ định với MEDIUM. Dựa trên điều này, chúng ta có thể sử dụng switch case
+
+2. Lớp enum trong Java
+Trong Java, các kiểu enum được coi là một kiểu lớp đặc biệt. Nó được giới thiệu với việc phát hành Java 5.
+
+Một lớp enum có thể bao gồm các phương thức và các trường giống như các lớp thông thường.
+
+enum Size {
+    constant1, constant2, …, constantN;
+
+    // methods and fields	
+}
+Các hằng số enum luôn mặc định sẽ public static final
+
+Khi một lớp enum được tạo, trình biên dịch cũng sẽ tạo các thể hiện (đối tượng) của từng hằng số enum.
+
+2.1 Ví dụ 2: Lớp enum
+
+enum Size{
+   SMALL, MEDIUM, LARGE, EXTRALARGE;
+
+   public String getSize() {
+
+   // this will refer to the object SMALL
+      switch(this) {
+         case SMALL:
+          return "small";
+
+         case MEDIUM:
+          return "medium";
+
+         case LARGE:
+          return "large";
+
+         case EXTRALARGE:
+          return "extra large";
+
+         default:
+          return null;
+      }
+   }
+
+   public static void main(String[] args) {
+
+      // calling the method getSize() using the object SMALL
+      System.out.println("The size of the pizza is " + Size.SMALL.getSize());
+   }
+}
+Đầu ra
+
+The size of the pizza is small
+Trong ví dụ trên, chúng ta đã tạo ra một lớp enum Size. Nó có bốn hằng số: SMALL, MEDIUM, LARGE and EXTRALARGE.
+
+Từ Size là một lớp enum, trình biên dịch sẽ tự động tạo các thể hiện cho mỗi hằng số enum.
+
+Ở đây bên trong phương thứcmain(), chúng ta đã sử dụng thể hiện SMALL để gọi phương thứcgetSize().
+
+Giống như các lớp thông thường, một lớp enum cũng có thể bao gồm các hàm tạo.
+
+3. Phương thức của lớp enum
+Có một số phương thức được xác định trước trong các lớp enum để sử dụng.
+
+3.1 Phương pháp ordinal()
+Các ordinal()là phương thức trả về vị trí của một hằng số enum. Ví dụ,
+
+ordinal(SMALL) 
+// returns 0
+3.2 Phương thức compareTo()
+Các phương phứccompareTo() so sánh hằng enum dựa trên giá trị thứ tự của họ. Ví dụ,
+
+Size.SMALL.compareTo(Size.MEDIUM)
+ // returns ordinal(SMALL) - ordinal(MEDIUM)
+3.3 Phương thức toString()
+Các phương thứctoString()trả về chuỗi đại diện của hằng enum. Ví dụ,
+
+SMALL.toString()
+// returns "SMALL"
+3.4 Phương thức name()
+Các phương thứcname() trả về tên xác định một hằng số enum ở dạng chuỗi. Giá trị trả về từ phương thứcname() là final. Ví dụ,
+
+name(SMALL)
+// returns "SMALL"
+3.5 Phương thức valueOf()
+Các phương thứcvalueOf() nhận một chuỗi và trả về một hằng số enum có tên chuỗi tương tự. Ví dụ,
+
+Size.valueOf("SMALL")
+// returns constant SMALL.
+3.6 Phương thức values()
+Các phương thứcvalues() trả về một mảng của kiểu enum chứa tất cả các hằng số enum. Ví dụ,
+
+Size[] enumArray = Size.value();
+
+4. Tại sao dùng enum trong Java?
+Trong Java, enum được giới thiệu để thay thế việc sử dụng các hằng sốint.
+
+Giả sử chúng ta đã sử dụng một tập hợp các hằng sốint.
+
+class Size {
+   public final static int SMALL = 1;
+   public final static int MEDIUM = 2;
+   public final static int LARGE = 3;
+   public final static int EXTRALARGE = 4;
+}
+Ở đây, vấn đề phát sinh nếu chúng ta in các hằng số. Đó là bởi vì chỉ có số được in có thể không hữu ích.
+
+Vì vậy, thay vì sử dụng hằng số int, chúng ta chỉ cần sử dụng enums. Ví dụ,
+
+enum Size {
+   SMALL, MEDIUM, LARGE, EXTRALARGE
+}
+Điều này làm cho code của chúng ta trực quan hơn.
+
+Ngoài ra, enum cung cấp loại an toàn thời gian biên dịch.
+
+Nếu chúng ta khai báo một biến của Size (như trong các ví dụ trên), đảm bảo rằng biến sẽ giữ một trong bốn giá trị. Nếu chúng ta cố gắng vượt qua các giá trị khác với bốn giá trị đó, trình biên dịch sẽ tạo ra lỗi.

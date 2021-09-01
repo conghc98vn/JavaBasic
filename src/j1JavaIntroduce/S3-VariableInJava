@@ -1,0 +1,318 @@
+1. Các biến trong Java
+Biến là một vị trí trong bộ nhớ (vùng lưu trữ) để chứa dữ liệu.
+Để chỉ ra vùng lưu trữ, mỗi biến phải được đặt một tên duy nhất (định danh).
+
+2. Làm thế nào để khai báo biến trong Java?
+Sau đây là một ví dụ về khai báo biến trong Java.
+int speedLimit = 70;
+Ở đây, speedLimit là một biến có kiểu dữ liệu int và được gán giá trị là 70. Có nghĩa là, biến speedLimit có thể chứa giá trị nguyên. Bạn sẽ tìm hiểu về các kiểu dữ liệu trong Java một cách chi tiết ở phần sau của bài viết này.
+Trong ví dụ này, chúng ta đã gán giá trị cho biến trong quá trình khai báo. Tuy nhiên, điều này là không bắt buộc. Có thể khai báo các biến mà không cần gán giá trị, và sau đó ta có thể thay đổi giá trị của biến theo ý muốn. Ví dụ,
+int speedLimit;
+speedLimit = 99;
+Giá trị của biến có thể được thay đổi trong chương trình, vì thế nên nó được gọi là biến (biến đổi, thay đổi được). Ví dụ,
+int speedLimit = 80;
+... .. ...
+speedLimit = 90; 
+Java là một ngôn ngữ tĩnh. Điều này có nghĩa là tất cả các biến phải được khai báo trước khi sử dụng.
+Ngoài ra, không thể thay đổi kiểu dữ liệu của một biến trong Java trong cùng một phạm vi của nó. Phạm vi của một biến là gì? Hiện tại chúng ta không cần quá lo lắng về nó. Chỉ cần nhớ rằng: không thể làm điều tương tự như trên.
+int speedLimit = 80;
+... .. ...
+float speedLimit;
+
+3. Quy tắc đặt tên biến trong Java
+Ngôn ngữ lập trình Java có bộ quy tắc và quy ước riêng để đặt tên biến. Sau đây là những gì bạn cần biết:
+Các biến trong Java phân biệt chữ hoa và chữ thường.
+Tên của biến là một chuỗi các chữ cái và chữ số trong Unicode. Nó có thể bắt đầu bằng một chữ cái, $ hoặc _ . Tuy nhiên, người ta hay quy ước: tên biến bắt đầu bằng một chữ cái. Ngoài ra, trong Java, tên biến không được chứa khoảng trắng.
+Khi tạo các biến, nên chọn một tên có ý nghĩa. Ví dụ: các tên biến như score , number , level có ý nghĩa hơn tên biến như s , n và l .
+Nếu bạn chọn một tên biến chỉ có một từ thì nên sử dụng tất cả các chữ cái viết thường. Ví dụ: nên sử dụng speed thay vì SPEED hoặc sPEED .
+Nếu bạn chọn tên biến có nhiều hơn một từ thì hãy sử dụng tất cả các chữ cái viết thường cho từ đầu tiên và viết hoa chữ cái đầu tiên của mỗi từ tiếp theo. Ví dụ: speedLimit .
+Ví dụ cách đặt tên biến:
+Tên biến	Nhận xét
+cafedevn	Tên biến này có hiệu lực trong java
+_cafedevn	Tên biến này có hiệu lực trong java nhưng cách đặt tên này rất xấu
+$cafedevn	Tên biến này có hiệu lực trong java nhưng cách đặt tên này rất xấu
+cafedevn1	Tên biến này có hiệu lực trong java
+cafe devn	Tên biến này không có hiệu lực trong java
+cafe”devn	Tên biến này không có hiệu lực trong java
+Có 4 loại biến trong ngôn ngữ lập trình Java:
+Biến instance  (Trường không tĩnh)
+Biến của class (Trường tĩnh)
+Biến cục bộ
+Tham số
+
+4. Các kiểu dữ liệu cơ bản của Java
+Như đã đề cập ở trên, Java là một ngôn ngữ tĩnh. Điều này có nghĩa là, tất cả các biến phải được khai báo trước khi được sử dụng.
+int speed;
+Ở đây, speed là một biến và kiểu dữ liệu của biến là int. Kiểu dữ liệu int xác định rằng biến speed chỉ có thể chứa số nguyên.
+Nói một cách đơn giản, kiểu dữ liệu của biến xác định các giá trị mà biến có thể chứa. Có 8 kiểu dữ liệu được định nghĩa trước trong ngôn ngữ lập trình Java, được gọi là kiểu dữ liệu cơ bản.
+
+5. 8 kiểu dữ liệu cơ bản trong java
+5.1 Kiểu boolean
+Kiểu dữ liệu boolean có hai giá trị,  true hoặc false.
+Giá trị mặc định : false.
+Chúng thường được sử dụng cho các điều kiện đúng/sai.
+Thí dụ:
+class BooleanExample {
+    public static void main(String[] args) {
+    	
+    	boolean flag = true;
+    	System.out.println(flag);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+true
+
+5.2 Kiểu byte
+Kiểu dữ liệu byte có thể có các giá trị từ -128 đến 127 (số nguyên bù 2 8 bit có dấu).
+Nó được sử dụng thay cho kiểu int hoặc các kiểu dữ liệu số nguyên khác để tiết kiệm bộ nhớ nếu giá trị của biến chắc chắn nằm trong khoảng [-128, 127].
+Giá trị mặc định: 0
+Thí dụ:
+class ByteExample {
+    public static void main(String[] args) {
+    	
+    	byte range;
+    	
+    	range = 124;
+    	System.out.println(range);
+    	
+    	// Error code below. Why?
+    	// range = 200
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+124
+
+5.3 Kiểu short
+Kiểu dữ liệu short có thể có các giá trị từ -32768 đến 32767 (số nguyên bù 2 16 bit có dấu).
+Nó được sử dụng thay cho các loại dữ liệu số nguyên khác để tiết kiệm bộ nhớ nếu giá trị của biến chắc chắn nằm trong khoảng [-32768, 32767].
+Giá trị mặc định: 0
+Thí dụ:
+class ShortExample {
+    public static void main(String[] args) {
+    	
+    	short temperature;
+    	
+    	temperature = -200;
+    	System.out.println(temperature);
+    	
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+-200
+
+5.4 Kiểu int
+Kiểu dữ liệu int có thể có các giá trị từ -231 đến 231-1 (số nguyên bù 2 32 bit có dấu).
+Nếu bạn đang sử dụng Java 8 trở lên, bạn có thể sử dụng số nguyên 32 bit không dấu với giá trị tối thiểu là 0 và giá trị tối đa là 232 -1. Nếu bạn muốn tìm hiểu thêm, hãy truy cập: Làm thế nào để sử dụng số nguyên không dấu trong java 8?
+Giá trị mặc định: 0
+Thí dụ:
+class IntExample {
+    public static void main(String[] args) {
+    	
+    	int range = -4250000;
+    	System.out.println(range);
+    }
+}
+ Khi bạn chạy chương trình, kết quả sẽ là:
+-4250000
+
+5.5 Kiểu long
+Kiểu dữ liệu long có thể có các giá trị từ -263 đến 263-1 (số nguyên bù 2 64 bit có dấu).
+Nếu bạn đang sử dụng Java 8 trở lên, bạn có thể sử dụng số nguyên 64 bit không dấu với giá trị tối thiểu là 0 và giá trị tối đa là 264-1.
+Giá trị mặc định: 0
+Thí dụ:
+class LongExample {
+    public static void main(String[] args) {
+    	
+    	long range = -42332200000L;
+    	System.out.println(range);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+-42332200000
+Lưu ý về việc sử dụng L ở cuối -42332200000. Điều này thể hiện rằng đó là literals số nguyên kiểu long. Bạn sẽ tìm hiểu về các literals nguyên ở phần sau trong bài viết này.
+
+5.6 Kiểu double
+Kiểu dữ liệu double là dấu phẩy động 64 bit chính xác kép.
+Không nên dùng kiểu dữ liệu này cho các giá trị chính xác như tiền tệ.
+Giá trị mặc định: 0,0 (0,0d)
+Thí dụ:
+class DoubleExample {
+    public static void main(String[] args) {
+    	
+    	double number = -42.3;
+    	System.out.println(number);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+-42.3
+
+5.7 Kiểu float
+Kiểu dữ liệu float là dấu phẩy động 32 bit chính xác đơn. Nếu bạn quan tâm, hãy tìm hiểu thêm về dấu phẩy động chính xác đơn và chính xác kép.
+Không nên được sử dụng kiểu này cho các giá trị chính xác như tiền tệ.
+Giá trị mặc định: 0,0 (0,0f)
+Thí dụ:
+class FloatExample {
+    public static void main(String[] args) {
+    	
+    	float number = -42.3f;
+    	System.out.println(number);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+-42.3
+Lưu ý rằng, chúng tôi đã sử dụng -42.3f thay vì -42.3 trong chương trình trên. Đó là bởi vì -42.3 là một double literals. Để trình biên dịch hiểu -42.3 là float thay vì double, bạn cần phải sử dụng f hoặc F .
+
+5.8 Kiểu char
+Là ký tự Unicode 16 bit.
+Giá trị tối thiểu của kiểu dữ liệu char là ‘\u0000′(0). Giá trị tối đa của kiểu dữ liệu char là ‘\uffff’.
+Giá trị mặc định: ‘\u0000’
+Thí dụ:
+class CharExample {
+    public static void main(String[] args) {
+    	
+    	char letter = '\u0051';
+    	System.out.println(letter);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Q
+Bạn nhận được kết quả trên vì giá trị Unicode của Q là ‘\u0051’.
+
+Đây là một ví dụ khác:
+
+/**
+* Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+*
+* @author cafedevn
+* Contact: cafedevn@gmail.com
+* Fanpage: https://www.facebook.com/cafedevn
+* Instagram: https://instagram.com/cafedevn
+* Twitter: https://twitter.com/CafedeVn
+* Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+*/
+
+class CharExample {
+    public static void main(String[] args) {
+    	
+    	char letter1 = '9';
+    	System.out.println(letter1);
+    	
+    	char letter2 = 65;
+    	System.out.println(letter2);
+
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+9
+A
+Khi bạn in letter1 ra màn hình, bạn sẽ được kết quả là 9 vì letter1 được gán ký tự’9′.
+
+Khi bạn in letter2  ra màn hình, bạn nhận được A vì giá trị ASCII của ‘A’ là 65. Đó là vì trình biên dịch Java coi ký tự là kiểu nguyên. Hãy tìm hiểu thêm về ASCII.
+
+Java cũng hỗ trợ cho các chuỗi ký tự thông qua lớp java.lang.String . Sau đây là cách bạn có thể tạo đối tượng String trong Java:
+
+myString = "Programming is awesome";
+Java string là một chủ đề quan trọng mà bạn sẽ tìm hiểu chi tiết trong các chương sau. Tuy nhiên, nếu bạn không phải là người mới và muốn học ngay bây giờ, hãy truy cập Java strings.
+
+6. Literals trong Java
+
+Để hiểu về literals, hãy lấy một ví dụ trong việc gán giá trị cho một biến.
+boolean flag = false;
+Ở đây,
+boolean – là kiểu dữ liệu.
+flag – là biến
+false – là literals.
+ Literal là một chữ nằm trong code và có một giá trị cố định nào đó.
+Các giá trị xuất hiện trực tiếp trong một chương trình mà không cần tính toán như 1.5, 4, true, ‘\u0050’ được gọi là literals.
+Trong ví dụ trên, flag là một biến. nó là một biến kiểu boolean, nó có thể chứa  false hoặc true. Tuy nhiên, các literals  như -5, ‘a’, true đại diện cho giá trị cố định.
+
+6.1. Integer literals
+Integer literals được sử dụng để khởi tạo các biến thuộc kiểu dữ liệu nguyên như byte, short, int và long.
+Nếu một integer literals kết thúc bằng l hoặc L, nó thuộc kiểu long. Lời khuyên: nên sử dụng L thay vì l.
+
+// Error! literal 42332200000 of type int is out of range
+long myVariable1 = 42332200000;
+
+// 42332200000L is of type long, and it's not out of range
+long myVariable2 = 42332200000L;
+Integer literals có thể được biểu diễn trong các hệ thống số thập phân, thập lục phân và số nhị phân.
+Các số bắt đầu bằng tiền tố 0x đại diện cho hệ thập lục phân. Tương tự, các số bắt đầu bằng tiền tố 0b đại diện cho hệ nhị phân.
+// decimal
+int decNumber = 34;
+
+// 0x represents hexadecimal
+int hexNumber = 0x2F;
+
+// 0b represents binary
+int binNumber = 0b10010;
+
+6.2 Literals số thực
+Literals số thực được sử dụng để khởi tạo các biến của kiểu dữ liệu float và double.
+Nếu một literal số thực kết thúc bằng f hoặc F, nó thuộc kiểu float. Còn không thì nó thuộc kiểu double. Kiểu double có thể kết thúc bằng D hoặc d. Tuy nhiên, điều này là không cần thiết.
+Chúng cũng có thể được thể hiện bằng ký hiệu khoa học bằng E hoặc e.
+/**
+* Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+*
+* @author cafedevn
+* Contact: cafedevn@gmail.com
+* Fanpage: https://www.facebook.com/cafedevn
+* Instagram: https://instagram.com/cafedevn
+* Twitter: https://twitter.com/CafedeVn
+* Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+*/
+
+class DoubleExample {
+    public static void main(String[] args) {
+    	
+    	double myDouble = 3.4;
+    	float myFloat = 3.4F;
+    	
+    	// 3.445*10^2
+    	double myDoubleScientific = 3.445e2;
+
+    	System.out.println(myDouble);
+    	System.out.println(myFloat);
+    	System.out.println(myDoubleScientific);
+    }
+}
+
+Khi bạn chạy chương trình, kết quả sẽ là:
+3.4
+3.4
+344.5
+
+6.3 Kí tự literals và chuỗi literals
+Có chứa các ký tự Unicode (UTF-16) .
+Đối với kí tự literals, sử dụng dấu nháy đơn. Ví dụ ‘a’, ‘\u0111’v.v.
+Đối với chuỗi literals, sử dụng dấu nháy kép. Ví dụ , “programming”.”Java 8″
+Java cũng hỗ trợ một vài chuỗi thoát đặc biệt. Ví dụ: \b (xóa lùi), \t (tab), \n (xuống dòng), \f (ngắt trang), \r (dấu enter), \” (nháy kép), \’ (nháy đơn) và \\ (dấu gạch chéo).
+/**
+* Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+*
+* @author cafedevn
+* Contact: cafedevn@gmail.com
+* Fanpage: https://www.facebook.com/cafedevn
+* Instagram: https://instagram.com/cafedevn
+* Twitter: https://twitter.com/CafedeVn
+* Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+*/
+
+class DoubleExample {
+    public static void main(String[] args) {
+    	
+    	char myChar = 'g';
+    	char newLine = '\n';
+    	String myString = "Java 8";
+    	
+    	System.out.println(myChar);
+    	System.out.println(newLine);
+    	System.out.println(myString);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+g
+
+Java 8

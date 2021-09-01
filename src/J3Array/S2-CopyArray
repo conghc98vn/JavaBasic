@@ -1,0 +1,203 @@
+Trong bài viết này, bạn sẽ tìm hiểu về các cách khác nhau mà bạn có thể sao chép mảng (cả mảng một chiều và mảng hai chiều) trong Java.
+Bạn có thể sử dụng nhiều cách để sao chép mảng trong Java.
+
+1. Sao chép mảng bằng toán tử gán
+Hãy lấy một ví dụ,
+class CopyArray {
+    public static void main(String[] args) {
+       
+        int [] numbers = {1, 2, 3, 4, 5, 6};
+        int [] positiveNumbers = numbers;    // copying arrays
+
+        for (int number: positiveNumbers) {
+           System.out.print(number + ", ");
+        }
+    }
+}
+Khi chạy chương trình, kết quả sẽ là:
+1, 2, 3, 4, 5, 6 
+Việc sử dụng cách này để sao chép mảng có vẻ rất tối ưu thế nhưng nó lại có một vấn đề.
+
+Nếu bạn thay đổi các phần tử của một mảng trong ví dụ trên, các phần tử tương ứng của mảng kia cũng bị thay đổi.
+class AssignmentOperator {
+   public static void main(String[] args) {
+      
+      int [] numbers = {1, 2, 3, 4, 5, 6};
+      int [] positiveNumbers = numbers;    // copying arrays
+      
+      numbers[0] = -1;
+
+      for (int number: positiveNumbers) {
+         System.out.print(number + ", ");
+      }
+  }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+-1, 2, 3, 4, 5, 6
+Khi phần tử đầu tiên của mảng numbers được thay đổi thành -1, phần tử đầu tiên của mảng positiveNumbers cũng trở thành -1. Đó là bởi vì cả hai mảng đề cập đến cùng một đối tượng mảng.
+Cách sao chép này được gọi là shallow copy.
+Tuy nhiên, trong hầu hết các trường hợp, chúng ta cần sử dụng deep copy thay vì shallow copy. Một bản sao deep copy sẽ sao chép các giá trị mà các giá trị này tạo nên một đối tượng mảng mới.
+
+2. Sử dụng cấu trúc vòng lặp để sao chép mảng
+Hãy lấy một ví dụ:
+
+import java.util.Arrays;
+
+class ArraysCopy {
+   public static void main(String[] args) {
+      
+      int [] source = {1, 2, 3, 4, 5, 6};
+      int [] destination = new int[6];
+
+      for (int i = 0; i < source.length; ++i) {
+         destination[i] = source[i];
+      }
+      
+      // converting array to string
+      System.out.println(Arrays.toString(destination));
+  }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+[1, 2, 3, 4, 5, 6]
+Ở đây, vòng lặp for được sử dụng để lặp qua từng phần tử của mảng source. Trong mỗi lần lặp, phần tử tương ứng của mảng source được sao chép vào mảng destination.
+Các mảng source và destination không có chung reference (cách sao chép này gọi là deep copy). Có nghĩa là, nếu các phần tử của một mảng (source hoặc destination) bị thay đổi, các phần tử tương ứng của mảng kia vẫn không thay đổi.
+Hàm toString () được sử dụng để chuyển đổi mảng thành chuỗi (chỉ nhằm mục đích output).
+Có một cách tốt hơn (so với việc sử dụng vòng lặp) để sao chép các mảng trong Java, cách đó chính là sử dụng hàm arraycopy() và hàm copyOfRange().
+
+3. Sao chép mảng bằng cách sử dụng hàm arraycopy ()
+Lớp System chứa hàm arraycopy(), hàm này cho phép ta sao chép dữ liệu từ mảng này sang mảng khác.
+
+Hàm arraycopy() vừa hiệu quả lại vừa linh hoạt. Bởi vì hàm này cho phép ta sao chép một phần xác định của mảng nguồn sang mảng đích.
+
+public static void arraycopy(Object src, int srcPos,
+                      Object dest, int destPos, int length)
+Ở đây,
+
+src là mảng bạn muốn sao chép
+srcPos là vị trí bắt đầu (chỉ số) trong mảng src
+dest là mảng đích: các phần tử của mảng src sẽ được sao chép vào mảng này
+destPos là vị trí bắt đầu (chỉ số) trong  mảng dest 
+length là số phần tử cần sao chép
+Hãy lấy một ví dụ:
+
+// To use Arrays.toString() method
+import java.util.Arrays;
+
+class ArraysCopy {
+   public static void main(String[] args) {
+      int[] n1 = {2, 3, 12, 4, 12, -2};
+      
+      int[] n3 = new int[5];
+
+      // Creating n2 array of having length of n1 array
+      int[] n2 = new int[n1.length];
+      
+      // copying entire n1 array to n2
+      System.arraycopy(n1, 0, n2, 0, n1.length);
+      System.out.println("n2 = " + Arrays.toString(n2));  
+      
+      // copying elements from index 2 on n1 array
+      // copying element to index 1 of n3 array
+      // 2 elements will be copied
+      System.arraycopy(n1, 2, n3, 1, 2);
+      System.out.println("n3 = " + Arrays.toString(n3));  
+  }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+n2 = [2, 3, 12, 4, 12, -2]
+n3 = [0, 12, 4, 0, 0]
+Lưu ý, giá trị khởi tạo mặc định của các phần tử trong môt mảng kiểu int là 0.
+
+4. Sao chép mảng bằng cách sử dụng hàm copyOfRange ()
+Ngoài ra, để sao chép mảng, bạn có thể sử dụng hàm copyOfRange() được xác định trong class java.util.Arrays. Bạn không cần tạo mảng đích trước khi gọi hàm. Truy cập trang này để tìm hiểu thêm về hàm copyOfRange () .
+
+Sau đây là cách làm.
+// To use toString() and copyOfRange() method
+import java.util.Arrays;
+
+class ArraysCopy {
+   public static void main(String[] args) {
+      
+      int[] source = {2, 3, 12, 4, 12, -2};
+      
+      // copying entire source array to destination
+      int[] destination1 = Arrays.copyOfRange(source, 0, source.length);      
+      System.out.println("destination1 = " + Arrays.toString(destination1)); 
+      
+      // copying from index 2 to 5 (5 is not included) 
+      int[] destination2 = Arrays.copyOfRange(source, 2, 5); 
+      System.out.println("destination2 = " + Arrays.toString(destination2));   
+  }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+destination1 = [2, 3, 12, 4, 12, -2]
+destination2 = [12, 4, 12]
+
+5. Sao chép Mảng 2d bằng cách sử dụng vòng lặp
+Sau đây là một ví dụ về việc sử dụng vòng lặp để sao chép mảng 2d không đều:
+
+import java.util.Arrays;
+
+class ArraysCopy {
+public static void main(String[] args) {
+      
+      int[][] source = {
+            {1, 2, 3, 4}, 
+            {5, 6},
+            {0, 2, 42, -4, 5}
+            };
+
+      int[][] destination = new int[source.length][];
+
+      for (int i = 0; i < destination.length; ++i) {
+
+         // allocating space for each row of destination array
+         destination[i] = new int[source[i].length];
+
+         for (int j = 0; j < destination[i].length; ++j) {
+            destination[i][j] = source[i][j];
+         }
+      }
+     
+      // displaying destination array
+      System.out.println(Arrays.deepToString(destination));  
+      
+  }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+[[1, 2, 3, 4], [5, 6], [0, 2, 42, -4, 5]]
+Bạn có thể thấy, ở đây, ta đã sử dụng hàm Arrays’ deepToString(). Hàm deepToString() biểu diễn mảng đa chiều môt cách tối ưu hơn, cụ thể trong ví dụ này là mảng 2 chiều. Tìm hiểu thêm về hàm deepToString ().
+
+Bạn có thể thay thế vòng lặp bên trong của phần code trên bằng hàm System.arraycopy() hoặc hàm Arrays.copyOf() mảng trong trường hợp đối với mảng một chiều.
+
+Sau đây là cách sử dụng hàm arraycopy() để làm bài trên:
+
+
+
+import java.util.Arrays;
+
+class AssignmentOperator {
+public static void main(String[] args) {
+      
+      int[][] source = {
+            {1, 2, 3, 4}, 
+            {5, 6},
+            {0, 2, 42, -4, 5}
+            };
+
+      int[][] destination = new int[source.length][];
+
+      for (int i = 0; i < source.length; ++i) {
+
+         // allocating space for each row of destination array
+         destination[i] = new int[source[i].length];
+         System.arraycopy(source[i], 0, destination[i], 0, destination[i].length);
+      }
+     
+      // displaying destination array
+      System.out.println(Arrays.deepToString(destination));      
+  }
+}

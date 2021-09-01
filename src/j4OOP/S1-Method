@@ -1,0 +1,271 @@
+1. Phương thức là gì?
+Trong toán học, bạn có lẽ đã học qua hàm số. Lấy ví dụ, f(x) = x2 là một hàm số trả về giá trị bình phương của x. 
+If x = 2, then f(2) = 4
+If x = 3, f(3) = 9
+and so on.
+Tương tự, trong lập trình, một hàm số là một khối code thực hiện một tác vụ nhất định. 
+Trong lập trình hướng đối tượng, phương thứ là một thuật ngữ được dùng cho hàm số. Các phương thức liên kết với một class và chúng định nghĩa hoạt động của class. 
+Các loại phương thức trong Jav
+Dựa vào việc một phương thức được định nghĩa bởi người dùng hay có sẵn trong thư viện chuẩn, có hai loại phương thức:
+Phương thức của thư viện chuẩn
+Phương thức do người dùng định nghĩa
+
+2. Phương thức của thư viện chuẩn
+Các phương thức của thư viện chuẩn là các phương thức được tích hợp trong Java hoàn toàn có sẵn để sử dụng. Các thư viện đính kèm với thư viện Class (JCL) trong tệp lưu trữ Java (*.jar) cùng với JVM và JRE. 
+Lấy ví dụ, 
+
+print() là một phương thức của java.io.PrintSteam. Lệnh The print(“…”) in chuỗi bên trong dấu ngoặc kép. 
+sqrt() là một phương thức của class toán. Nó trả về giá trị căn bậc hai của một số.
+Đây là một ví dụ thực:
+
+public class Main {
+    public static void main(String[] args) {
+    
+        // using the sqrt() method
+        System.out.print("Square root of 4 is: " + Math.sqrt(4));
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+Square root of 4 is: 2.0
+
+3. Phương thức do người dùng định nghĩa
+Bạn cũng có thể định nghĩa các phương thức bên trong một class theo ý muốn. Các phương thức này được gọi là phương thức do người dùng định nghĩa.
+
+4. Làm thế nào để tạo ra một phương thức do người dùng định nghĩa?
+Trước khi bạn có thể sử dụng (gọi một phương thức), bạn cần định nghĩa nó.
+Đây là cách bạn định nghĩa một phương thức.
+public static void myMethod() {
+    System.out.println("My Function called");
+}
+Ở đây, một phương thức có tên là myMethod() được định nghĩa. 
+
+Bạn có thể nhìn thấy ba từ khóa public, static và void trước các tên hàm.
+
+Từ khóa public giúp phương thức public. Các thành viên public có thể được truy cập từ bên ngoài class. Để tìm hiểu thêm, hãy tham khảo: Java public and private Modifiers.
+Từ khóa static biểu thị rằng phương thức có thể được truy cập mà không cần tạo đối tượng của class. Hay tham khảo: từ khóa static trong Java để tìm hiểu thêm.
+Từ khóa void nhấn mạnh rằng phương thức này không trả về bất cứ giá trị nào. Bạn sẽ tìm hiểu về việc trả giá trị từ phương thức ngay ở phía sau bài viết này.
+Trong chương trình trên, phương thức của chúng ta không chấp nhận bất kì đối số nào. Do đó có các dấu ngoặc rỗng (). Bạn sẽ tìm hiểu về việc truyền đối số vào một phương thức sau đây ngay trong bài viết này.
+
+Cú pháp hoàn thiện cho việc định nghĩa một phương thức trong Java là:
+
+modifier static returnType nameOfMethod (parameters) {
+    // method body
+}
+Trong đó, 
+
+Modifier – định nghĩa loại truy cập phương thức này là public hay private, v.v.
+Static – nếu bạn sử dụng từ khóa static trong một phương thức thì nó sẽ trở thành một phương thức tĩnh. Phương thức tĩnh được khai báo mà không cần phải tạo một instance của class.
+Lấy ví dụ, phương thức sqrt() của class math chuẩn là phương thức tĩnh. Do đó, chúng ta có thể khai báo trực tiếp Math.sqrt() mà không cần phải tạo ra một instance của class Math.
+
+returnType – phương thức có thể trả về một giá trị. 
+Nó có thể trả về các kiểu dữ liệu gốc (int, float, double etc.), các đối tượng gốc (String, Map, List, v.v) hoặc bất kì đối tượng nào khác được tích hợp hoặc được người dùng định nghĩa. 
+
+Nếu phương thức không trả về một giá trị nào, kiểu trả về của nó sẽ là rỗng (void).
+
+nameOfMethod – tên của phương thức này là một định danh determiner. 
+Bạn có thể truyền vào một phương thức bất kì cái tên nào. Tuy nhiên, người ta thường quy ước đặt tên phương thức theo các tác vụ mà nó thực hiện. Ví dụ, calculateInterest, calculateArea, và v.v.
+
+Parameters (arguments) – Các tham số (parameters) là các giá trị được truyền vào một phương thức. Bạn có thể truyền bất cứ số nào của đối số vào một phương thức.
+Method body – Nó định nghĩa phương thức thực sự làm gì, cách các tham số được thao tác với các câu lệnh lập trình và giá trị nào được trả về. Các mã bên trong dấu ngoặc nhọn {} là phần thân của phương thức.
+
+5. Làm thế nào để gọi một phương thức trong Java?
+Bây giờ bạn đã định nghĩa một phương thức, bạn cần sử dụng nó. Đối với điều đó, bạn phải gọi phương thức đó. Và đây là cách thực hiện: // xem thêm hình trên web
+
+myMethod();
+Lệnh này gọi phương thức myMethod() mà đã được khai báo trước đó. 
+
+Trong khi Java đang thực thi code chương trình, nó gặp phương thức myMethod() trong đoạn code. 
+Việc thực thi sau đó sẽ chuyển sang phương thức myMethod(), và sẽ thực thi các code bên trong phương thức này. 
+Sau khi hoàn thành việc thực thi các code này, chương trình sẽ quay lại trạng thái ban đầu và thực thi các lệnh tiếp theo.
+
+6. Ví dụ: Một chương trình đầy đủ của phương thức trong Java
+Cùng xem một phương thức hoạt động bằng cách định nghĩa một class Java.
+class Main {
+
+    public static void main(String[] args) {
+        System.out.println("About to encounter a method.");
+
+        // method call
+        myMethod();
+
+        System.out.println("Method was executed successfully!");
+    }
+
+    // method definition
+    private static void myMethod(){
+        System.out.println("Printing from inside myMethod()!");
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+About to encounter a method.
+Printing from inside myMethod().
+Method was executed successfully!
+Phương thức myMethod() ở chương trình trên không chấp nhận bất kì đối số nào. Đồng thời, phương thức này cũng không trả về bất kì giá trị nào (kiểu trả về là rỗng (void)). 
+
+Chú ý rằng chúng ta đã gọi phương thức mà không tạo bất kì đối tượng nào của class cả. Điều này là có thể bởi vì phương thức myMethod() là phương thức tĩnh(static).
+
+Một ví dụ khác về phương thức không phải là phương thức tĩnh và ở bên trong một class khác.
+
+class Main {
+
+    public static void main(String[] args) {
+
+        // create object of the Output class
+        Output obj = new Output();
+        System.out.println("About to encounter a method.");
+
+        // calling myMethod() of Output class
+        obj.myMethod();
+
+        System.out.println("Method was executed successfully!");
+    }
+}
+
+class Output {
+  
+    // public: this method can be called from outside the class
+    public void myMethod() {
+        System.out.println("Printing from inside myMethod().");
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+About to encounter a method.
+Printing from inside myMethod().
+Method was executed successfully!
+ Lưu ý rằng lúc đầu chúng ta đã tạo ra instance của class Output, sau đó phương thức được khai báo sử dụng đối tượng obj. Điều này là do phương thức myMethod() không phải là một phương thức tĩnh.
+ 
+ 7. Các phương thức trong Java với đối số và giá trị trả về
+Một phương thức trong Java có thể không có hoặc có nhiều tham số. Và, chúng có thể trả lại một giá trị.
+
+Ví dụ: Trả về giá trị từ phương thức
+
+Hãy lấy một ví dụ về phương thức trả về một giá trị.
+
+class SquareMain {
+    public static void main(String[] args) {
+        int result;
+
+        // call the method and store returned value
+        result = square(); 
+        System.out.println("Squared value of 10 is: " + result);
+    }
+
+    public static int square() {
+        // return statement
+        return 10 * 10;
+    }
+}
+Khi bạn chạy chương trình, kết quả đầu ra sẽ là:
+
+Squared value of 10 is: 100
+Trong đoạn code trên, phương thức square() không chấp nhận bất kỳ đối số nào và luôn trả về giá trị 10 bình phương.
+
+Lưu ý, kiểu trả về của phương thức square() là int. Có nghĩa là, phương thức luôn trả về một giá trị nguyên.
+
+
+Như bạn có thể thấy, phạm vi của phương thức này bị giới hạn vì nó luôn trả về cùng một giá trị.
+
+Bây giờ, hãy sửa đổi đoạn code trên để nó trả về giá trị bình phương của bất kỳ số nguyên nào được truyền vào phương thức thay vì luôn trả về giá trị bình phương của 10.
+
+Ví dụ: Phương thức chấp nhận đối số và giá trị trả về
+public class Main {
+   
+    public static void main(String[] args) {
+        int result, n;
+        
+        n = 3;
+        result = square(n);
+        System.out.println("Square of 3 is: " + result);
+        
+        n = 4;
+        result = square(n); 
+        System.out.println("Square of 4 is: " + result);
+    }
+
+    // method 
+    static int square(int i) {
+        return i * i;
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Squared value of 3 is: 9
+Squared value of 4 is: 16
+Bây giờ, phương thức square() trả về giá trị bình phương của bất kỳ giá trị nguyên nào được truyền vào nó.
+
+Java là một ngôn ngữ được định kiểu rõ. Nếu bạn truyền bất kỳ loại dữ liệu nào khác ngoài int (trong ví dụ trên), trình biên dịch sẽ báo lỗi.
+
+Đối số đã truyền n vào phương thức getSquare() trong suốt quá trình phương thức gọi được gọi là đối số thực.
+
+Tham số I chấp nhận các đối số đã được truyền vào trong việc định nghĩa phương thức getSquare(int i). Điều này được gọi là đối số hình thức (tham số). Kiểu đối số hình thức phải được định rõ ràng.
+
+Bạn có thể truyền nhiều hơn một đối số vào phương thức trong Java bằng cách sử dùng dấu phẩy. 
+
+Ví dụ:
+
+public class Main {
+
+    // method definition
+    public static int getIntegerSum (int i, int j) {
+        return i + j;
+    }
+
+    // method definition
+    public static int multiplyInteger (int x, int y) {
+        return x * y;
+    }
+
+    public static void main(String[] args) {
+
+        // calling methods
+        System.out.println("10 + 20 = " + getIntegerSum(10, 20));
+        System.out.println("20 x 40 = " + multiplyInteger(20, 40));
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+10 + 20 = 30
+20 x 40 = 800
+Kiểu dữ liệu của các đối số và tham số phải khớp, tức là, kiểu dữ liệu của đối số bạn định nghĩa phải khớp với kiểu tham số bạn truyền vào.
+
+Ví dụ: Nhận giá trị bình phương của các số từ 1 đến 5
+
+public class Main {
+
+    // method defined
+    private static int getSquare(int x){
+        return x * x;
+    }
+
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+
+            // method call
+            int result = getSquare(i);
+            System.out.println("Square of " + i + " is: " + result);
+        }
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Square of 1 is: 1
+Square of 2 is: 4
+Square of 3 is: 9
+Square of 4 is: 16
+Square of 5 is: 25
+Trong đoạn code trên, phương thức getSquare() lấy int làm tham số. Dựa trên đối số được truyền vào, phương thức trả về giá trị bình phương của nó.
+
+Ở đây, đối số i của kiểu int được truyền vào phương thức getSquare() trong suốt quá trình gọi phương thức.
+
+Tham số x chấp nhận đối số đã truyền vào [trong định nghĩa hàm getSquare(int x)].
+
+Đoạn code return x * x; là lệnh trả về. Dòng code này trả về một giá trị cho phương thức đang gọi và kết thúc hàm.
+
+Bạn có để ý rằng chúng tôi đã sử dụng lại phương thức getSquare 5 lần không?
+
+Những ưu điểm của việc sử dụng phương thức là gì?
+
+Ưu điểm chính là khả năng tái sử dụng code. Bạn có thể viết một phương thức một lần và sử dụng nó nhiều lần. Bạn không phải viết lại toàn bộ mã mỗi lần. Hãy nghĩ về nó như kiểu “viết một lần, dùng nhiều lần.”
+Phương thức làm cho code dễ đọc hơn và dễ gỡ lỗi hơn. Ví dụ, phương thức getSalaryInformation() rất dễ đọc đến nỗi chúng ta có thể biết phương thức này sẽ làm gì thay vì chỉ đơn giản là đọc các dòng code tạo ra phương thức này.

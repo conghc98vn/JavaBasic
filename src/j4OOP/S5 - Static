@@ -1,0 +1,249 @@
+1. Một từ khóa static trong Java là gì?
+Trong Java, nếu chúng ta muốn truy cập các thành viên của lớp, trước tiên chúng ta phải tạo một thể hiện của lớp. Nhưng sẽ có những tình huống chúng ta muốn truy cập các thành viên của lớp mà không tạo ra bất kỳ biến nào.
+
+Trong những tình huống đó, chúng ta có thể sử dụng từ khóastatic trong Java. Nếu chúng ta muốn truy cập các thành viên của lớp mà không tạo một thể hiện của lớp, chúng ta cần khai báo các thành viên của lớp tĩnh.
+
+Các lớp Math trong Java có hầu hết tất cả các thành viên tĩnh của nó. Vì vậy, chúng ta có thể truy cập các thành viên của nó mà không cần tạo các thể hiện của lớp Math. Ví dụ,
+
+public class Main {
+    public static void main( String[] args ) {
+
+        // accessing the methods of the Math class
+        System.out.println("Absolute value of -12 =  " + Math.abs(-12));
+        System.out.println("Value of PI = " + Math.PI);
+        System.out.println("Value of E = " + Math.E);
+        System.out.println("2^2 = " + Math.pow(2,2));
+    }
+}
+Đầu ra :
+
+Absolute value of -12 = 12
+Value of PI = 3.141592653589793
+Value of E = 2.718281828459045
+2^2 = 4.0
+Trong ví dụ trên, chúng ta chưa tạo ra bất kỳ trường hợp nào của lớpMath. Nhưng chúng ta có thể tiếp cận phương pháp của nó: abs()và pow()và các biến: PIvà E.
+
+Có thể bởi vì các phương thức và biến của lớpMath là tĩnh.
+
+2. Phương thức tĩnh
+Các phương thức tĩnh còn được gọi là phương thức lớp. Đó là bởi vì một phương thức tĩnh thuộc về lớp chứ không phải là đối tượng của một lớp.
+
+Và chúng ta có thể gọi các phương thức tĩnh trực tiếp bằng cách sử dụng tên lớp. Ví dụ,
+
+class Test {
+    // static method inside the Test class
+    public static void method() {...}
+}
+
+class Main {
+    // invoking the static method
+    Test.method();
+}
+Ở đây, chúng ta có thể thấy rằng phương thức tĩnh có thể được truy cập trực tiếp từ các lớp khác bằng cách sử dụng tên lớp.
+
+Trong mọi chương trình Java, chúng ta đã khai báo phương thứcmain static. Đó là bởi vì để chạy chương trình, JVM sẽ có thể gọi phương thức main mà không có đối tượng nào tồn tại trong bộ nhớ.
+
+2.1 Ví dụ 1: Các phương thức tĩnh và không tĩnh của Java
+
+class StaticTest {
+
+    // non-static method
+    int multiply(int a, int b){
+        return a * b;
+    }
+
+    // static method
+    static int add(int a, int b){
+        return a + b;
+    }
+}
+
+public class Main {
+
+   public static void main( String[] args ) {
+
+        // create an instance of the StaticTest class
+        StaticTest st = new StaticTest();
+
+        // call the nonstatic method
+        System.out.println(" 2 * 2 = " + st.multiply(2,2));
+
+        // call the static method
+        System.out.println(" 2 + 3 = " + StaticTest.add(2,3));
+   }
+}
+Đầu ra :
+
+2 * 2 = 4
+2 + 3 = 5
+Trong chương trình trên, chúng ta đã khai báo một phương thức không tĩnh có tên multiply()và một phương thức tĩnh có tên add()bên trong lớp StaticTest.
+
+Bên trong lớp Main, chúng ta có thể thấy rằng chúng ta đang gọi phương thức không tĩnh bằng cách sử dụng đối tượng của lớp ( st.multiply(2, 2)). Tuy nhiên, chúng ta đang gọi phương thức tĩnh bằng cách sử dụng tên lớp ( StaticTest.add(2, 3)).
+
+3. Biến tĩnh
+Trong Java, khi chúng ta tạo các đối tượng của một lớp, thì mọi đối tượng sẽ có bản sao riêng của tất cả các biến của lớp. Ví dụ,
+
+class Test {
+    // regular variable
+   int age;
+}
+
+class Main {
+    // create instances of Test
+    Test test1 = new Test();
+    Test test2 = new Test();
+}
+Ở đây, cả hai đối tượng test1 và test2 sẽ có các bản sao riêng biệt của tuổi thay đổi. Và, họ khác nhau.
+
+Tuy nhiên, nếu chúng ta khai báo một biến tĩnh, tất cả các đối tượng của lớp đều có chung một biến tĩnh. Đó là bởi vì giống như các phương thức tĩnh, các biến tĩnh cũng được liên kết với lớp. Và, chúng ta không cần tạo các đối tượng của lớp để truy cập các biến tĩnh. Ví dụ,
+
+class Test {
+    // static variable
+    static int age;
+}
+class Main {
+    // access the static variable
+    Test.age = 20;
+}
+Ở đây, chúng ta có thể thấy rằng chúng ta đang truy cập vào biến tĩnh từ lớp khác bằng cách sử dụng tên lớp.
+
+3.1 Ví dụ 2: Biến tĩnh và không tĩnh Java
+
+class Test {
+
+   // static variable
+   static int max = 10;
+  
+   // non-static variable
+   int min = 5;
+}
+
+public class Main {
+   public static void main(String[] args) {
+       Test obj = new Test();
+
+       // access the non-static variable
+       System.out.println("min + 1 = " + (obj.min + 1));
+
+       // access the static variable
+       System.out.println("max + 1 = " + (Test.max + 1));
+   }
+}
+Đầu ra :
+
+min + 1 = 6
+max + 1 = 11
+Trong chương trình trên, chúng ta đã khai báo một biến không tĩnh có tên min và một biến tĩnh có tên max trong lớp Kiểm tra.
+
+Bên trong lớp main, chúng ta có thể thấy rằng chúng ta đang gọi biến không tĩnh bằng cách sử dụng đối tượng của lớp ( obj.min + 1). Tuy nhiên, chúng ta đang gọi biến tĩnh bằng cách sử dụng tên lớp ( Test.max + 1).
+
+Lưu ý : Các biến tĩnh hiếm khi được sử dụng trong Java. Thay vào đó, hằng số tĩnh được sử dụng. Các hằng số tĩnh này được xác định bởi từ khóa static final và được biểu thị bằng chữ hoa. Đây là lý do tại sao một số người thích sử dụng chữ hoa cho các biến tĩnh.
+
+4. Truy cập các biến và phương thức tĩnh trong lớp
+Chúng ta đang truy cập vào biến tĩnh từ một lớp khác. Do đó, chúng tôi đã sử dụng tên lớp để truy cập nó. Tuy nhiên, nếu chúng ta muốn truy cập thành viên tĩnh từ bên trong lớp, nó có thể được truy cập trực tiếp. Ví dụ,
+
+public class Main {
+
+   // static variable
+   static int age;
+   // static method
+   static void display() {
+       System.out.println("Static Method");
+   }
+   public static void main(String[] args) {
+
+       // access the static variable
+       age = 30;
+       System.out.println("Age is " + age);
+
+       // access the static method
+       display();
+   }
+}
+Đầu ra :
+
+Age is 30
+Static Method
+Ở đây, chúng ta có thể truy cập trực tiếp vào biến và phương thức tĩnh mà không cần sử dụng tên lớp. Đó là bởi vì các biến và phương thức tĩnh được mặc định công khai. Và, vì chúng tôi đang truy cập từ cùng một lớp, chúng ta không phải chỉ định tên lớp.
+
+5. Khối tĩnh
+Trong Java, các khối tĩnh được sử dụng để khởi tạo các biến tĩnh. Ví dụ,
+
+class Test {
+    // static variable
+    static int age;
+
+    // static block
+    static {
+        age = 23;
+    }
+}
+Ở đây chúng ta có thể thấy rằng chúng ta đã sử dụng một khối tĩnh với cú pháp:
+
+static {
+    // variable initialization
+}
+Khối tĩnh chỉ được thực hiện một lần khi lớp được tải trong bộ nhớ. Lớp được tải nếu đối tượng của lớp được yêu cầu trong mã hoặc các thành viên tĩnh được yêu cầu trong code.
+
+Một lớp có thể có nhiều khối tĩnh và mỗi khối tĩnh được thực hiện theo cùng một chuỗi trong đó chúng đã được viết trong một chương trình.
+
+4.1 Ví dụ 3: Sử dụng khối tĩnh trong java
+class Main {
+
+   // static variables
+   static int a = 23;
+   static int b;
+   static int max;
+
+   // static blocks
+   static {
+       System.out.println("First Static block.");
+       b = a * 4;
+   }
+   static {
+       System.out.println("Second Static block.");
+       max = 30;
+   }
+
+   // static method
+   static void display() {
+
+       System.out.println("a = " + a);
+       System.out.println("b = " + b);
+       System.out.println("max = " + max);
+   }
+
+   public static void main(String args[]) {
+       // calling the static method
+       display();
+   }
+}
+Đầu ra :
+
+First Static block.
+Second Static block.
+a = 23
+b = 92
+max = 30
+Trong chương trình trên. ngay khi lớp Main được tải,
+
+Giá trị của a được đặt thành 23.
+Khối tĩnh đầu tiên được thực thi. Do đó, chuỗi First Static blockđược in và giá trị của b được đặt thành a * 4.
+Khối tĩnh thứ hai được thực thi. Do đó, chuỗi Second Static blockđược in và giá trị của max đặt thành 30.
+Và cuối cùng, các câu lệnh in bên trong phương thức display()được thực thi.
+
+5. Lớp tĩnh lồng nhau
+Trong Java, chúng ta có thể khai báo một lớp bên trong một lớp khác. Các lớp như vậy được gọi là các lớp lồng nhau. Các lớp lồng nhau có 2 loại:
+
+Các lớp lồng nhau tĩnh
+Các lớp lồng không tĩnh
+Ví dụ,
+
+class OuterClass {
+    // static nested class
+    static class NestedClass {...}
+
+    // non-static nested class
+    class InnerClass {...}
+}
+Để tìm hiểu thêm, hãy truy cập Lớp lồng nhau Java .

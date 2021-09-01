@@ -1,0 +1,44 @@
+11. Comment thường / * … * /
+Đây là comment nhiều dòng và tất nhiên là có thể trải dài trên nhiều dòng. Trình biên dịch trong Java bỏ qua những gì được viết trong đoạn từ /* đến */. Ví dụ,
+
+/* This is an example of  multi-line comment.
+ * The program prints "Hello, World!" to the standard output.
+ */
+
+class HelloWorld {
+    public static void main(String[] args) {    	
+    {	
+        System.out.println("Hello, World!");
+    }
+}
+Output
+Hello, World!
+Ở đây, comment là:
+/* This is an example of multi-line comment.
+* The program prints "Hello, World!" to the standard output.
+*/
+
+2. Comment 1 dòng //
+Trình biên dịch bỏ qua mọi thứ từ // đến cuối dòng. Ví dụ,
+
+// "Hello, World!" program example
+ 
+class Main {
+    public static void main(String[] args) {    	
+    {
+        // prints "Hello, World!"
+        System.out.println("Hello, World!");
+    }
+}
+Output
+Hello, World!
+Chương trình trên có hai comment 1 dòng:
+    "Hello, World!" program example
+     prints "Hello World!"
+     
+3. Sử dụng comments đúng cách
+Không nên dùng comments để giải thích những đoạn code thiếu chuyên nghiệp. Hãy viết code có cấu trúc tốt và dễ đọc, sau đó hãy dùng comments.
+
+Một số người nói code nên là bầy tỏ hết ý nghĩa của nó và nên hạn chế việc sử dụng comments. Tuy nhiên, tôi không hoàn toàn đồng ý với điều này (Theo ý kiến ​​cá nhân của tôi). Không có gì sai với việc sử dụng comments để giải thích các thuật toán, biểu thức chính quy hoặc các script phức tạp cũng như để giải thích tại sao dùng cách này để giải quyết vấn đề sẽ tốt hơn dùng cách kia,v.v.
+
+Tóm lại, hãy sử dụng comments để giải thích ‘tại sao’ thay vì giải thích ‘làm thế nào’.

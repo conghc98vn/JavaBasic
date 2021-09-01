@@ -1,0 +1,87 @@
+Trong Java, có một dạng vòng lặp for khác (ngoài vòng lặp chuẩn) giúp chúng ta làm việc với các mảng và bộ sưu tập, đó là vòng lặp for nâng cao(for-each).
+
+Nếu bạn đang làm việc với mảng và bộ sưu tập, bạn có thể sử dụng cú pháp thay thế của vòng lặp for (dạng nâng cao của vòng lặp for ) để lặp lại các item của mảng/bộ sưu tập. Nó cũng được gọi là vòng lặp for-each vì vòng lặp này lặp qua từng phần tử của mảng/bộ sưu tập.
+
+Để tìm hiểu về cú pháp tiêu chuẩn của vòng lặp for, mảng và bộ sưu tập, hãy truy cập:
+
+Vòng lặp for trong Java
+Array trong Java
+Bộ sưu tập trong Java
+Đây là một ví dụ về việc lặp qua các phần tử của một mảng bằng cách sử dụng vòng lặp for tiêu chuẩn:
+class ForLoop {
+    public static void main(String[] args) {
+      
+        char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+
+        for (int i = 0; i < vowels.length; ++ i) {
+            System.out.println(vowels[i]);
+        }
+    }
+}
+Bạn cũng có thể thực hiện việc đó bằng cách sử dụng vòng lặp for-each như sau:
+
+class AssignmentOperator {
+   public static void main(String[] args) {
+      
+      char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+      // foreach loop
+      for (char item: vowels) {
+         System.out.println(item);
+      }
+   }
+}
+Kết quả của cả hai chương trình sẽ giống nhau:
+a
+e
+i
+o
+u
+Sử dụng vòng lặp for nâng cao sẽ dễ viết code hơn và làm cho code dễ đọc hơn. Do đó, người ta hay khuyên dùng vòng lặp for nâng cao thay vì dùng dạng tiêu chuẩn.
+
+1. Cú pháp của vòng lặp for-each
+Trước tiên chúng ta hãy xem cú pháp của vòng lặp for-each:
+
+for(data_type item : collections) {
+    ...
+}
+Trong cú pháp trên,
+Bộ sưu tập(collections) là một tập hợp hoặc biến mảng cần lặp.
+item là một phần tử đơn từ bộ sưu tập.
+
+2. Vòng lặp for-each hoạt động thế nào?
+Sau đây là cách vòng lặp for nâng cao hoạt động. Đối với mỗi lần lặp, vòng lặp for sẽ
+
+Lặp qua từng item trong bộ sưu tập hoặc mảng (bộ sưu tập) đã cho
+Lưu trữ từng item trong một biến (item )
+Thực hiện phần thân của vòng lặp.
+Hãy lấy 1 ví dụ để thấy rõ hơn:
+
+3. Ví dụ: Vòng lặp for-each
+Chương trình dưới đây tính tổng của tất cả các phần tử trong một mảng nguyên.
+
+class EnhancedForLoop {
+    public static void main(String[] args) {
+      
+        int[] numbers = {3, 4, 5, -5, 0, 12};
+        int sum = 0;
+      
+        for (int number: numbers) {
+            sum += number;
+        }
+      
+        System.out.println("Sum = " + sum);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Sum = 19
+Trong chương trình trên, việc thực hiện vòng lặp for each cụ thể như sau:
+
+Lần	Giá trị của number	Giá trị của sum
+1	3	3
+2	4	7
+3	5	12
+4	-5	7
+5	0	7
+6	12	19
+Bạn có thể thấy trong mỗi lần lặp, vòng lặp for-each lặp qua mỗi phần tử của biến number, lưu trữ phần tử đó trong biến biến Và thực hiện phần thân, tức là cộng thêm number vào sum

@@ -1,0 +1,99 @@
+Trong hướng dẫn này, bạn sẽ tìm hiểu về các lớp ẩn danh trong Java với sự trợ giúp của các ví dụ.
+Trong Java, một lớp có thể chứa một lớp khác được gọi là lớp lồng nhau. Có thể tạo một lớp lồng nhau mà không cần đặt bất kỳ tên nào.
+Một lớp lồng nhau không có bất kỳ tên nào được gọi là lớp ẩn danh.
+Một lớp ẩn danh phải được định nghĩa bên trong một lớp khác. Do đó, nó còn được gọi là lớp bên trong ẩn danh. Cú pháp của nó là:
+
+class outerClass {
+
+    // defining anonymous class
+    object1 = new Type(parameterList) {
+         // body of the anonymous class
+    };
+}
+Các lớp ẩn danh thường mở rộng bởi các lớp con hoặc triển khai các giao diện(interface).
+
+Ở đây,  Loại có thể có:
+
+một lớp cha mà một lớp ẩn danh mở rộng
+một giao diện(interface) mà một lớp ẩn danh triển khai
+Đoạn mã trên tạo một đối tượng object1, của một lớp ẩn danh trong thời gian chạy.
+
+Lưu ý: Các lớp ẩn danh được định nghĩa bên trong một biểu thức. Vì vậy, dấu chấm phẩy được sử dụng ở cuối các lớp ẩn danh để chỉ ra phần cuối của biểu thức.
+
+1. Ví dụ 1: Lớp ẩn danh Mở rộng lớp
+
+class Polygon {
+   public void display() {
+      System.out.println("Inside the Polygon class");
+   }
+}
+
+class AnonymousDemo {
+   public void createClass() {
+
+      // creation of anonymous class extending class Polygon
+      Polygon p1 = new Polygon() {
+         public void display() {
+            System.out.println("Inside an anonymous class.");
+         }
+      };
+      p1.display();
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+       AnonymousDemo an = new AnonymousDemo();
+       an.createClass();
+   }
+}
+Đầu ra
+
+Inside an anonymous class.
+Trong ví dụ trên, chúng ta đã tạo một lớp Polygon. Nó có một phương thức duy nhất display().
+
+Sau đó, chúng ta tạo một lớp ẩn danh để mở rộng lớp Polygon và ghi đè phương thức display().
+
+Khi chúng ta chạy chương trình, một đối tượng p1 của lớp ẩn danh được tạo. Đối tượng sau đó gọi phương thức display() của lớp ẩn danh.
+
+Ví dụ 2: Lớp ẩn danh Triển khai giao diện(interface)
+
+interface Polygon {
+   public void display();
+}
+
+class AnonymousDemo {
+   public void createClass() {
+
+      // anonymous class implementing interface
+      Polygon p1 = new Polygon() {
+         public void display() {
+            System.out.println("Inside an anonymous class.");
+         }
+      };
+      p1.display();
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      AnonymousDemo an = new AnonymousDemo();
+      an.createClass();
+   }
+}
+Đầu ra
+
+Inside an anonymous class.
+Trong ví dụ trên, chúng ta đã tạo một lớp ẩn danh để triển khai giao diện Polygon.
+
+2. Ưu điểm của Lớp ẩn danh
+Trong các lớp ẩn danh, các đối tượng được tạo bất cứ khi nào chúng được yêu cầu. Đó là, các đối tượng được tạo ra để thực hiện một số nhiệm vụ cụ thể. Ví dụ,
+
+Object = new Example() {
+   public void display() {
+      System.out.println("Anonymous class overrides the method display().");
+   }
+};
+Ở đây, một đối tượng của lớp ẩn danh được tạo động khi chúng ta cần ghi đè phương thức display().
+
+Các lớp ẩn danh cũng giúp chúng ta làm cho mã của mình ngắn gọn.

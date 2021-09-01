@@ -1,0 +1,120 @@
+1. Quyền truy cập(Access Modifier) là gì?
+Access modifier là các từ khóa xác định phạm vi truy cập (phạm vi nhìn thấy) của class, giao diện, biến, thành viên dữ liệu, phương thức hoặc constructor và setter của chúng (cập nhật giá trị của một biến). Nó còn được gọi là visibility modifier.
+Bạn không thể xác định visibility modifier của getter (dùng để truy xuất dữ liệu của một biến) vì chúng luôn mang khả năng có thể truy cập giống với khả năng của property.
+Sử dụng access modifier giúp kích thích tính đóng gói cho code của bạn. Nghĩa là, với tính đóng gói, bạn có thể kiểm soát phần chương trình nào có thể truy cập vào các thành viên của một class. Do đó, có thể ngăn chặn được việc sử dụng nhầm dữ liệu.
+
+2. Các loại Access Modifier
+Access Modifier trong package
+Một package đơn giản chỉ là một chiếc thùng chứa các loại liên quan (class, giao diện, các enum và annotation. 
+Đề xuất đọc thêm: Java Package
+Có bốn từ khóa access modifier trong Java và chúng là:
+
+Modifier	Mô tả
+Private	Chỉ được try cập trong class
+Default	Chỉ được truy cập bên trong package (package cá nhân)
+Protected	Được truy cập bên trong package hoặc/và tất cá các class phụ
+Public	Có thể truy cập từ bất cứ đâu
+Tất cả các access modifier sẽ được giải thích chi tiết sau đây.
+
+Default Access Modifier (Access Modifier mặc định)
+Nếu một access modifier không được chỉ định rõ ràng cho một class, biến, phương thức hay constructor, thì nó sẽ được coi là một default access modifier.
+Ví dụ 1: Định nghĩa Default Access Modifier
+
+package defaultPackage;
+class Logger {
+    void message(){
+        System.out.println("This is a message");
+    }
+}
+
+Ở đây, class logger có access modifier mặc định. Và class này có thể khả kiến với các class thuộc package dèaultpackage. Nếu bạn nhập class logger trong package khác và cố khởi tạo nó, bạn sẽ gặp lỗi biên dịch.
+
+3. Private Access Modifier (Access Modifier cá nhân)
+Chỉ các phương thức và thành viên dữ liệu có thể được khai báo là cá nhân, trong khi class và giao diện thì không thể. Tuy nhiên, các class bên trong các class lồng thì có thể được khai báo là private (cá nhân). Đề xuất đọc them: class lồng và class bên trong.
+
+Các biến cá nhân có thể được truy cập từ bên ngoài class, nếu các phương thức getter công khai có trong class. 
+
+Ví dụ 2: Định nghĩa Private Access Modifier
+class Data {
+    // private variable
+    private String name;
+}
+
+public class Main {
+    public static void main(String[] main){
+
+        // create an object of Data
+        Data d = new Data();
+
+        // access private variable and field from another class
+        d.name = "Cafedevn";
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Main.java:18: error: name has private access in Data
+        d.name = "Cafedevn";
+         ^
+Ở đây, name là biến các nhân và chỉ có thể nhìn thấy ở trong class Data. Nhưng nó có thể được truy cập trong class Main bằng sự trợ giúp của phương thức getter và setter công khai.
+
+3. Protected Access Modifier (Access Modifier được bảo vệ)
+Protected access modifier có thể được truy cập bên trong package cũng như trong các lớp phân lớp trực tiếp class cơ sở của bạn. Chỉ các phương thức và thành viên dữ liệu có thể được khai báo là protected, ngoài ra class và giao diện interface không thể. 
+
+Ví dụ 3: Định nghĩa Proteted Access Modifier
+
+class Animal {
+    // protected method
+    protected void display() {
+        System.out.println("I am an animal");
+    }
+}
+
+class Dog extends Animal {
+    public static void main(String[] args) {
+
+        // create an object of Dog class
+        Dog dog = new Dog();
+         // access protected method
+        dog.display();
+    }
+}
+Khi bạn chạy chương trình, kết quả ra sẽ là:
+
+I am an animal
+Bạn có thể thấy, Logger.java và Main.java  ở trong các package khác nhau. Phương thức debug() trong class Logger được bảo vệ (protected) và phương thức này có thể được truy cập chỉ bên trong package1. Tuy nhiên, nó cũng có thể được truy cập từ bên trong class main. Điều này bởi vì class Main kế thừa class Logger.
+
+4. Public Access Modifier (Access Modifier công cộng)
+Public access modifier không có bất kì giới hạn nào về mặt phạm vi. Nó có thể được áp dụng cho class và giao diện cùng với các phương thức, thành viên dữ liệu và các biến.
+
+Ví dụ 4: Định nghĩa Public Access Modifier 
+
+// Animal.java file
+// public class
+public class Animal {
+    // public variable
+    public int legCount;
+
+    // public method
+    public void display() {
+        System.out.println("I am an animal.");
+        System.out.println("I have " + legCount + " legs.");
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main( String[] args ) {
+        // accessing the public class
+        Animal animal = new Animal();
+
+        // accessing the public variable
+        animal.legCount = 4;
+        // accessing the public method
+        animal.display();
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+I am an animal.
+I have 4 legs.
+Ở đây, trong class LoggerImp bạn có thể khởi tạo class Logger bởi vì access modifier của nó là công khai (public). Do đó, bạn có thể sử dụng nó trực tiếp trong class LoggerImp của bạn.

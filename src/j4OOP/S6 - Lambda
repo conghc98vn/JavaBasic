@@ -1,0 +1,245 @@
+Trong bài viết này, bạn sẽ được tìm hiểu về tính năng mới được đưa vào Java 8, đó là việc hỗ trợ cho việc biểu thức lambda sử dụng giao diện hàm số.
+Biểu thức lambda đã từng là một chủ đề hot khi phiên bản Java 8 được phát hành. Biểu thức lambda được thêm vào JDK phiên bản 8 để tăng hiệu năng của Java bằng cách tăng khả năng biểu diễn của ngôn ngữ này.
+Nhưng trước khi đi vào lambda, đầu tiên, chúng ta cần hiểu một functional interface là gì?.
+
+1. Functional Interface là gì?
+Nếu một interface trong Java chứa một và chỉ một phương thức trừu tượng thì nó được định nghĩa là functional interface. Phương thức duy nhất này xác định mục đích dự định của interface đó. Lấy ví dụ, giao diện runnable từ package javalang là một functonal interface bởi vì nó chỉ chứa một phương thức, tức là phương thức run.
+
+Ví dụ 1: định nghĩa một functional interface in Java
+
+import java.lang.FunctionalInterface;
+@FunctionalInterface
+public interface MyInterface{
+    // the single abstract method
+    double getValue();
+}
+Ghi chú: Thẻ functional interface mặc dù không cần thiết nhưng việc sử dụng nó là điều thông minh bởi vì nó yêu cầu trình biên dịch Java phải chỉ ra rằng interface này là một functional interface do đó, nó phải có một phương thức trừu tượng. Trong Java 7, functional interface được gọi là một phương thức trừu tượng đơn (Single Abstract Methed) hoặc là kiểu SAM. Các SAM thường được triển khai cùng các class nặc danh trong Java 7.
+
+Ví dụ 2: Triển khai SAM cùng các class nặc danh trong Java
+public class FunctionInterfaceTest {
+    public static void main(String[] args) {
+
+        // anonymous class
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("I just implemented the Runnable Functional Interface.");
+            }
+        }).start();
+    }
+}
+Khả năng truyền một class nặc danh tới một hàm tạo hoặc một phương thức giúp việc viết code trong Java 7 dễ hơn với ít tệp hơn. Tuy nhiên, cú pháp vẫn khó và vẫn đòi hỏi thêm rất nhiều dòng code.
+
+Java 8 mở rộng thêm sức mạnh của một SAM bằng cách đi thêm một bước tiến nữa. do chúng ta biết rằng một function interface chỉ có một phương thức uy nhất, nên không cần phải định nghĩa tên của phương thức khi truyền một đối số. Biểu thức lambda cho phép chúng ta làm việc này. 
+
+2. Giới thiệu về biểu thức lambda
+Biểu thức lamda là một phương thức không có tên hay phương thức nặc danh. Biểu thức lambda không tự thực thi mà thay vào đó được sử dụng để thực thi một phương thức được định nghĩa một functional interface. 
+
+3. Định nghĩa biểu thức lambda trong Java như thế nào?
+Biểu thức lambda giới thiệu một phần tử cú pháp và một toán tử mới. toán tử mới được gọi là toán tử lambda hoặc toán tử mũi tên (->)
+
+(parameter list) -> lambda body
+Hãy cùng biết một phương thức đơn giản chỉ trả về một hằng số. 
+
+double getPiValue() {
+    return 3.1415;
+}
+Biểu thức lambda tương đương cho phương thức trên là:
+
+() -> 3.1415
+Trong biểu thức lambda, vế bên trái của biểu thức định nghĩa bất kì tham số nào mà biểu thức đòi hỏi, trong khi vế phải là phần thân của lambda, xá định hoạt động của biểu thức lamda.
+
+Phần thân lambda có hai loại.
+
+Phần thân với một biểu thức đơn.
+
+() -> System.out.println("Lambdas are great");
+Phần thân chứa một khối code.
+
+() -> {
+    double pi = 3.1415;
+    return pi;
+};
+Nếu phần thân chỉ là một khối code, bạn phải luôn luôn trả về một giá trị rõ ràng. Nhưng nếu phần thân lambda là một biểu thức, bạn không cần lệnh trả về.
+
+Hãy cùng viết vài đoạn code Java thực tế bằng biểu thức lambda mà đơn giả chỉ trả về giá trị số Pi nào.
+
+Như đã đề cập ở trước đó, biểu thức lambda không tự nó thực thi. Mà thay vào đó, nó hình thành việc triển khai phương thức trừu tượng được định nghĩa bởi functional interface. 
+
+4. Ví dụ 3: Định nghĩa biểu thức lambda cùng functional interface trong Java
+Như vậy, đầu tiên hãy định nghĩa một funtional interface, MyInterface.java:
+
+import java.lang.FunctionalInterface;
+
+// this is functional interface
+@FunctionalInterface
+interface MyInterface{
+
+    // abstract method
+    double getPiValue();
+}
+Bây giờ, chúng ta sẽ phân bổ biểu thức lambda vào instance của functional interface.
+
+public class Main {
+
+    public static void main( String[] args ) {
+
+    // declare a reference to MyInterface
+    MyInterface interface;
+    
+    // lambda expression
+    interface = () -> 3.1415;
+    
+    System.out.println("Value of Pi = " + interface.getPiValue());
+    } 
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Value of Pi = 3.1415
+Biểu thức lambda phải tương thịch với phương thức trừu tượng. Điều này có nghĩa là nếu bạn phân bổ () -> “3.1415” cho instance myInterface, đoạn code sẽ sai và không hoạt động bởi vì kiểu chuỗi không tương thích với dòng double như được định nghĩa ở trong functional interface. 
+
+Bạn có lẽ sẽ không thể sử dụng biểu thức lambda như này trong một chương trình thực. Hãy nhìn vào vài ví dụ về biểu thức lambda có chứa tham số.
+
+5. Ví dụ 4: Sử dụng biểu thức lambda có tham số trong Java.
+
+@FunctionalInterface
+interface MyInterface {
+
+    // abstract method
+    String reverse(String n);
+}
+
+public class Main {
+
+    public static void main( String[] args ) {
+
+        // declare a reference to MyInterface
+        // assign a lambda expression to the reference
+        MyInterface ref = (str) -> {
+
+            String result = "";
+            for (int i = str.length()-1; i >= 0 ; i--)
+            result += str.charAt(i);
+            return result;
+        };
+
+        // call the method of the interface
+        System.out.println("Lambda reversed = " + ref.reverse("Lambda"));
+    }
+
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Lambda reversed = adbmaL
+Kiểu Generic với Functional Interface
+
+@FunctionalInterface
+interface MyInterface {
+    String reverseString(String n);
+}
+Functional interface trên chỉ chấp nhận chuỗi và chỉ trả về đôi tượng chuỗi. 
+
+Tuy nhiên, chúng ta có thể làm cho functional interface trở nên chung hơn, để nó có thể chấp nhận bất kì kiểu dữ liệu nào. 
+
+6. Ví dụ 5: Functional interface kiểu chung và biểu thức lambda
+Bây giờ, Generic Interface tương thích với bất kì biểu thức lambda nào nhận một tham số và trả về giá trị cùng kiểu. 
+
+// GenericInterface.java
+@FunctionalInterface
+interface GenericInterface<T> {
+
+    // generic method
+    T func(T t);
+}
+
+// GenericLambda.java
+public class Main {
+
+    public static void main( String[] args ) {
+
+        // declare a reference to GenericInterface
+        // the GenericInterface operates on String data
+        // assign a lambda expression to it
+        GenericInterface<String> reverse = (str) -> {
+
+            String result = "";
+            for (int i = str.length()-1; i >= 0 ; i--)
+            result += str.charAt(i);
+            return result;
+        };
+
+        System.out.println("Lambda reversed = " + reverse.func("Lambda"));
+
+        // declare another reference to GenericInterface
+        // the GenericInterface operates on Integer data
+        // assign a lambda expression to it
+        GenericInterface<Integer> factorial = (n) -> {
+
+            int result = 1;
+            for (int i = 1; i <= n; i++)
+            result = i * result;
+            return result;
+        };
+
+        System.out.println("factorial of 5 = " + factorial.func(5));
+    }
+}
+Khi bạn chay chương trình, kết quả sẽ là:
+
+Lambda reversed = adbmaL
+factorial of 5 = 120
+Trong ví dụ, chúng ta đã tạo ra một functional interface kiểu chung là GenericInterface. Nó chứa một phương thức chung là func().
+
+Trong Main class
+
+GenericInterface<String> reverse – Tạo ra một tham chiếu cho interface. Interface này hoạt động trên kiểu dữ liệu String.
+
+GenericInterface<Interger> reverse – Tạo ra một tham chiếu cho interface. Interface này trong trường hợp này hoạt động trên kiểu dữ liệu Integer.
+
+7. Biểu thức Java và Stream API
+Gói package mới java.util.stram vừa được thêm vào JDK8 cho phép các nhà phát triển Java thực hiện các hoạt động như tìm kiếm, lọc, vẽ bản đồ, thu nhỏ hoặc thực hiện các bộ thao tác như trong phần Lists.
+
+Lấy ví dụ, chúng ta có một stream dữ liệu (trong trường hợp này là một danh sách chuỗi List of String) nơi mà mỗi chuỗi là kết hợp của tên quốc gia và vùng lãnh thổ. Bây giờ, chúng ta có thể tiến hành stream dữ liệu này và chỉ truy xuất các địa điểm ở Nepal. Chúng ta có thể thực hiện hàng loạt hoạt động trong stream bằng cách kết hợp Stream API và biểu thức Lambda. 
+
+8. Ví dụ 6: Giới thiệu việc sử dụng lambda cùng Steam API
+import java.util.ArrayList;
+import java.util.List;
+
+public class StreamMain {
+
+    // create an object of list using ArrayList
+    static List<String> places = new ArrayList<>();
+
+    // preparing our data
+    public static List getPlaces(){
+
+        // add places and country to the list
+        places.add("Nepal, Kathmandu");
+        places.add("Nepal, Pokhara");
+        places.add("India, Delhi");
+        places.add("USA, New York");
+        places.add("Africa, Nigeria");
+
+        return places;
+    }
+
+    public static void main( String[] args ) {
+
+        List<String> myPlaces = getPlaces();
+        System.out.println("Places from Nepal:");
+        
+        // Filter places from Nepal
+        myPlaces.stream()
+                .filter((p) -> p.startsWith("Nepal"))
+                .map((p) -> p.toUpperCase())
+                .sorted()
+                .forEach((p) -> System.out.println(p));
+    }
+
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Places from Nepal:
+NEPAL, KATHMANDU
+NEPAL, POKHARA
+Stream API này cho chúng ta quyền truy cập tới các phương thức như filter(), map() và forEach() mà có thể lấy biểu thức lambda giống như đầu vào. Chúng ta có thể sử dụng cả phương thức Java được tích hợp sẵn và cũng có thể định nghĩa biểu thức của chính chúng ta dựa vào các cú pháp chúng ta học được ở trên. Điều này cho phép chúng ta có thể giảm thiểu số dòng code một cách bất ngờ như chúng ta đã thấy trong ví dụ ở trên.

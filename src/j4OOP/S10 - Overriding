@@ -1,0 +1,121 @@
+Trong bài hướng dẫn này, chúng ta sẽ tìm hiểu về ghi đè phương thức trong Java bằng các ví dụ minh họa.
+Trong bài hướng dẫn lần trước, chúng ta đã tìm hiểu về tính kế thừa. Tính kế thừa là một thuộc tính của lập trình hướng đối tượng cho phép chúng ta kế thừa một class mới (subclass) từ một class đang tồn tại.
+Bây giờ, nếu một phương thức cùng được định nghĩa trong cả superclass và subclass, thì phương thức trong subclass sẽ ghi đè lên phương thức trong superclass. Đây được biết là ghi đè phương thức(Method Overriding).
+
+1. Ví dụ 1: Ghi đè phương thức trong Java
+
+class Animal {
+   public void displayInfo() {
+      System.out.println("I am an animal.");
+   }
+}
+
+class Dog extends Animal {
+   @Override
+   public void displayInfo() {
+      System.out.println("I am a dog.");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Dog d1 = new Dog();
+      d1.displayInfo();
+   }
+}
+Khi chạy chương trình, kết quả sẽ là:
+
+I am a dog.
+Trong chương trình ở trên, phương thức displayInfo() xuất hiện trong cả superclass Animal và subclass Dog.
+
+Khi chúng ta gọi phương thức displayInfo() sử dụng đối tượng d1 (đối tượng của subclass, phương thức bên trong subclass dog sẽ được gọi. Phương thức displayInfo() của subclass sẽ ghi đè lên phương thức giống nó trong superclass.
+Lưu ý việc sử dụng thẻ @override trong ví dụ trên. Trong Java, các thẻ annotation là các metadata chúng ta sử dụng để cung cấp thêm thông tin cho trình biên dịch. Ở đây, thẻ @override chỉ định trình biên dịch rằng phương thức đằng sau thẻ này sẽ ghi đè phương thức của superclass.
+Không cần thiết phải sử dụng thẻ @override, nhưng khi chúng ta sử dụng nó, phương thức sẽ tuân thủ tất cả các quy định về ghi đè. Ngược lại, trình biên dịch sẽ gặp lỗi.
+
+2. Các quy định về ghi đè trong Java
+Cả superclass và subclass phải có cùng tên phương thức, cùng kiểu trả về và cùng danh sách tham số. 
+
+Chúng ta không thể ghi đè phương thức được khai báo là final và static.
+
+Chúng ta luôn luôn nên ghi đè các phương thức trừu tượng của superclass (sẽ được bàn luận trong các bài hướng dẫn sau).
+
+Từ khóa super trong ghi đè phương thức trong Java
+
+Một câu hỏi thường nổi lên trong khi thực thi việc ghi đè trong Java là:
+
+3. Chúng ta có thể truy cập các phương thức của superclass sau khi ghi đè ko?
+Vâng, và câu trả lời là có. Để truy cập phương thức của superclass từ subclass, chúng ta sử dụng từ khóa super. 
+
+Ví dụ 2: việc sử dụng từ khóa super
+
+class Animal {
+   public void displayInfo() {
+      System.out.println("I am an animal.");
+   }
+}
+
+class Dog extends Animal {
+   public void displayInfo() {
+      super.displayInfo();
+      System.out.println("I am a dog.");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Dog d1 = new Dog();
+      d1.displayInfo();
+   }
+}
+Khi ta chạy chương trình, kết quả sẽ là:
+
+I am an animal.
+I am a dog.
+Trong ví dụ trên, subclass dog ghi đè lên phương thức displayInfo() của superclass Animal.
+
+Khi ta gọi phương thức displayInfo() sử dụng đối tượng d1 của subclass dog, phương thức bên trong subclass Dog được gọi còn phương thức bên trong superclass không được gọi. Chúng ta đã sử dụng superdisplayInfo() để gọi phương thức displayInfo() của superclass bên trong phương thức displayInfo() của subclass Dog.
+
+Điều quan trọng phải lưu ý là các hàm tạo trong Java sẽ không được kế thừa. Do đó, không có gì gọi là ghi đè hàm tạo trong Java cả. 
+
+Tuy nhiên, chúng ta có thể gọi hàm tạo của superclass từ subclass của nó. Khi đó ta sử dụng super(). Để tìm hiểu thêm, hãy tham khảo từ khóa super trong Java. 
+
+4. Access specifier trong ghi đè phương thức
+Phương thức cùng được khai báo trong superclass và subclass có thể có các access specifier khác nhau. Tuy nhiên, điều này cũng có giới hạn.
+
+Chúng ta chỉ có thể sử dụng các access specifier trong subclass mà cung cấp quyền truy cập rộng hơn access specifier của superclass. Lấy ví dụ,
+
+Giả sử, một phương thức là myClass() trong superclass được khai báo là kiểu protected, thì phương thức cùng tên trong subclass có thể là public hoặc protected, nhưng không thể là private. 
+
+Ví dụ 3: Access specifier trong ghi đè phương thức
+
+class Animal {
+   protected void displayInfo() {
+      System.out.println("I am an animal.");
+   }
+}
+
+class Dog extends Animal {
+   public void displayInfo() {
+      System.out.println("I am a dog.");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Dog d1 = new Dog();
+      d1.displayInfo();
+   }
+}
+Khi chạy chương trình, kết quả sẽ là:
+
+I am a dog.
+Trong ví dụ trên, subclass Dog ghi đè phương thức displayInfo() của superclass Animal. 
+
+Bất cứ khi nào chúng ta gọi phương thức displayInfo() sử dụng đối tượng d1 (đối tượng của subclass), phương thức bên trong subclass được gọi.
+
+Lưu ý rằng, phương thức displayInfo() được khai báo là protected trong superclass animal. Phương thức tương tự lại có access specifier là public trong subclass Dog. Điều này hoàn toàn có thể bởi vì access specifier public cung cấp quyền truy cập rộng hơn so với access specifier protected.
+
+5. Ghi đè các phương thức trừu tượng
+Trong Java, các class trừu tượng được tạo ra để làm superclass cho các class khác. Và nếu một class chứa một phương thức trừu tượng, việc ghi đè nó là điều bắt buộc.
+
+Chúng ta sẽ tìm hiểu thêm về các class trừu tượng và việc ghi đè các phương thức trừu tượng trong các bài hướng dẫn sau này.

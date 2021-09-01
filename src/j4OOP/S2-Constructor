@@ -1,0 +1,239 @@
+1. Hàm tạo là gì?
+Một hàm tạo cũng tương tự như một phương thức (nhưng không phải là một phương thức) được gọi tự động khi một đối tượng được khởi tạo.
+
+Trình biên dịch compiler Java phân biệt giữa một phương thức và một hàm tạo bằng tên của nó và kiểu trả về. Trong Java, một hàm tạo có tên giống với tên của class, và không trả về bất kì giá trị nào.
+
+class Test {
+    Test() {
+        // constructor body
+    }
+}
+Ở đây, Test() là một hàm tạo; nó có tên giống với tên của class và không có kiểu trả về.
+
+class Test {
+    void Test() {
+        // method body
+    }
+}
+Ở đây, Test() cũng có tên giống với tên của class. Tuy nhiên, nó có kiểu trả về void. Do đó, nó là một phương thức chứ không phải là một hàm tạo.
+
+2. Ví dụ: hàm tạo trong Java
+class Main {
+   private int x;
+
+   // constructor
+   private Main(){
+       System.out.println("Constructor Called");
+       x = 5;
+   }
+
+   public static void main(String[] args){
+       // constructor is called while creating object
+       Main obj = new Main();
+       System.out.println("Value of x = " + obj.x);
+   }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+Constructor Called
+Value of x = 5
+Ở đây, hàm tạo Main() được gọi khi đối tượng obj được khởi tạo.
+
+Một hàm tạo có thể hoặc không thể chấp nhận các đối số.
+
+3. Hàm tạo không chấp nhận đối số (no-arg constructor) 
+Nếu một hàm tạo Java không chấp nhận bất kì tham số nào, nó là một no-arg constructor. 
+
+Cú pháp của nó là:
+
+private Constructor() {
+   // body of constructor
+}
+Ví dụ về no-arg constructor
+
+class Main {
+
+   int i;
+
+   // constructor with no parameter
+   private Main(){
+       i = 5;
+       System.out.println("Object created and i = " + i);
+   }
+
+   public static void main(String[] args) {
+
+       // calling the constructor without any parameter
+       Main obj = new Main();
+   }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Object created and i = 5
+Ở đây, hàm tạo NoArgCtor() không chấp nhận bất kì tham số nào. 
+
+4. Bạn có chú ý rằng access modifier của hàm tạo Main() là riêng tư không?
+Đấy là bởi vì đối tượng được khởi tạo từ trong cùng class. Do đó, nó có thể truy cập hàm tạo.
+
+Tuy nhiên, nếu đối tượng được khởi tạo ngoài class, bạn phải khai báo hàm tạo public (công khai) để truy cập nó. Lấy ví vụ:
+
+class Company {
+    String domainName;
+
+    // public constructor
+    public Company(){
+        domainName = "programiz.com";
+    }
+}
+
+public class Main {
+    
+    public static void main(String[] args) {
+
+    // object is created in another class
+        Company companyObj = new Company();
+        System.out.println("Domain name = "+ companyObj.domainName);
+    }
+}
+ Khi bạn chạy chương trình, kết quả sẽ là:   
+
+Domain name = programiz.com
+
+5. Hàm tạo mặc định
+Nếu bạn không tạo hàm tạo, trình biên dịch Java sẽ tự động tạo một no-arg constructor trong suốt thời gian chạy chương trình. Hàm tạo này được biết như là một hàm tạo mặc định.
+Hàm tạo mặc định này sẽ khởi tạo bất kì biến instance nào chưa được khởi tạo.
+
+Type	Default Value
+boolean	false
+byte	0
+short	0
+int	0
+long	0L
+char	\u0000
+float	0.0f
+double	0.0d
+object	Reference null
+
+6. Ví dụ về hàm tạo mặc định:
+class DefaultConstructor {
+
+    int a;
+    boolean b;
+
+    public static void main(String[] args) {
+
+        // A default constructor is called
+        DefaultConstructor obj = new DefaultConstructor();
+
+        System.out.println("a = " + obj.a);
+        System.out.println("b = " + obj.b);
+    }
+}
+Chương trình trên tương đương với chương trình:
+class DefaultConstructor {
+
+    int a;
+    boolean b;
+
+    // a private constructor 
+    private DefaultConstructor() {
+        a = 0;
+        b = false;
+    }
+
+    public static void main(String[] args) {
+        // call the constructor 
+        DefaultConstructor obj = new DefaultConstructor();
+
+        System.out.println("a = " + obj.a);
+        System.out.println("b = " + obj.b);
+    }
+}
+Khi chạy chương trình, kết quả sẽ là:
+
+a = 0
+b = false
+Bạn có thể đọc thêm: Visibility Modifiers trong Java
+
+7. Hàm tạo được tham số (parameter constructor)
+Một hàm tạo có thể chấp nhận các tham số. Cú pháp của nó là:
+
+private Constructor (arg1, arg2, ..., argn) {
+    // constructor body
+}
+Ví dụ: hàm tạo được tham số hóa
+
+class Vehicle {
+
+    int wheels;
+
+    // constructor accepting single value
+    private Vehicle(int wheels){
+        this.wheels = wheels;
+        System.out.println(wheels + " wheeler vehicle created.");
+    }
+
+    public static void main(String[] args) {
+
+        // calling the constructor by passing single value
+        Vehicle v1 = new Vehicle(2);
+        Vehicle v2 = new Vehicle(3);
+        Vehicle v3 = new Vehicle(4);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+2 wheeler vehicle created.
+3 wheeler vehicle created.
+4 wheeler vehicle created.
+Ở đây, chúng ta đã truyền một đối số kiểu int (số các bánh xe) vào hàm tạo trong suốt quá trình khởi tạo đối tượng.
+
+8. Nạp chồng hàm tạo trong Java
+Tương tự như nạp chồng phương thức, bạn cũng có thể nạp chồng hàm tạo nếu có từ hai hàm tạo khác nhau trong tham số. Lấy ví dụ:
+
+class Company {
+
+    String domainName;
+
+    // constructor with no parameter
+    public Company(){
+        this.domainName = "default";
+    }
+
+    // constructor with single parameter
+    public Company(String domainName){
+        this.domainName = domainName;
+    }
+
+    public void getName(){
+        System.out.println(this.domainName);
+    }
+
+    public static void main(String[] args) {
+        // calling the constructor with no parameter
+        Company defaultObj = new Company();
+
+        // calling the constructor with single parameter
+        Company programizObj = new Company("cafedev.vn");
+
+        defaultObj.getName();
+        programizObj.getName();
+    }
+}
+ Khi bạn chạy chương trình, kết quả sẽ là:
+
+default
+cafedev.vn
+
+9. Các lưu ý quan trọng
+Hàm tạo được khai báo gầm khi bạn khởi tạo đối tượng.
+Hai nguyên tắc cho việc khởi tạo một hàm tạo là:
+Tên của một hàm tạo Java chắc chắn phải khớp với tên của class.
+Một hàm tạo Java chắc chắn không có kiểu trả về.
+Nếu một class không có hàm tạo nào, trình biên dịch Java sẽ tự động tạo ra một hàm tạo mặc định trong suốt thời gian chạy chương trình. 
+Hàm tạo mặc định khởi tạo các biến instance cùng với các giá trị mặc định. Ví dụ như: biến int sẽ được khởi tạo thành 0.
+Các loại hàm tạo:
+Hàm tạo không chấp nhận đối số – hàm tạo không chấp nhận bất kỳ đối số nào
+Hàm tạo mặc định – constructor được trình biên dịch Java tạo tự động nếu nó không được định nghĩa rõ ràng.
+Hàm tạo được tham số hóa – được sử dụng để chỉ định các giá trị cụ thể của các biến trong đối tượng
+Hàm tạo không thể có tính trừu tượng hoặc tĩnh hoặc cuối cùng.
+Hàm tạo có thể nạp chồng nhưng không thể bị ghi đè.

@@ -1,0 +1,184 @@
+Trong bài hướng dẫn này, chúng ta sẽ tìm hiểu về tính trừu tượng(Abstract) trong Java. Chúng ta sẽ tìm hiểu về các class và phương thức trừu tượng(Abstract) trong Java và cách sử dụng chúng trong chương trình của chúng ta.
+
+1. Class trừu tượng(Abstract) trong Java
+Một class trừu tượng trong Java không thể được khởi tạo (chúng ta không thể tạo ra các đối tượng cho một class trừu tượng). Trong Java, chúng ta chỉ sử dụng từ khóa abstract để khai báo một class trừu tượng. 
+
+abstract class Animal {
+   //attributes and methods      
+}
+Nếu cố gắng tạo ra các đối tượng của một class trừu tượng, chúng ta sẽ bị lỗi biên dịch. Lấy ví dụ,
+
+Animal a1 = new Animal()
+Nó sẽ bị lỗi biên dịch
+
+Animal is abstract; cannot be instantiated
+Mặc dù các class trừu tượng không thể được khởi tạo, chúng ta vẫn có thể tạo ra các subbclass từ nó. Chúng ta có thể tạo các đối tượng của subclass để truy cập các thành viên của class trừu tượng.
+Trước khi chúng ta tìm hiểu chi tiết về nó, chúng ta cần hiểu các phương thức trừu tượng.
+
+2. Phương thức trừu tượng trong Java
+Chúng ta đều sử dụng từ khóa abstract để tạo các phương thức trừu tượng. Một phương thức trừu tượng được khai báo mà không cần triển khai. Chẳng hạn như:
+
+abstract void makeSound();
+Ở đây, makeSound() là một phương thức trừu tượng. Phần thân của phương thức makeSound() được thay thế bởi ;.
+
+Điều quan trong cần ghi nhớ là một class trừu tượng chỉ có thể chứa các phương thức trừu tượng. Nếu một class không phải là class trừu tượng chứa các phương thức trừu tượng, khi đó sẽ có lỗi biên dịch.
+
+Một class trừu tượng có thể chứa cả phương thức trừu tượng và các phương thức không trừu tượng như ví dụ sau:
+
+abstract class Animal {
+   public void displayInfo() {
+      System.out.println(“I am an animal.”);
+   }
+
+   abstract void makeSound();
+}
+Trong ví dụ trên, chúng ta đã tạo ra một class trừu tượng là Animal. Nó chứa một phương thức trừu tượng là makeSound()và một phương thức không trừu tượng là dispalyInfo().
+
+3. Tính kế thừa của class trừu tượng
+Một class trừu tượng không thể được khởi tạo. Để truy cập các thành viên của một class trừu tượng, chúng ta phải kế thừa nó. Lấy ví dụ:
+
+Ví dụ 1: Tính kế thừa của class trừu tượng
+
+abstract class Animal {
+ public void displayInfo() {
+   System.out.println("I am an animal.");
+ }
+}
+
+class Dog extends Animal {
+
+}
+class Main {
+ public static void main(String[] args) {
+   Dog d1 = new Dog();
+   d1.displayInfo();
+ }
+}
+Kết quả là:
+
+I am an animal.
+Trong ví dụ trên, chúng ta có thể tạo ra một class trừu tượng là Animal. Chúng ta không thể tạo các đối tượng của class Animal. Để truy cập phương thức displayinfo của Animal, chúng ta đã kế thừa subclass Dog của class Animal. Sau đó, chúng ta sử dụng đối tượng d1 của subclass Dog để truy cập phương thức displayInfo().
+
+4. Sự ghi đè của các phương thức trừu tượng
+Trong Java, ghi đè các phương thức trừu tượng của superclass trong subclass là điều bắt buộc. Đó là bởi vì subclass kế thừa các phương thức trừu tượng của superclass. Vì subclass của chúng ta chứa các phương thức trừu tượng, chúng ta cần phải ghi đè chúng.
+
+Ghi chú: nếu subclass cũng được khai báo là trừu tượng, thì không bắt buộc phải ghi đè các phương thức trừu tượng.
+
+Ví dụ 2: Ghi đè phương thức trừu tượng
+
+abstract class Animal {
+   abstract void makeSound();
+
+   public void eat() {
+      System.out.println("I can eat.");
+   }
+}
+
+class Dog extends Animal {
+
+   public void makeSound() {
+      System.out.println("Bark bark");
+   }
+}
+class Main {
+   public static void main(String[] args) {
+      Dog d1 = new Dog();
+      d1.makeSound();
+      d1.eat();
+   }
+}
+Kết quả là:
+
+Bark bark.
+I can eat.
+Trong ví dụ trên, chúng ta đã tạo ra một class trừu tượng là Animal. Class này chứa một phương thức trừu tượng là makeSound()và một phương thức không trừu tượng là eat().
+
+Chúng ta đã kế thừa subclass dog từ superclass Animal. Ở đây, subclass dog ghi đè phương thức trừu tượng displayInfo().
+
+Tiếp theo, chúng ta tạo ra một đối tượng d1 của class Dog. Sử dụng đối tượng này, chúng ta sẽ gọi các phương thức d1.displayInfo() và d1.eat().
+
+5. Truy cập hàm tạo của các class trừu tượng
+Tương tự như các class không trừu tượng, chúng ta có thể truy cập vào hàm tạo của class trừu tượng từ subclass sử dụn từ khóa super. Lấy ví dụ,
+
+abstract class Animal {
+   Animal() {
+      ….
+   }
+}
+
+class Dog extends Animal {
+   Dog() {
+      super();
+      ...
+   }
+}
+Ở đây, chúng ta đã sử dụng super() bên trong hàm tạo của class dog để truy cập vào hàm tạo của class Animal.
+
+Chú ý rằng từ khóa super luôn luôn phải là câu lệnh đầu tiên trong hàm tạo của subclass. Hãy tham khảo thêm từ khóa super trong Java để tìm hiểu thêm.
+
+6. Tại Sao Java Lại Có Tính Trừu Tượng?
+Tính trừu tượng là một thuật ngữ quan trọng của lập trình hướng đối tượng. Tính trừu tượng chỉ thể hiện những thông tin cần thiết và tất cả các chi tiết không cần thiết đều bị ẩn. Điều này cho phép chúng ta quản lí tính linh hoạt bằng cách bỏ qua hoặc ẩn đi các chi tiết bằng một ý tưởng đơn giản mà cao cấp hơn.
+
+Một ví dụ thực tế về tính trừu tượng có thể là phanh xe máy. Chúng ta đều biết phanh xe để làm gì. Khi chúng ta kích hoạt bộ phanh, xe máy sẽ dừng lại. Tuy nhiên, hoạt động của phanh được ẩn đi khỏi chúng ta.
+
+Ưu điểm chính của việc che đi hoạt động của phanh là bây giờ nhà sản xuất có thể điều chỉnh phanh khác nhau cho các loại xe máy khác nhau; tuy nhiên, cơ chế hoạt động của phanh vẫn giống nhau.
+
+Hãy lấy một ví dụ giúp chúng ta hiểu rõ hơn về tính trừu tượng trong Java.
+
+Ví dụ 3: Tính trừu tượng trong Java
+
+abstract class Animal {
+   abstract void makeSound();
+
+}
+
+class Dog extends Animal {
+   public void makeSound() {
+      System.out.println("Bark bark.");
+   }
+}
+
+class Cat extends Animal {
+   public void makeSound() {
+      System.out.println("Meows ");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Dog d1 = new Dog();
+      d1.makeSound();
+
+      Cat c1 = new Cat();
+      c1.makeSound();
+   }
+}
+Kết quả là:
+
+Bark bark
+Meows
+Trong ví dụ trên, chúng ta đã tạo ra superclass Animal. Superclass này có phương thức trừu tượng là makeSound ()
+
+Phương thức makeSound() không thể được triển khai bên trong class Animal. Đó là bởi vì mỗi một animal lại có một tiếng kêu riêng. Do đó, mỗi subclass của superclass Animal phải có cách triển khai phương thức makeSound() khác nhau.
+
+Chúng ta không thể triển khai phương thức makeSound() trong superclass Animal theo cách như kiểu nó sẽ đúng với toàn bộ các subclass của nó. Do đó, việc triển khai phương thức makeSound() trong Animal được ẩn đi.
+
+Trong ví dụ trên, mỗi class Dog và Cat tự triển khai phương thức makeSound() riêng.
+
+7. Các điểm quan trọng cần nhớ
+Chúng ta sử dụng từ khóa abstract để tạo nên các class và phương thức trừu tượng.
+
+Một class chứa phương thức trừu tượng cũng là một class trừu tượng.
+
+Chúng ta không thể tạo ra các đối tượng của một class trừu tượng.
+
+Để triển khai các thuộc tính của một class trừu tượng, chúng ta phải kế thừa các subclass từ nó và tạo ra các đối tượng của subclass.
+
+Một subclass phải ghi đè lên tất cả các phương thức trừu tượng. Tuy nhiên, nếu subclass đó được khai báo là trừu tượng, không bắt buộc phải ghi đè các phương thức trừu tượng.
+
+Chúng ta có thể truy cập các thuộc tính và các phương thức tĩnh của một class trừu tượng bằng cách sử dụng tham chiếu của lớp trừu tượng. Ví dụ,
+
+Animal.staticMethod();
+
+8. Interface trong Java
+Trong Java, một giao diện tương tự như một lớp trừu tượng. Tuy nhiên, giao diện không có bất kỳ phương thức không trừu tượng nào cả. Chúng ta sẽ tìm hiểu thêm về các giao diện trong các bài hướng dẫn tiếp theo.

@@ -1,0 +1,397 @@
+Trong hướng dẫn này, chúng ta sẽ học phản xạ, một tính năng trong lập trình Java cho phép chúng ta kiểm tra và sửa đổi các lớp, phương thức, v.v.
+Trong Java, phản xạ cho phép chúng ta kiểm tra và thao tác các lớp, giao diện, hàm tạo, phương thức và trường tại thời điểm chạy.
+Có một lớp trong Java được đặt tên Class là giữ tất cả thông tin về các đối tượng và lớp trong thời gian chạy. Đối tượng của Class có thể được sử dụng để thực hiện phản xạ.
+
+1. Phản ánh của các lớp Java
+Để phản ánh một lớp Java, trước tiên chúng ta cần tạo một đối tượng class.
+Và, bằng cách sử dụng đối tượng, chúng ta có thể gọi các phương thức khác nhau để lấy thông tin về các phương thức, trường và hàm tạo có trong một lớp.
+
+Có ba cách để tạo các đối tượng của Lớp:
+
+1. Sử dụng phương thức forName()
+
+class Dog {...}
+
+// create object of Class
+// to reflect the Dog class
+Class a = Class.forName("Dog");
+Ở đây, forName() là phương thức lấy tên của lớp được phản ánh làm đối số của nó.
+
+2. Sử dụng phương thức getClass()
+
+// create an object of Dog class
+Dog d1 = new Dog();
+
+// create an object of Class
+// to reflect Dog
+Class b = d1.getClass();
+Ở đây, chúng ta đang sử dụng đối tượng của lớp Chó để tạo một đối tượng của Class.
+
+3. Sử dụng phần mở rộng .class
+
+// create an object of Class
+// to reflect the Dog class
+Class c = Dog.class;
+Bây giờ chúng ta biết cách chúng ta có thể tạo các đối tượng của Class. Chúng ta có thể sử dụng đối tượng này để lấy thông tin về lớp tương ứng trong thời gian chạy.
+
+2. Ví dụ: Phản chiếu lớp trong Java
+/*
+Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+@author cafedevn
+Contact: cafedevn@gmail.com
+Fanpage: https://www.facebook.com/cafedevn
+Group: https://www.facebook.com/groups/cafedev.vn/
+Instagram: https://instagram.com/cafedevn
+Twitter: https://twitter.com/CafedeVn
+Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+Pinterest: https://www.pinterest.com/cafedevvn/
+YouTube: https://www.youtube.com/channel/UCE7zpY_SlHGEgo67pHxqIoA/
+*/
+import java.lang.Class;
+import java.lang.reflect.*;
+
+class Animal {
+}
+
+// put this class in different Dog.java file
+public class Dog extends Animal {
+  public void display() {
+    System.out.println("I am a dog.");
+  }
+}
+
+// put this in Main.java file
+class Main {
+  public static void main(String[] args) {
+    try {
+      // create an object of Dog
+      Dog d1 = new Dog();
+
+      // create an object of Class
+      // using getClass()
+      Class obj = d1.getClass();
+
+      // get name of the class
+      String name = obj.getName();
+      System.out.println("Name: " + name);
+
+      // get the access modifier of the class
+      int modifier = obj.getModifiers();
+
+      // convert the access modifier to string
+      String mod = Modifier.toString(modifier);
+      System.out.println("Modifier: " + mod);
+
+      // get the superclass of Dog
+      Class superClass = obj.getSuperclass();
+      System.out.println("Superclass: " + superClass.getName());
+    }
+
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+Đầu ra
+
+Name: Dog
+Modifier: public
+Superclass: Animal
+Trong ví dụ trên, chúng ta đã tạo một lớp cha: Động vật và một lớp con: Chó. Ở đây, chúng ta đang cố gắng kiểm tra lớp Chó.
+
+Lưu ý câu lệnh,
+
+Class obj = d1.getClass();
+
+Ở đây, chúng ta đang tạo một đối tượng phản chiếu của Lớp sử dụng phương thức getClass(). Sử dụng đối tượng, chúng ta đang gọi các phương thức khác nhau của Lớp.
+
+obj.getName () – trả về tên của lớp
+obj.getModifiers () – trả về công cụ sửa đổi quyền truy cập của lớp
+obj.getSuperclass () – trả về lớp cha của lớp.
+Lưu ý : Chúng ta đang sử dụng lớp Modifier để chuyển đổi công cụ sửa đổi truy cập số nguyên thành một chuỗi.
+
+3. Trường phản ánh, phương thức và hàm tạo
+Gói java.lang.reflect cung cấp các lớp có thể được sử dụng để thao tác các thành viên trong lớp. Ví dụ,
+
+phương thức của Lớp– cung cấp thông tin về các phương thức trong một lớp
+Trường của Lớp – cung cấp thông tin về các trường trong một lớp
+Constructor của Lớp – cung cấp thông tin về các constructor trong một lớp
+
+4. Phản ánh các phương thức trong Java
+Các lớp Method cung cấp phương thức khác nhau có thể được sử dụng để thu thập thông tin về các phương thức hiện diện trong một lớp học. Ví dụ,
+
+import java.lang.Class;
+import java.lang.reflect.*;
+
+class Dog {
+
+  // methods of the class
+  public void display() {
+    System.out.println("I am a dog.");
+  }
+
+  private void makeSound() {
+    System.out.println("Bark Bark");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    try {
+
+      // create an object of Dog
+      Dog d1 = new Dog();
+
+      // create an object of Class
+      // using getClass()
+      Class obj = d1.getClass();
+
+      // using object of Class to
+      // get all the declared methods of Dog
+      Method[] methods = obj.getDeclaredMethods();
+
+      // create an object of the Method class
+      for (Method m : methods) {
+
+        // get names of methods
+        System.out.println("Method Name: " + m.getName());
+
+        // get the access modifier of methods
+        int modifier = m.getModifiers();
+        System.out.println("Modifier: " + Modifier.toString(modifier));
+
+        // get the return types of method
+        System.out.println("Return Types: " + m.getReturnType());
+        System.out.println(" ");
+      }
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+Đầu ra
+
+Method Name: display
+Modifier: public
+Return Types: void
+ 
+Method Name: makeSound
+Modifier: private
+Return Types: void
+Trong ví dụ trên, chúng ta đang cố gắng lấy thông tin về các phương thức có trong lớp Dog. Như đã đề cập trước đó, đầu tiên chúng ta đã tạo một đối tượng phản chiếu của Class trong việc sử dụng phương thức getClass().
+
+Chú ý biểu thức,
+
+Method[] methods = obj.getDeclaredMethod();
+
+Ở đây, getDeclaredMethod() trả về tất cả các phương thức có bên trong lớp.
+
+Ngoài ra, chúng ta đã tạo một đối tượng m của lớp Method. Đây,
+
+m.getName () – trả về tên của một phương thức
+m.getModifiers () – trả về công cụ sửa đổi quyền truy cập của các phương thức ở dạng số nguyên
+m.getReturnType () – trả về kiểu trả về của các phương thức
+Các lớp Method cũng cung cấp các phương thức khác nhau có thể được sử dụng để kiểm tra các phương thức tại thời gian chạy.
+
+5. Phản ánh các trường trong Java
+Giống như các phương thức, chúng ta cũng có thể kiểm tra và sửa đổi các trường khác nhau của một lớp bằng cách sử dụng các phương thức của lớp Field. Ví dụ,
+
+import java.lang.Class;
+import java.lang.reflect.*;
+
+class Dog {
+  public String type;
+}
+
+class Main {
+  public static void main(String[] args) {
+    try {
+      // create an object of Dog
+      Dog d1 = new Dog();
+
+      // create an object of Class
+      // using getClass()
+      Class obj = d1.getClass();
+
+      // access and set the type field
+      Field field1 = obj.getField("type");
+      field1.set(d1, "labrador");
+
+      // get the value of the field type
+      String typeValue = (String) field1.get(d1);
+      System.out.println("Value: " + typeValue);
+
+      // get the access modifier of the field type
+      int mod = field1.getModifiers();
+
+      // convert the modifier to String form
+      String modifier1 = Modifier.toString(mod);
+      System.out.println("Modifier: " + modifier1);
+      System.out.println(" ");
+    }
+    
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+Đầu ra
+
+Value: labrador
+Modifier: public
+Trong ví dụ trên, chúng ta đã tạo một lớp có tên Dog. Nó bao gồm một trường công khai có tên kiểu. Lưu ý câu lệnh,
+
+Field field1 = obj.getField(“type”);
+
+Ở đây, chúng ta đang truy cập vào trường công khai của lớp Dog và gán nó cho đối tượng field1 sau đó lớp Field.
+
+Sau đó, chúng ta sử dụng các phương thức khác nhau của lớp Field:
+
+field1.set () – đặt giá trị của trường
+field1.get () – trả về giá trị của trường
+field1.getModifiers () – trả về giá trị của trường ở dạng số nguyên
+Tương tự, chúng ta cũng có thể truy cập và sửa đổi các trường riêng tư. Tuy nhiên, sự phản ánh của khu vực riêng tư hơi khác so với khu vực công. Ví dụ,
+
+/*
+Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+@author cafedevn
+Contact: cafedevn@gmail.com
+Fanpage: https://www.facebook.com/cafedevn
+Group: https://www.facebook.com/groups/cafedev.vn/
+Instagram: https://instagram.com/cafedevn
+Twitter: https://twitter.com/CafedeVn
+Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+Pinterest: https://www.pinterest.com/cafedevvn/
+YouTube: https://www.youtube.com/channel/UCE7zpY_SlHGEgo67pHxqIoA/
+*/
+class Dog {
+  private String color;
+}
+
+class Main {
+  public static void main(String[] args) {
+    try {
+      // create an object of Dog
+      Dog d1 = new Dog();
+
+      // create an object of Class
+      // using getClass()
+      Class obj = d1.getClass();
+
+      // access the private field color
+      Field field1 = obj.getDeclaredField("color");
+
+      // allow modification of the private field
+      field1.setAccessible(true);
+
+      // set the value of color
+      field1.set(d1, "brown");
+
+      // get the value of field color
+      String colorValue = (String) field1.get(d1);
+      System.out.println("Value: " + colorValue);
+
+      // get the access modifier of color
+      int mod2 = field1.getModifiers();
+
+      // convert the access modifier to string
+      String modifier2 = Modifier.toString(mod2);
+      System.out.println("Modifier: " + modifier2);
+    }
+    
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+Đầu ra
+
+Value: brown
+Modifier: private
+Trong ví dụ trên, chúng ta đã tạo một lớp có tên Dog. Lớp chứa một trường riêng có tên màu sắc. Chú ý câu lệnh.
+
+Field field1 = obj.getDeclaredField("color");
+
+field1.setAccessible(true);
+Tại đây, chúng ta đang truy cập màu sắc và gán nó cho đối tượng field1 của lớp Field. Sau đó chúng ta sử dụng field1 để sửa đổi khả năng truy cập của màu sắc và cho phép chúng ta thực hiện các thay đổi đối với nó.
+
+Sau đó, chúng ta sử dụng field1 để thực hiện các thao tác khác nhau trên màu trường riêng.
+
+6. Phản ánh của Java Constructor
+Chúng ta cũng có thể kiểm tra các hàm tạo khác nhau của một lớp bằng cách sử dụng các phương thức khác nhau do lớp Constructor cung cấp . Ví dụ,
+
+import java.lang.Class;
+import java.lang.reflect.*;
+
+class Dog {
+
+  // public constructor without parameter
+  public Dog() {
+
+  }
+
+  // private constructor with a single parameter
+  private Dog(int age) {
+
+  }
+
+}
+
+class Main {
+  public static void main(String[] args) {
+    try {
+      // create an object of Dog
+      Dog d1 = new Dog();
+
+      // create an object of Class
+      // using getClass()
+      Class obj = d1.getClass();
+
+      // get all constructors of Dog
+      Constructor[] constructors = obj.getDeclaredConstructors();
+
+      for (Constructor c : constructors) {
+
+        // get the name of constructors
+        System.out.println("Constructor Name: " + c.getName());
+
+        // get the access modifier of constructors
+        // convert it into string form
+        int modifier = c.getModifiers();
+        String mod = Modifier.toString(modifier);
+        System.out.println("Modifier: " + mod);
+
+        // get the number of parameters in constructors
+        System.out.println("Parameters: " + c.getParameterCount());
+        System.out.println("");
+      }
+    }
+    
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+Đầu ra
+
+Constructor Name: Dog
+Modifier: public     
+Parameters: 0        
+
+Constructor Name: Dog
+Modifier: private    
+Parameters: 1
+Trong ví dụ trên, chúng ta đã tạo một lớp có tên Dog. Lớp bao gồm hai hàm tạo.
+
+Chúng ta đang sử dụng sự phản chiếu để tìm thông tin về các hàm tạo của lớp. Lưu ý câu lệnh,
+
+Constructor[] constructors = obj.getDeclaredConstructor();
+
+Ở đây, chúng ta đang truy cập tất cả các hàm tạo có trong Dog và gán chúng vào một constructors thuộc kiểu Constructor.
+
+Sau đó chúng ta sử dụng đối tượng c để nhận các thông tin khác nhau về hàm tạo.
+
+c.getName () – trả về tên của hàm tạo
+c.getModifiers () – trả về các công cụ sửa đổi truy cập của hàm tạo ở dạng số nguyên
+c.getParameterCount () – trả về số lượng tham số có trong mỗi hàm tạo

@@ -1,0 +1,242 @@
+Trong hướng dẫn này, bạn sẽ tìm hiểu về lồng bên trong lớp trong Java và các kiểu của nó với sự trợ giúp của các ví dụ.
+
+Trong Java, bạn có thể định nghĩa một lớp trong một lớp khác. Lớp như vậy được gọi là nested class. Ví dụ,
+
+class OuterClass {
+    // ...
+    class NestedClass {
+        // ...
+    }
+}
+Có hai loại lớp lồng nhau mà bạn có thể tạo trong Java.
+
+Lớp lồng không tĩnh (lớp bên trong)
+Lớp lồng tĩnh
+
+1. Lớp lồng không tĩnh (Lớp trong)
+Một lớp lồng không tĩnh là một lớp trong một lớp khác. Nó có quyền truy cập vào các thành viên của lớp kèm theo (lớp ngoài). Nó thường được gọi là inner class.
+
+Vì sự inner classtồn tại bên trong lớp bên ngoài, trước tiên bạn phải khởi tạo lớp bên ngoài, để khởi tạo lớp bên trong.
+
+Đây là một ví dụ về cách bạn có thể khai báo các lớp bên trong trong Java.
+
+1.1 Ví dụ 1: Lớp bên trong
+
+class CPU {
+    double price;
+    // nested class
+    class Processor{
+
+        // members of nested class
+        double cores;
+        String manufacturer;
+
+        double getCache(){
+            return 4.3;
+        }
+    }
+
+    // nested protected class
+    protected class RAM{
+
+        // members of protected nested class
+        double memory;
+        String manufacturer;
+
+        double getClockSpeed(){
+            return 5.5;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // create object of Outer class CPU
+        CPU cpu = new CPU();
+
+       // create an object of inner class Processor using outer class
+        CPU.Processor processor = cpu.new Processor();
+
+        // create an object of inner class RAM using outer class CPU
+        CPU.RAM ram = cpu.new RAM();
+        System.out.println("Processor Cache = " + processor.getCache());
+        System.out.println("Ram Clock speed = " + ram.getClockSpeed());
+    }
+}
+Đầu ra :
+
+Processor Cache = 4.3
+Ram Clock speed = 5.5
+Trong chương trình trên, có hai lớp lồng nhau: Bộ xử lý và RAM bên trong lớp bên ngoài: CPU. Chúng ta có thể khai báo lớp bên trong là được bảo vệ(protected). Do đó, chúng ta đã khai báo lớp RAM là được bảo vệ.
+
+Bên trong lớp Main,
+
+Đầu tiên chúng ta tạo một thể hiện của một lớp bên ngoài CPU được đặt tên CPU.
+Sử dụng thể hiện của lớp bên ngoài, sau đó chúng ta đã tạo các đối tượng của các lớp bên trong:
+CPU.Processor processor = cpu.new Processor;
+
+CPU.RAM ram = cpu.new RAM();
+Lưu ý : Chúng ta sử dụng .toán tử dot để tạo một thể hiện của lớp bên trong bằng cách sử dụng lớp bên ngoài.
+
+2. Truy cập các thành viên của lớp bên ngoài trong lớp bên trong
+Chúng ta có thể truy cập các thành viên của lớp bên ngoài bằng cách sử dụng từ khóa này. Nếu bạn muốn tìm hiểu về từ khóa this, hãy truy cập Java từ khóa this. 
+
+2.1. Ví dụ 2: Truy cập thành viên
+
+class Car {
+    String carName;
+    String carType;
+
+    // assign values using constructor
+    public Car(String name, String type) {
+        this.carName = name;
+        this.carType = type;
+    }
+
+    // private method
+    private String getCarName() {
+        return this.carName;
+    }
+
+// inner class
+    class Engine {
+        String engineType;
+        void setEngine() {
+
+           // Accessing the carType property of Car
+            if(Car.this.carType.equals("4WD")){
+
+                // Invoking method getCarName() of Car
+                if(Car.this.getCarName().equals("Crysler")) {
+                    this.engineType = "Smaller";
+                } else {
+                    this.engineType = "Bigger";
+                }
+
+            }else{
+                this.engineType = "Bigger";
+            }
+        }
+        String getEngineType(){
+            return this.engineType;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+// create an object of the outer class Car
+        Car car1 = new Car("Mazda", "8WD");
+
+        // create an object of inner class using the outer class
+        Car.Engine engine = car1.new Engine();
+        engine.setEngine();
+        System.out.println("Engine Type for 8WD= " + engine.getEngineType());
+
+        Car car2 = new Car("Crysler", "4WD");
+        Car.Engine c2engine = car2.new Engine();
+        c2engine.setEngine();
+        System.out.println("Engine Type for 4WD = " + c2engine.getEngineType());
+    }
+}
+Đầu ra :
+
+Engine Type for 8WD= Bigger
+Engine Type for 4WD = Smaller
+Trong chương trình trên, chúng ta có lớp bên trong có tên Engine bên trong lớp học bên ngoài Car. Ở đây, chú ý dòng,
+
+if(Car.this.carType.equals("4WD")) {...}
+Chúng ta đang sử dụng từ khóathis để truy cập biến carType của lớp ngoài. Bạn có thể nhận thấy rằng thay vì sử dụng, this.carTypechúng ta đã sử dụng Car.this.carType.
+
+Đó là bởi vì nếu chúng ta không đề cập đến tên của lớp bên ngoài Cari, sau đó từ khóathis sẽ đại diện cho thành viên bên trong lớp bên trong.
+
+Tương tự, chúng ta cũng đang truy cập phương thức của lớp bên ngoài từ lớp bên trong.
+
+if (Car.this.getCarName().equals("Crysler") {...}
+Điều quan trọng cần lưu ý là, mặc dù getCarName()là một phương thức private, chúng ta có thể truy cập nó từ lớp bên trong.
+
+3. Lớp lồng tĩnh
+Trong Java, chúng ta cũng có thể định nghĩa một lớp static bên trong một lớp khác. Lớp như vậy được gọi là static nested class. Các lớp lồng nhau tĩnh không được gọi là các lớp bên trong tĩnh.
+
+Không giống như lớp bên trong, một lớp lồng tĩnh không thể truy cập các biến thành viên của lớp bên ngoài. Đó là bởi vì lớp lồng tĩnh không yêu cầu bạn tạo một thể hiện của lớp bên ngoài.
+
+OuterClass.NestedClass obj = new OuterClass.NestedClass();
+Ở đây, chúng ta đang tạo một đối tượng của lớp lồng tĩnh bằng cách sử dụng tên lớp của lớp bên ngoài. Do đó, lớp bên ngoài không thể được tham chiếu bằng cách sử dụng OuterClass.this.
+
+3.1 Ví dụ 3: Lớp bên trong tĩnh
+
+class MotherBoard {
+
+   // static nested class
+   static class USB{
+       int usb2 = 2;
+       int usb3 = 1;
+       int getTotalPorts(){
+           return usb2 + usb3;
+       }
+   }
+
+}
+public class Main {
+   public static void main(String[] args) {
+
+       // create an object of the static nested class
+       // using the name of the outer class
+       MotherBoard.USB usb = new MotherBoard.USB();
+       System.out.println("Total Ports = " + usb.getTotalPorts());
+   }
+}
+Đầu ra :
+
+Total Ports = 3
+Trong chương trình trên, chúng ta đã tạo ra một lớp tĩnh có tên USB trong lớp MotherBoard. Chú ý dòng
+
+MotherBoard.USB usb = new MotherBoard.USB();
+Ở đây, chúng ta đang tạo ra một đối tượng USB sử dụng tên của lớp bên ngoài.
+
+Bây giờ, hãy xem điều gì sẽ xảy ra nếu bạn cố gắng truy cập các thành viên của lớp bên ngoài:
+
+3.2 Ví dụ 4: Truy cập các thành viên của lớp ngoài trong Lớp tĩnh bên trong
+
+class MotherBoard {
+   String model;
+   public MotherBoard(String model) {
+       this.model = model;
+   }
+
+   // static nested class
+   static class USB{
+       int usb2 = 2;
+       int usb3 = 1;
+       int getTotalPorts(){
+           // accessing the variable model of the outer classs
+           if(MotherBoard.this.model.equals("MSI")) {
+               return 4;
+           }
+           else {
+               return usb2 + usb3;
+           }
+       }
+   }
+}
+public class Main {
+   public static void main(String[] args) {
+
+       // create an object of the static nested class
+       MotherBoard.USB usb = new MotherBoard.USB();
+       System.out.println("Total Ports = " + usb.getTotalPorts());
+   }
+}
+Khi chúng ta cố gắng chạy chương trình, chúng ta sẽ gặp lỗi:
+
+error: non-static variable this cannot be referenced from a static context
+Điều này là do chúng ta không sử dụng đối tượng của lớp bên ngoài để tạo một đối tượng của lớp bên trong. Do đó, không có tham chiếu đến lớp bên ngoài Motherboardđược lưu trữ trong Motherboard.this.
+
+4. Những điểm chính cần nhớ
+Java coi lớp bên trong như một thành viên thông thường của một lớp. Chúng giống như các phương thức và các biến được khai báo bên trong một lớp.
+Vì các lớp bên trong là thành viên của lớp bên ngoài, bạn có thể áp dụng bất kỳ quyền sửa đổi truy cập nào như private, protectedcho lớp bên trong của bạn, điều không thể có trong các lớp bình thường.
+Vì lớp lồng nhau là một thành viên của lớp bên ngoài kèm theo, nên bạn có thể sử dụng .ký hiệu dấu chấm để truy cập lớp lồng và các thành viên của lớp.
+Sử dụng lớp lồng nhau sẽ làm cho code của bạn dễ đọc hơn và cung cấp đóng gói tốt hơn.
+Các lớp lồng nhau không tĩnh (các lớp bên trong) có quyền truy cập vào các thành viên khác của lớp bên ngoài / lớp kèm theo, ngay cả khi chúng được khai báo là riêng tư.

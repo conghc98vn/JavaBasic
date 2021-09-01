@@ -1,0 +1,170 @@
+Trong Java, bạn có thể khai báo một mảng có chứa nhiều mảng (được gọi là mảng đa chiều).
+Trước khi tìm hiểu về mảng đa chiều, hãy truy cập bài viết về mảng trong Java để tìm hiểu về mảng một chiều.
+Trong bài viết đó, bạn đã học cách tạo và sử dụng mảng chứa giá trị thuộc các kiểu dữ liệu cơ bản (chẳng hạn như Double, int,v.v.), mảng String và mảng chứa các đối tượng. Chúng ta cũng có thể tạo ra một mảng trong đó có chứa nhiều mảng, mảng như vậy được gọi là mảng đa chiều. Ví dụ,
+int[][] a = new int[3][4];
+Ở đây, a là một mảng hai chiều (mảng 2d). Mảng này có thể chứa tối đa 12 phần tử thuộc kiểu dữ liệu int.
+Hãy nhớ rằng, Java sử dụng chỉ số gốc là 0, nghĩa là, chỉ số của các mảng trong Java bắt đầu bằng 0 chứ không phải bằng 1.
+Tương tự, có thể khai báo một mảng ba chiều (mảng 3d). Ví dụ,
+String[][][] data = new String[3][4][2];
+Ở đây, PersonalInfo là một mảng 3d có thể chứa tối đa 24 (3 x 4 x 2) phần tử thuộc kiểu dữ liệu String.
+Trong Java, các thành phần của một mảng đa cũng là các mảng.
+Nếu bạn đã biết đến C / C ++, bạn có thể cảm thấy các mảng đa chiều trong Java và trong C/C ++ hoạt động theo những cách tương tự nhau. Nhưng không phải như vậy. Trong Java, các hàng có thể khác nhau về độ dài.
+Bạn sẽ thấy sự khác biệt trong khi khởi tạo.
+
+1. Làm thế nào để khởi tạo một mảng 2d trong Java?
+Sau đây là một ví dụ về việc khởi tạo một mảng 2d trong Java.
+
+int[][] a = {
+      {1, 2, 3}, 
+      {4, 5, 6, 9}, 
+      {7}, 
+};
+Như đã đề cập, mỗi thành phần của mảng a là một mảng và độ dài của mỗi hàng cũng khác nhau.
+Hãy viết một chương trình để chứng minh điều đó.
+
+class MultidimensionalArray {
+    public static void main(String[] args) {
+
+        // create a 2d array
+        int[][] a = {
+            {1, 2, 3}, 
+            {4, 5, 6, 9}, 
+            {7}, 
+        };
+      
+        // calculate the length of each row
+        System.out.println("Length of row 1: " + a[0].length);
+        System.out.println("Length of row 2: " + a[1].length);
+        System.out.println("Length of row 3: " + a[2].length);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+Length of row 1: 3
+Length of row 2: 4
+Length of row 3: 1
+Vì mỗi thành phần của một mảng đa chiều cũng là một mảng (a[0], a[1] và a[2] cũng là mảng), bạn có thể sử dụng thuộc tính length để tìm độ dài của mỗi hàng. 
+
+2. Ví dụ: Sử dụng vòng lặp để in tất cả các phần tử của mảng 2d
+
+class MultidimensionalArray {
+    public static void main(String[] args) {
+
+        int[][] a = {
+            {1, -2, 3}, 
+            {-4, -5, 6, 9}, 
+            {7}, 
+        };
+      
+        for (int i = 0; i < a.length; ++i) {
+            for(int j = 0; j < a[i].length; ++j) {
+                System.out.println(a[i][j]);
+            }
+        }
+    }
+}
+Kết quả:
+
+1
+-2
+3
+-4
+-5
+6
+9
+7
+Nên sử dụng vòng lặp for…each để lặp qua các mảng. Bạn có thể thực hiện việc đó bằng cách sử dụng vòng lặp for..each như cách làm sau:
+
+class MultidimensionalArray {
+    public static void main(String[] args) {
+
+        // create a 2d array
+        int[][] a = {
+            {1, -2, 3}, 
+            {-4, -5, 6, 9}, 
+            {7}, 
+        };
+      
+        // first for...each loop access the individual array
+        // inside the 2d array
+        for (int[] innerArray: a) {
+            // second for...each loop access each element inside the row
+            for(int data: innerArray) {
+                System.out.println(data);
+            }
+        }
+    }
+}
+Kết quả:
+
+1
+-2
+3
+-4
+-5
+6
+9
+7
+
+3. Làm thế nào để khởi tạo một mảng 3d trong Java?
+Bạn có thể khởi tạo mảng 3d tương tự như mảng 2d. Sau đây là một ví dụ:
+// test is a 3d array
+int[][][] test = {
+        {
+          {1, -2, 3}, 
+          {2, 3, 4}
+        }, 
+        { 
+          {-4, -5, 6, 9}, 
+          {1}, 
+          {2, 3}
+        } 
+};
+Về cơ bản, mảng 3d là một mảng bao gồm nhiều mảng 2d.
+
+Tương tự như mảng 2d, các hàng của mảng 3d có thể khác nhau về độ dài.
+
+4. Ví dụ: Chương trình sử dụng vong lặp để in các phần tử của mảng 3d
+
+
+class ThreeArray {
+    public static void main(String[] args) {
+
+        // create a 3d array
+        int[][][] test = {
+            {
+              {1, -2, 3}, 
+              {2, 3, 4}
+            }, 
+            { 
+              {-4, -5, 6, 9}, 
+              {1}, 
+              {2, 3}
+            } 
+        };
+
+        // for..each loop to iterate through elements of 3d array
+        for (int[][] array2D: test) {
+            for (int[] array1D: array2D) {
+                for(int item: array1D) {
+                    System.out.println(item);
+                }
+            }
+        }
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+1
+-2
+3
+2
+3
+4
+-4
+-5
+6
+9
+1
+2
+3

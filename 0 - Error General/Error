@@ -1,0 +1,2 @@
+1. Lỗi không save được file và báo lỗi cp1252 -> Vào Window -> Prefer... -> General -> WorkSpace -> Đổi text file encoding cp1252 thành UTF-8.
+2. 

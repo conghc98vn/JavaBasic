@@ -1,0 +1,182 @@
+Trong bài này, bạn sẽ tìm hiểu về câu lệnh break, câu lệnh break có nhãn dán trong Java qua các ví dụ.
+Khi làm việc với các vòng lặp, đôi khi bạn cần bỏ qua một số câu lệnh bên trong vòng lặp hoặc chấm dứt vòng lặp ngay lập tức mà không đánh giá biểu thức kiểm tra.
+Trong các trường hợp như vậy, cần sử dụng câu lệnh break và continue . Bạn sẽ tìm hiểu về Câu lệnh continue trong Java trong bài tiếp theo.
+Câu break lệnh trong Java chấm dứt vòng lặp ngay lập tức và luồng điều khiển chương trình chuyển sang câu lệnh tiếp theo sau vòng lặp.
+Nó hầu như luôn được sử dụng với các câu lệnh ra quyết định ( Câu lệnh If…else trong Java).
+Đây là cú pháp của câu lệnh break trong Java:
+break;
+
+1. Câu lệnh break hoạt động như thế nào? // xem thêm hình trên web
+
+2. Ví dụ 1: Câu lệnh break trong Java
+class Test {
+    public static void main(String[] args) {
+      
+        // for loop
+        for (int i = 1; i <= 10; ++i) {
+
+            // if the value of i is 5 the loop terminates  
+            if (i == 5) {
+                break;
+            }      
+            System.out.println(i);
+        }   
+    }
+}
+Kết quả:
+1
+2
+3
+4
+Trong chương trình trên, chúng ta sử dụng vòng lặp for để in giá trị của i trong mỗi lần lặp. Để biết cách for vòng lặp hoạt động, hãy truy cập vòng lặp for trong Java . Ở đây, cần chú ý câu lệnh:
+
+if (i == 5) {
+    break;
+}
+Điều này có nghĩa là khi giá trị của i bằng 5, vòng lặp chấm dứt. Do đó, chúng ta chỉ nhận được kết quả với các giá trị nhỏ hơn 5.
+
+3. Ví dụ 2: Câu lệnh break trong Java
+Chương trình dưới đây tính tổng các số được người dùng nhập cho đến khi người dùng nhập số âm.
+Để lấy input từ người dùng, chúng ta sử dụng đối tượng Scanner. Để tìm hiểu thêm về Scanner, hãy truy cập Scanner trong Java.
+import java.util.Scanner;
+
+class UserInputSum {
+    public static void main(String[] args) {
+      
+        Double number, sum = 0.0;
+
+        // create an object of Scanner
+        Scanner input = new Scanner(System.in);
+      
+        while (true) {
+            System.out.print("Enter a number: ");
+
+            // takes double input from user
+            number = input.nextDouble();
+         
+            // if number is negative the loop terminates
+            if (number < 0.0) {
+                break;
+            }
+         
+           sum += number;
+        }
+        System.out.println("Sum = " + sum);
+    }
+}
+
+Kết quả:
+Enter a number: 3.2
+Enter a number: 5
+Enter a number: 2.3
+Enter a number: 0
+Enter a number: -4.5
+Sum = 10.5
+Trong chương trình trên, biểu thức kiểm tra của vòng lặp while luôn luôn trả về giá trị  true. Ở đây, chú ý dòng,
+if (number < 0.0) {
+    break;
+}
+Điều này có nghĩa là khi người dùng nhập số âm, vòng lặp while bị chấm dứt.
+
+4. Câu lệnh break và vòng lặp lồng nhau trong Java // xem thêm hình trên web
+Đối với các vòng lặp lồng nhau , câu lệnh break sẽ chấm dứt vòng lặp trong cùng.
+Ở đây, câu lệnh break chấm dứt vòng lặp  while trong cùng và luồng điều khiển nhảy sang vòng lặp bên ngoài.
+
+5. Câu lệnh break có nhãn dán
+Từ đầu bài đến bây giờ, chúng ta đã sử dụng câu lệnh break không có nhãn dán. Nó chấm dứt vòng lặp trong cùng và câu lệnh switch. Tuy nhiên, có một dạng câu lệnh break khác trong Java được gọi là câu lệnh break có nhãn dán.
+
+Chúng ta cũng có thể sử dụng câu lệnh break có nhãn để chấm dứt vòng lặp ngoài cùng.
+
+
+Như bạn có thể thấy trong hình trên, chúng ta đã sử dụng định danh label để chỉ ra bên ngoài vòng lặp. Bây giờ, hãy chú ý cách sử dụng câu lệnh break ( break label;).
+
+Ở đây, câu lệnh break sẽ chấm dứt câu lệnh có label. Sau đó, luồng của chương trình sẽ nhảy đến câu lệnh sau câu lệnh có label.
+
+Đây là một ví dụ khác:
+
+while (testExpression) {
+   // codes
+   second:
+   while (testExpression) {
+      // codes
+      while(testExpression) {
+         // codes
+         break second;
+      }
+   }
+   // control jumps here
+}
+Trong ví dụ trên, khi câu lệnh break second; được thực hiện, vòng lặp while có nhãn second bị chấm dứt. Và luồng điều khiển của chương trình chuyển sang câu lệnh sau vòng lặp while thứ hai .
+
+6. Ví dụ 3: Câu lệnh break có nhãn dán
+/**
+* Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+*
+* @author cafedevn
+* Contact: cafedevn@gmail.com
+* Fanpage: https://www.facebook.com/cafedevn
+* Instagram: https://instagram.com/cafedevn
+* Twitter: https://twitter.com/CafedeVn
+* Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+*/
+
+class LabeledBreak {
+    public static void main(String[] args) {
+   
+        // the for loop is labeled as first   
+        first:
+        for( int i = 1; i < 5; i++) {
+
+            // the for loop is labeled as second
+            second:
+            for(int j = 1; j < 3; j ++ ) {
+                System.out.println("i = " + i + "; j = " +j);
+             
+                // the break statement breaks the first for loop
+                if ( i == 2)
+                    break first;
+            }
+        }
+    }
+}
+Kết quả:
+
+i = 1; j = 1
+i = 1; j = 2
+i = 2; j = 1
+Trong ví dụ trên, câu lệnh labeled break được sử dụng để chấm dứt vòng lặp được gắn nhãn là first. Cụ thể là,
+
+first:
+for(int i = 1; i < 5; i++) {...}
+Ở đây, nếu chúng ta thay đổi câu lệnh break first; thành break second; chương trình sẽ hoạt động theo cách khác. Trong trường hợp này, vòng lặp for được dán nhãn second sẽ bị chấm dứt. Ví dụ,
+
+class LabeledBreak {
+    public static void main(String[] args) {
+      
+        // the for loop is labeled as first
+        first:
+        for( int i = 1; i < 5; i++) {
+
+            // the for loop is labeled as second
+            second:
+            for(int j = 1; j < 3; j ++ ) {
+
+                System.out.println("i = " + i + "; j = " +j);
+       
+                // the break statement terminates the loop labeled as second   
+                if ( i == 2)
+                    break second;
+            }
+        }
+    }
+}
+Kết quả:
+
+i = 1; j = 1
+i = 1; j = 2
+i = 2; j = 1
+i = 3; j = 1
+i = 3; j = 2
+i = 4; j = 1
+i = 4; j = 2
+Lưu ý : Câu lệnh  break cũng được sử dụng để chấm dứt các trường hợp bên trong câu lệnh switch. Để tìm hiểu thêm, hãy truy cập câu lệnh switch trong Java.

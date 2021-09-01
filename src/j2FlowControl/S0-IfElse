@@ -1,0 +1,162 @@
+1. Câu lệnh if (if-then) trong Java
+Cú pháp của câu lệnh if-then trong Java là:
+
+if (expression) {
+    // statements
+}
+Ở đây expression là một biểu thức boolean (trả về một trong hai giá trị true hoặc false).
+Nếu biểu thức trả về kết quả true, (các) câu lệnh bên trong phần thân của if (các câu lệnh bên trong dấu ngoặc đơn) được thực hiện.
+Nếu biểu thức trả về kết quả false, (các) câu lệnh bên trong phần thân của if bị bỏ qua và không được thực hiện.
+2. Câu lệnh if hoạt động thế nào? // xem hình trên web
+
+3. Ví dụ 1: Câu lệnh If trong Java
+class IfStatement {
+    public static void main(String[] args) {
+
+        int number = 10;
+
+        // checks if number is greater than 0
+        if (number > 0) {
+            System.out.println("The number is positive.");
+        }
+        System.out.println("This statement is always executed.");
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+The number is positive.
+This statement is always executed.
+Khi number bằng 10, biểu thức kiểm tra number > 0 trả về kết quả true. Do đó, phần code bên trong phần thân của câu lệnh if được thực hiện.
+
+int number = -5;
+Nếu bây giờ ta thay đổi giá trị của biến number thành một số nguyên âm, ví dụ như -5. Kết quả trong trường hợp này sẽ là:
+
+This statement is always executed.
+Khi number bằng -5, biểu thức kiểm tra number > 0 cho kết quả false. Do đó, trình biên dịch trong Java bỏ qua việc thực hiện phần thân của câu lệnh if.
+Để tìm hiểu thêm về biểu thức kiểm tra và cách hoạt động của nó, hãy truy cập bài các toán tử quan hệ và logic.
+
+4. Câu lệnh if … else (if-then-else) trong Java
+Câu lệnh if thực hiện một phần code nhất định nếu biểu thức kiểm tra cho kết quả là true. Các câu lệnh if có thể có một khối câu lệnh else không bắt buộc. Các câu lệnh bên trong phần thân của câu lệnh else được thực hiện nếu biểu thức kiểm tra trả kết quả là false.
+Cú pháp của câu lệnh if-then-else là:
+
+if (expression) {
+   // codes
+}
+else {
+  // some other code
+}
+Câu lệnh If…else hoạt động như thế nào?
+Ví dụ 2: Câu lệnh If else trong Java
+class IfElse {
+    public static void main(String[] args) {    	
+        int number = 10;
+
+        // checks if number is greater than 0	 
+        if (number > 0) {
+            System.out.println("The number is positive.");
+        }
+        else {
+            System.out.println("The number is not positive.");
+        }
+ 
+        System.out.println("This statement is always executed.");
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+The number is positive.
+This statement is always executed.
+Khi number bằng 10, biểu thức kiểm tra number > 0 cho kết quả là true. Trong trường hợp này, phần code bên trong phần thân của if được thực hiện và phần code bên trong phần thân của các câu lệnh else bị bỏ qua, không được thực hiện.
+Bây giờ, thay đổi giá trị của number thành một số âm. Ví dụ như -5. Kết trong trường hợp này sẽ là:
+The number is not positive.
+This statement is always executed.
+Khi number bằng -5, biểu thức kiểm tra number > 0 trả kết quả là false. Trong trường hợp này, code bên trong phần thân của else được thực hiện và code bên trong phần thân của các câu lệnh if bị bỏ qua, không được thực hiện.
+
+5. Câu lệnh If…else…if trong Java
+Trong Java, có thể thực hiện một khối code trong số nhiều code. Để làm điều đó, bạn có thể sử dụng câu lệnh rẽ nhánh if..else…if.
+if (expression1) {
+   // codes
+}
+else if(expression2) {
+   // codes
+}
+else if (expression3) {
+   // codes
+}
+.
+.
+else {
+   // codes
+}
+Các câu lệnh if được thực hiện từ đầu đến cuối. Ngay khi biểu thức kiểm tra cho kết quả là true, code bên trong phần thân của câu lệnh if đó được thực hiện. Sau đó, luồng điều khiển chương trình sẽ thoát ra khỏi cấu trúc rẽ nhánh if-else-if.
+Nếu tất cả các biểu thức kiểm tra cho kết quả là false, phần code bên trong phần thân của else được thực hiện.
+
+6. Ví dụ 3: Câu lệnh if..else..if trong Java
+
+class Ladder {
+    public static void main(String[] args) {   
+
+        int number = 0;
+
+        // checks if number is greater than 0	 
+        if (number > 0) {
+            System.out.println("The number is positive.");
+        }
+
+        // checks if number is less than 0
+        else if (number < 0) {
+            System.out.println("The number is negative.");
+        }
+        else {
+            System.out.println("The number is 0.");
+        } 
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+The number is 0.
+Khi number bằng 0, cả hai biểu thức kiểm tra number > 0 và number < 0 trả về kết quả false. Do đó, câu lệnh bên trong phần thân của else được thực hiện.
+Chương trình trên kiểm tra xem biến number chứa giá trị dương, âm hay 0.
+
+7. Câu lệnh lồng trong Java
+Bên trong một câu lệnh if..else trong Java có thể chứa một câu lệnh If…else khác. Nó được gọi là câu lệnh lồng if…else.
+Dưới đây là chương trình giải bài toán tìm số lớn nhất trong 3 số:
+
+7.1 Ví dụ 4: Câu lệnh lồng If…else
+class Number {
+    public static void main(String[] args) {
+
+        // declaring double type variables
+        Double n1 = -1.0, n2 = 4.5, n3 = -5.3, largestNumber;
+
+        // checks if n1 is greater than or equal to n2
+        if (n1 >= n2) {
+
+            // if...else statement inside the if block
+            // checks if n1 is greater than or equal to n3
+            if (n1 >= n3) {
+                largestNumber = n1;
+            }
+
+            else {
+                largestNumber = n3;
+            }
+        }
+        else {
+
+            // if..else statement inside else block
+            // checks if n2 is greater than or equal to n3
+            if (n2 >= n3) {
+                largestNumber = n2;
+            }
+
+            else {
+                largestNumber = n3;
+            }
+        }
+
+        System.out.println("The largest number is " + largestNumber);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+The largest number is 4.5
+Lưu ý: Trong các chương trình trên, chúng ta đã tự gán giá trị của các biến để khiến công việc dễ dàng hơn. Tuy nhiên, trong các ứng dụng của đời sống thực tế, các giá trị này có thể đến từ dữ liệu input của người dùng, tệp nhật ký, biểu mẫu, v.v.

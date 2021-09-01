@@ -1,0 +1,224 @@
+Trong bài hướng dẫn này, chúng ta sẽ tìm hiểu về từ khóa super trong Java bằng vài ví dụ trợ giúp.
+Từ khóa super trong Java được sử dụng trong các subclass để truy cập các thành viên của superclass (hàm tạo, và các phương thức).
+Trước khi chúng ta tìm hiểu về từ khóa super, hãy đảm bảo rằng bạn đã nắm chắc khái niệm về tính kế thừa trong Java.
+
+1. Các cách sử dụng của từ khóa super
+Dùng để gọi các phương thức của superclass được ghi đè trong subclass.
+Dùng để truy cập các thuộc tính (dữ liệu) của superclass nếu cả superclass và subclass có các thuộc tính cùng tên vớii nhau.
+Để gọi hàm tạo no-arg (default) hoặc hàm tạo được tham số hóa của superclass từ hàm tạo của subclass. 
+Hãy cùng tìm hiểu từng cách dùng.
+
+2. Truy cập các phương thức bị ghi đè của superclass // xem thêm hình trên web
+Nếu các phương thức cùng tên được định nghĩa trong cả superclass và subclass, phương thức trong subclass sẽ ghi đè lên phương thức trong super class. Đây được gọi là ghi đè phương thức trong Java.
+
+Ví dụ 1: Ghi đè phương thức
+
+class Animal {
+
+  // overridden method
+  public void display(){
+    System.out.println("I am an animal");
+  }
+}
+
+class Dog extends Animal {
+
+  // overriding method
+  @Override
+  public void display(){
+    System.out.println("I am a dog");
+  }
+
+  public void printMessage(){
+    display();
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Dog dog1 = new Dog();
+    dog1.printMessage();
+  }
+}
+Kết quả 
+
+I am a dog
+Trong ví dụ này, bằng cách tạo ra các đối tượng dog1 của class Dog , chúng ta có thể gọi phương thức printMessage() mà sau đó sẽ thực thi lệnh trong phương thức display(). 
+
+Do phương thức display() đều được định nghĩa trong các class, phương thức này của subclass Dog sẽ ghi đè lên phương thức của superclass Animal. Do đó, phương thức display() của subclass sẽ được gọi.
+
+
+Điều gì xảy ra nếu cần gọi phương thức được ghi đè trong superclass? 
+
+Chúng ta sử dụng super.display() nếu cần gọi phương thức display() bị ghi đè trong superclass Animal. 
+
+Ví dụ 2: Từ khóa super để gọi phương thức trong superclass.
+
+class Animal {
+
+  // overridden method
+  public void display(){
+    System.out.println("I am an animal");
+  }
+}
+
+class Dog extends Animal {
+
+  // overriding method
+  @Override
+  public void display(){
+    System.out.println("I am a dog");
+  }
+
+  public void printMessage(){
+
+    // this calls overriding method
+    display();
+
+    // this calls overridden method
+    super.display();
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Dog dog1 = new Dog();
+    dog1.printMessage();
+  }
+}
+Kết quả là:
+
+I am a dog
+I am an animal
+Đây là cách chương trình trên hoạt động.
+
+3. Truy cập các thuộc tính của superclass
+Superclass và subclass có thể có các thuộc tính cùng tên. Chúng ta sử dụng từ khóa super để truy cập các thuộc tính của superclass.
+
+Ví dụ 3: Truy cập thuộc tính của superclass
+
+class Animal {
+  protected String type="animal";
+}
+
+class Dog extends Animal {
+  public String type="mammal";
+
+  public void printType() {
+    System.out.println("I am a " + type);
+    System.out.println("I am an " + super.type);
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Dog dog1 = new Dog();
+    dog1.printType();
+  }
+}
+Kết quả là:
+
+I am a mammal
+I am an animal
+Trong ví dụ này, chúng ta đã định nghĩa thuộc tính instance chung là type trong cả superclass Animal và subclass Dog.
+
+Sau đó chúng ta đã tạo ra một đối tượng dog1 của class Dog và sử dụng đối tượng này để gọi phương thức printType(). 
+
+Bên trong phương thức printType(),
+
+Type()chỉ thuộc tính của subclass Dog.
+
+super.type chỉ thuộc tính của superclass animal.
+
+Do đó, System.out.println(“I am a ” + type); sẽ in ra kết quả I am a mammal
+
+Và, System.out.println(“I am an ” + super.type); sẽ in ra kết quả I am an animal.
+
+4. Việc sử dụng từ khóa super để truy cập hàm tạo trong superclass
+Như đã biết, khi một đối tượng của một class được khởi tạo, hàm tạo mặc định của nó sẽ được gọi tự động.
+
+Để gọi hàm tạo của superclass từ hàm tạo của subclass hiện lên, chúng ta sử dụng từ khóa super(). Đây là một dạng đặc biệt của từ khóa super. Super() chỉ có thể được sử dụng ở bên trong hàm tạo của subclass và phải là lệnh đầu tiên.
+
+Ví dụ 4: Cách sử dụng super
+
+class Animal {
+
+  // default or no-arg constructor of class Animal
+  Animal() {
+    System.out.println("I am an animal");
+  }
+}
+
+class Dog extends Animal {
+
+  // default or no-arg constructor of class Dog
+  Dog() {
+
+    // calling default constructor of the superclass
+    super();
+
+    System.out.println("I am a dog");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Dog dog1 = new Dog();
+  }
+}
+Kêt quả là:
+
+I am an animal
+I am a dog
+Ở đây, khi một đối tượng dog1 của class Dog được tạo ra, nó sẽ tự động gọi hàm tạo default hoặc hàm tạo no-arg của class đó. 
+
+Bên trong hàm tạo của subclass, câu lệnh super() gọi hàm tạo của superclass và thức thi các lệnh bên trong đó. Do đó, chúng ta mới nhận được kết quả I am an animal.
+
+
+Luồng chương trình sau đó sẽ quay trở lại hàm tạo của subclass và thực thi các lệnh còn lại. Do đó, I am a dog được in ra. 
+
+Tuy nhiên, việc sử dụng super() là điều không bắt buộc. Thậm chí nếu không sử dụng super() trong hàm tạo của subclass, trình biên dịch sẽ gọi ẩn hàm tạo default của superclass.
+
+4. Việc sử dụng từ khóa super để truy cập hàm tạo trong superclass
+Như đã biết, khi một đối tượng của một class được khởi tạo, hàm tạo mặc định của nó sẽ được gọi tự động.
+
+Để gọi hàm tạo của superclass từ hàm tạo của subclass hiện lên, chúng ta sử dụng từ khóa super(). Đây là một dạng đặc biệt của từ khóa super. Super() chỉ có thể được sử dụng ở bên trong hàm tạo của subclass và phải là lệnh đầu tiên.
+
+Ví dụ 4: Cách sử dụng super
+class Animal {
+
+  // default or no-arg constructor of class Animal
+  Animal() {
+    System.out.println("I am an animal");
+  }
+}
+
+class Dog extends Animal {
+
+  // default or no-arg constructor of class Dog
+  Dog() {
+
+    // calling default constructor of the superclass
+    super();
+
+    System.out.println("I am a dog");
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Dog dog1 = new Dog();
+  }
+}
+Kêt quả là:
+
+I am an animal
+I am a dog
+Ở đây, khi một đối tượng dog1 của class Dog được tạo ra, nó sẽ tự động gọi hàm tạo default hoặc hàm tạo no-arg của class đó. 
+
+Bên trong hàm tạo của subclass, câu lệnh super() gọi hàm tạo của superclass và thức thi các lệnh bên trong đó. Do đó, chúng ta mới nhận được kết quả I am an animal.
+
+
+Luồng chương trình sau đó sẽ quay trở lại hàm tạo của subclass và thực thi các lệnh còn lại. Do đó, I am a dog được in ra. 
+
+Tuy nhiên, việc sử dụng super() là điều không bắt buộc. Thậm chí nếu không sử dụng super() trong hàm tạo của subclass, trình biên dịch sẽ gọi ẩn hàm tạo default của superclass.

@@ -1,0 +1,261 @@
+Trong bài hướng dẫn này, chúng ta sẽ tìm hiểu về tính kế thừa trong Java bằng vài ví dụ trợ giúp.
+
+Tính kế thừa(Inheritance) là một trong những tính năng quan trọng của lập trình hướng đối tượng. Nó cho phép chúng ta định nghĩa một class mới từ một class đang tồn tại. Lấy ví dụ,
+class Animal
+{
+    // eat() method
+    // sleep() method
+}
+class Dog extends Animal
+{
+    // bark() method
+}
+Trong Java, chúng ta sử dụng từ khóa extends để kế thừa từ một class. Ở đây chúng ta kế thừa class Dog từ class Animal.
+
+Class Animal là superclass (class cha hoặc class cơ sở), và class dog là một subclass (class con hay class dẫn xuất). Subclass kế thừa các phương thức và field của superclass.
+
+
+Mối quan hệ is-a (là-một) 
+
+Tính kế thừa là một mối quan hệ is-a (là-một). Chúng ta chỉ sử dụng tính kế thừa chỉ khi một mối quan hệ is-a xuất hiện giữa hai class. 
+
+Đây là vài ví dụ:
+
+Ô tô là một phương tiện.
+Cam là một loại quả
+Giải phẫu viên là một bác sĩ.
+Chó là một con vật 
+
+1. Ví dụ 1: Tính kế thừa trong Java
+
+class Animal {
+
+   public void eat() {
+      System.out.println("I can eat");
+   }
+
+   public void sleep() {
+      System.out.println("I can sleep");
+   }
+}
+
+class Dog extends Animal {
+   public void bark() {
+      System.out.println("I can bark");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+
+      Dog dog1 = new Dog();
+
+      dog1.eat();
+      dog1.sleep();
+
+      dog1.bark();
+   }
+}
+Khi ta chạy chương trình, kết quả sẽ là:
+
+I can eat
+I can sleep
+I can bark
+Ở đây, chúng ta đã cho kế thừa subclass Dog từ superclass Animal. Class Dog kế thừa các phương thức eat() and sleep() từ class Animal
+
+Do đó, các đối tượng của class Dog có thể truy cập các thành viên của cả class Dog và class Animal 
+
+Từ khóa protected trong Java
+
+Chúng ta đã tìm hiểu về private và public access modifier trong các bài hướng dẫn trước đây.
+
+Thành viên private chỉ có thể được truy cập từ bên trong class
+
+Các thành viên public thì có thể được truy cập từ bất kì đâu
+
+Bạn cũng có thể định nghĩa phương thức và các dữ liệu của đối tượng là chế độ protected. Các thành viên protected có thể truy cập được: 
+
+Từ bên trong class
+Bên trong các subclass
+Trong cùng một gói(package)
+Đây là một bản tổng kết từ nơi mà các access modifier có thể được truy cập.
+
+ 	Class	Package	subclass	World
+public	Yes	Yes	Yes	Yes
+private	Yes	No	No	No
+protected	Yes	Yes	Yes	No
+
+2. Ví dụ 2: Từ khóa protected
+class Animal {
+   protected String type;
+   private String color;
+
+   public void eat() {
+      System.out.println("I can eat");
+   }
+
+   public void sleep() {
+      System.out.println("I can sleep");
+   }
+
+   public String getColor(){
+      return color;
+   }
+
+   public void setColor(String col){
+      color = col;
+   }
+}
+
+class Dog extends Animal {
+   public void displayInfo(String c){
+      System.out.println("I am a " + type);
+      System.out.println("My color is " + c);
+   }
+   public void bark() {
+      System.out.println("I can bark");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+
+      Dog dog1 = new Dog();
+      dog1.eat();
+      dog1.sleep();
+      dog1.bark();
+ 
+      dog1.type = "mammal";
+      dog1.setColor("black");
+      dog1.displayInfo(dog1.getColor()); 
+   }
+}
+Khi chay chương trình, kết quả sẽ là:
+
+I can eat
+I can sleep
+I can bark
+I am a mammal
+My color is black
+Ở đây, dữ liệu type bên trong class Animal được bảo vệ. chúng ta vừa truy cập dữ liệu này từ class Main sử dụng đoạn code:
+
+dog1.type = "mammal";
+Điều này có thể xảy ra bởi vì class Animal và class Main bên trong cùng một gói (chung file).
+
+3. Ghi đè(overriding) phương thức trong Java
+Từ các ví dụ ở trên, chúng ta biết rằng các đối tượng của một subclass cũng có thể truy cập các phương thức trong superclass của nó.
+
+Điều gì sẽ xảy ra nếu một phương thức chung được định nghĩa bên trong cả superclass và subclass?
+
+Trong trường hợp đó, phương thức ở bên trong subclass sẽ ghi đè lên phương thức ở trong superclass. Lấy ví dụ như:
+
+4. Ví dụ 3: Ví dụ về ghi đè phương thức 
+
+class Animal {
+   protected String type = "animal";
+
+   public void eat() {
+      System.out.println("I can eat");
+   }
+
+   public void sleep() {
+      System.out.println("I can sleep");
+   }
+}
+
+class Dog extends Animal {
+  
+   @Override
+   public void eat() {
+      System.out.println("I eat dog food");
+   }
+
+   public void bark() {
+      System.out.println("I can bark");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+
+      Dog dog1 = new Dog();
+      dog1.eat();
+      dog1.sleep();
+      dog1.bark();
+   }
+}
+Kết quả khi chạy chương trình sẽ là:
+
+I eat dog food
+I can sleep
+I can bark
+Ở đây, phương thức eat() vừa xuất hiện bên trong superclass Animal và vừa xuất hiện bên trong subclass dog. Chúng ta đã khởi tạo một đối tượng là dog1 của subclass dog. 
+
+Khi chúng ta gọi phương thức eat() sử dụng đối tượng dog1, phương thức bên trong class Dog sẽ được gọi, và phương thức tương tự trong superclass sẽ không được gọi. Điều này được gọi là ghi đè phương thức. 
+
+Trong ví dụ trên, chúng ta đã sử dụng thẻ @Override để báo cho trình biên dịch rằng chúng ra đang ghi đè một phương thức. Tuy nhiên, điều này lại không bắt buộc. Chúng ta sẽ tìm hiểu về ghi đè phương thức chi tiết hơn trong bài hương dẫn kế tiếp.
+
+Nếu chúng ta cần gọi phương thức eat() của class Animal, chúng ta cần sử dụng từ khóa super
+
+5. Ví dụ 4: từ khóa super trong Java
+
+class Animal {
+   public Animal() {
+     System.out.println("I am an Animal");
+   }
+
+   public void eat() {
+     System.out.println("I can eat");
+   }
+}
+
+class Dog extends Animal {
+   public Dog(){
+      super();
+      System.out.println("I am a dog");
+   }
+
+  @Override
+  public void eat() {
+     super.eat();
+     System.out.println("I eat dog food");
+  }
+
+   public void bark() {
+      System.out.println("I can bark");
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Dog dog1 = new Dog();
+
+      dog1.eat();
+      dog1.bark();
+   }
+}
+Kết quả khi chạy chương trình là:
+
+I am an Animal
+I am a dog
+I can eat
+I eat dog food
+I can bark
+Ở đây, chúng ra đã sử dụng từ khóa super để gọi hàm tạo sử dụng phương thức super(). Đồng thời chúng ta cũng gọi phương thức eat() của superclass Animal sử dụng super.eat().
+
+Hãy lưu ý đến sự khác biệt giữa việc sử dụng từ khóa super khi gọi hàm tạo và phương thức. Để tìm hiểu thêm, hãy tham khảo từ khóa super trong Java. 
+
+6. Các kiểu kế thừa
+Có năm kiểu kế thừa. 
+
+Kiểu đơn kế thừa (Single inheritance) – Class b chỉ mở rộng từ class a
+Kiểu kế thừa nhiều cấp (Multilevel inheritance) – Class b mở rộng từ class a, sau đó class c mở rộng từ class b
+Kiểu kế thừa thứ bậc (Hierachical inheritance) – Class a là superclass cho các class b, c, và d.
+Kiểu đa kế thừa (Multiple inheritance) – Class c mở rộng từ giao diện a và b
+Kiểu kế thừa lai (Hybrid inheritance) – Kết hợp hai hay hiều kiểu kế thừa.
+Java không hỗ trợ kiểu đa kế thừa và kiểu kế thừa lai thông qua các class. Tuy nhiên, chúng ta vẫn có thể đạt được tính đa kế thừa trong Java thông qua các interface. Chúng ta sẽ tìm hiểu về các interface trong các chương tiếp theo.
+
+7. Tại sao phải sử dụng tính kế thừa?
+Điều quan trọng nhất của việc sử dụng tính kế thừa là khả năng tái sử dụng code. Các code xuất hiện trong class cha không cần phải viết lại trong class con.
+
+Việc sử dụng tính kế thừa giúp đạt được tính đa hình trong thời gian chạy chương trình thông qua việc ghi đè phương thức. Chúng ta sẽ tìm hiểu về tính đa hình trong các chương tiếp theo.

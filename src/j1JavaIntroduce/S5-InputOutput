@@ -1,0 +1,129 @@
+1. Java Output
+Một cách đơn giản, bạn có thể sử dụng câu lệnh System.out.println(), câu lệnh System.out.print() hoặc câu lệnh System.out.printf() để đưa output ra màn hình.
+System là một class và out là một trường public static chấp nhận dữ liệu đầu ra. Đừng lo lắng nếu bạn chưa hiểu. Classes, public và static sẽ được đề cập trong các chương sau.
+
+Ví dụ về việc xuất ra một dòng.
+class AssignmentOperator {
+    public static void main(String[] args) {
+    	
+    	System.out.println("Java programming is interesting.");   
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+Java programming is interesting.
+Ở đây, println là một hàm hiển thị chuỗi bên trong dấu ngoặc kép.
+
+2. Sự khác biệt giữa println(), print() và printf() là gì?
+print() – in chuỗi bên trong dấu ngoặc kép.
+println()- in chuỗi bên trong dấu ngoặc kép giống như hàm print(). Sau đó con trỏ di chuyển đến đầu dòng tiếp theo.
+printf()- cung cấp định dạng chuỗi (tương tự như printf trong lập trình C / C ++ ).
+
+Ví dụ 2: print () và println ()
+class Output {
+    public static void main(String[] args) {
+    	
+    	System.out.println("1. println ");
+    	System.out.println("2. println ");
+    	
+    	System.out.print("1. print ");
+    	System.out.print("2. print");
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+1. println 
+2. println 
+1. print 2. print
+Để hiển thị số nguyên, biến, v.v., không sử dụng dấu ngoặc kép.
+
+Ví dụ 3: In biến và literals
+class Variables {
+    public static void main(String[] args) {
+    	
+    	Double number = -10.6;
+    	
+    	System.out.println(5);
+    	System.out.println(number);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+
+-10.6
+Có thể sử dụng toán tử + để nối chuỗi và in chuỗi.
+
+Ví dụ 4: In các chuỗi nối
+class PrintVariables {
+    public static void main(String[] args) {
+    	
+    	Double number = -10.6;
+    	
+    	System.out.println("I am " + "awesome.");
+    	System.out.println("Number = " + number);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+I am awesome.
+Number = -10.6
+Xét câu lệnh : System.out.println(“I am ” + “awesome.”) ;
+Chuỗi “I am “và “awesome.”được nối trước khi được in ra màn hình.
+Xét câu lệnh : System.out.println(“Number = ” + number) ;
+Trước tiên, giá trị của biến number được tính toán. Giá trị của nó thuộc kiểu double và được chuyển đổi thành string bởi trình biên dịch. Sau đó, các chuỗi được nối và in trên màn hình.
+
+3. Java Input
+Có một số cách để lấy input từ người dùng trong Java. Bạn sẽ học cách lấy input bằng cách sử dụng đối tượng Scanner trong bài viết này.
+Để làm điều đó, bạn cần nhập class Scanner bằng cách sử dụng câu lệnh:
+import java.util.Scanner;
+Tìm hiểu thêm về Nhập trong Java
+Sau đó, chúng ta sẽ tạo một đối tượng của class Scanner và nó sẽ được sử dụng để nhận input từ người dùng.
+Scanner input = new Scanner(System.in);
+int number = input.nextInt();
+Ví dụ 5: Nhận Input số nguyên từ người dùng
+import java.util.Scanner;
+
+class Input {
+    public static void main(String[] args) {
+    	
+    	Scanner input = new Scanner(System.in);
+    	
+    	System.out.print("Enter an integer: ");
+    	int number = input.nextInt();
+    	System.out.println("You entered " + number);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+Enter an integer: 23
+You entered 23
+Ở đây, đối tượng input của class Scanner được tạo. Sau đó,  hàm nextInt() của class Scanner được sử dụng để lấy input số nguyên từ người dùng.
+Để lấy input kiểu long, float, double và String từ người dùng, có thể sử dụng lần lượt các hàm  nextLong(), nextFloat(), nextDouble() và next().
+
+Ví dụ 6: Nhận input kiểu float, double và String
+import java.util.Scanner;
+
+class Input {
+    public static void main(String[] args) {
+    	
+    	Scanner input = new Scanner(System.in);
+    	
+    	// Getting float input
+    	System.out.print("Enter float: ");
+    	float myFloat = input.nextFloat();
+    	System.out.println("Float entered = " + myFloat);
+    	
+    	// Getting double input
+    	System.out.print("Enter double: ");
+    	double myDouble = input.nextDouble();
+    	System.out.println("Double entered = " + myDouble);
+    	
+    	// Getting String input
+    	System.out.print("Enter text: ");
+    	String myString = input.next();
+    	System.out.println("Text entered = " + myString);
+    }
+}
+Khi bạn chạy chương trình, kết quả sẽ là:
+Enter float: 2.343
+Float entered = 2.343
+Enter double: -23.4
+Double entered = -23.4
+Enter text: Hey!
+Text entered = Hey!

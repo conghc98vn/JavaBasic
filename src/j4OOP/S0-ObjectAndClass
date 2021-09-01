@@ -1,0 +1,136 @@
+Java là một ngôn ngữ lập trình hướng đối tượng (OOP). Trong bài viết này, bạn sẽ được giới thiệu về OOP và cách để có thể tạo ra các class và đối tượng tùy ý trong chương trình Java của bạn.
+Java là một ngôn ngữ lâp trình hướng đối tượng. Nó cho phép bạn chia các vấn đề phức tạp thành các bộ phận nhỏ hơn bằng việc tạo ra các đối tượng.
+Các đối tượng này đều có chung hai đặc điểm. 
+Trạng thái(fields or properties)
+Hoạt động(methods)
+Hãy lấy một vài ví dụ:
+Bóng đèn là một đối tượng vật thể
+Nó có thể trong trạng thái bặt hoặc tắt.
+Bạn có thể bật đèn lên và tắt nó đi (Hoạt động)
+Xe đạp là một đối tượng
+Nó có các trạng thái số hiện tại, 2 bánh, số lượng các nấc số, v.v.
+Nó có các hoạt động như phanh, tăng tốc, thay đổi bộ số, v.v.
+Bạn sẽ tìm hiểu 3 đặc điểm chính của lập trình hướng đối tượng: tính đóng gói dữ liệu, tính kế thừa và tính đa hình trong các phần kế tiếp.
+Để dễ dàng hơn, bài viết này sẽ tập trung vào class và đối tượng.
+
+1. Class trong Java
+Trước khi bạn tạo các đối tượng trong Java, bạn cần biết cách định nghĩa một class.
+Class là bản thiết kế cho vật thể.
+Chúng ta có thể hình dung về class giống như một bản mô hình của một ngôi nhà. Nó chứa tất cả các chi tiết về sàn nhà, cửa chính, của sổ, v.v. Và dựa vào các mô tả này, chúng ta sẽ xây nên ngôi nhà đó. Ở đây, nhà chính là đối tượng.
+Vì nhiều ngôi nhà có thể được xây dựng chung từ một bản mô tả, chúng ta có thể tạo nên nhiều đối tượng từ một class. 
+
+2. Một class trong Java được định nghĩa thế nào?
+Đây là cách một class được định nghĩa trong Java:
+
+class ClassName {
+   // variables
+   // methods
+}
+Đây là một ví dụ:
+
+class Lamp {
+
+  // instance variable
+  private boolean isOn;
+
+  // method
+  public void turnOn() {
+    isOn = true;
+  }
+
+  // method
+  public void turnOff() {
+  	isOn = false;
+  }
+}
+Ở đây, chúng ta đã định nghĩa một class có tên là Lamp.
+Class này có một biến thực thể (biến được định nghĩa bên trong class) là isOn và hai phương thức là turnOn()và turnOn(). Các biến và phương thức này được định nghĩa trong một class được gọi là các thành viên của class.
+Hãy chú ý hai từ khóa, private và public ở chương trình trên. Các từ này chính là các quyền truy cập mà sẽ được bàn luận kỹ hơn trong các chương tiếp theo. Bây giờ, chỉ cần nhớ rằng:
+Từ khóa private giúp các biến thực thể và phương thức trở thành cá nhân mà chỉ có thể được truy cập từ bên trong trên cùng một class. 
+Từ khóa public giúp các biến thực thể và phương thức công cộng mà có thể truy cập từ bên ngoài class.
+Ở chương trinh trên, biến isOn là cá nhân, trong khi phương thức turnOn() và turnOff() là các phương thức công cộng.
+Nếu bạn cố gắng truy cập các thành viên private từ bên ngoài class, trình biên dịch sẽ báo lỗi.
+
+3. Đối tượng trong Java
+Khi class được định nghĩa, chỉ có đối tượng được chỉ rõ, không có bất cứ bộ nhớ lưu trữ nào được phân vùng cả.
+
+Để truy cập các thành viên định nghĩa bên trong class, bạn cần phải tạo ra các đối tượng. Hãy cùng tạo ra vài đối tượng trong class Lamp.
+
+class Lamp {
+  boolean isOn;
+
+  void turnOn() {
+    isOn = true;
+  }
+
+  void turnOff() {
+   isOn = false;
+  }
+}
+
+class ClassObjectsExample {
+public static void main(String[] args) {
+   Lamp l1 = new Lamp(); // create l1 object of Lamp class
+   Lamp l2 = new Lamp(); // create l2 object of Lamp class
+  }
+}
+Chương trình này tạo ra hai đối tượng l1 và l2 của class Lamp.
+
+4. Truy cập các thành viên như thế nào?
+Bạn có thể truy cập các thành viên (khai báo các phương thức thành viên và truy cập các biến thành viên) bằng cách sử dung toán tử.. Lấy ví dụ,
+l1.turnOn();
+Lệnh này khai báo phương thức turnOn() bên trong class Lamp cho đối tượng l1 .
+Chúng ta đã đề cập đến từ phương thức khá nhiều lần rồi. Bạn sẽ tìm hiểu về phương thức Java chi tiết hơn trong các chương tiếp theo. Đây là những gì bạn cần biết ở hiện tại:
+n khai báo các phương thức sử dụng lệnh ở trên, tất cả các lệnh bên trong thân phương thức turnOn() sẽ được thực thi. Sau đó, trình điều khiển chương trình sẽ quay lại các lệnh đằng sau l1.turnOn();
+Tương tự, biến thực thể có thể được truy cập là:
+l2.isOn = false;
+Điều quan trọng cần lưu ý là các thành viên private có thể được truy cập chỉ từ bên trong class. Nếu code l2.isOn = false; nằm bên trong phương thức main() (nằm ngoài class Lamp), trình biên dịch sẽ báo lỗi.
+
+5. Ví dụ: Class và đối tượng Java
+
+class Lamp {
+  boolean isOn;
+
+  void turnOn() {
+    isOn = true;
+  }
+
+  void turnOff() {
+   isOn = false;
+  }
+  
+  void displayLightStatus() {
+     
+     System.out.println("Light on? " + isOn);
+  }
+}
+
+
+class ClassObjectsExample {
+public static void main(String[] args) {
+   
+   Lamp l1 = new Lamp(), l2 = new Lamp();
+   
+   l1.turnOn();
+   l2.turnOff();
+   
+   l1.displayLightStatus();
+   l2.displayLightStatus();
+  }
+}
+Khi bạn chay chương trình này, kết quả đầu ra sẽ là:
+
+Light on? true
+Light on? false
+Trong chương trình trên
+
+Class Lamp được tạo
+Class có một biến là isOn và ba phương thức turnOn(), turnOff() và displayLightStatus().
+Hai đối tượng l1 và l2 của class Lamp được tạo ở hàm main().
+Ở đây, phương thức turnOn() được khai báo sử dụng l1  object: l1.turnOn();
+Phương thức này đặt biến isOn của đối tượng l1 là true. 
+Và, phương thức turnOff()được khai báo sử dụng đối tượng l1: l2.turnOff(); 
+Phương thức này đặt biến isOff của đối tượng l2 là false. 
+Cuối cùng, lệnh l1.displayLightStatus();hiển thị Light on? true bởi vì biến isOn giữ đối tượng l1  là true. Và, lệnh l2.displayLightStatus(); hiển thị Light on?  false bởi vì biến isOn giữ đối tượng là false.
+Chú ý rằng các biến được định nghĩa trong một class được gọi là các biến thực thể vì một lý do.
+Khi một đối tượng được khởi động, nó dược gọi là một instance. Mỗi instance chứa bản sao chép của những biến này. Lấy ví dụ, biến isOn cho đối tượng l1 và l2 là khác nhau.

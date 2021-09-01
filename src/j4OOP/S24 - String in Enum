@@ -1,0 +1,61 @@
+Trong hướng dẫn này, chúng ta sẽ học cách tìm hiểu về giá trị chuỗi cho hằng số enum. Chúng ta cũng sẽ học cách ghi đè giá trị chuỗi mặc định cho hằng số enum với sự trợ giúp của các ví dụ.
+
+1. Chuỗi enum trong Java
+Trước khi bạn tìm hiểu về chuỗi enum, hãy đảm bảo bạn đã biết về enum trong Java .
+
+Trong Java, chúng ta có thể lấy biểu diễn chuỗi của hằng số enum bằng phương thức toString() hoặc phương thức name(). Ví dụ,
+
+Ví dụ
+
+Đầu ra
+
+enum Size {
+   SMALL, MEDIUM, LARGE, EXTRALARGE
+}
+
+class Main {
+   public static void main(String[] args) {
+
+      System.out.println("string value of SMALL is " + Size.SMALL.toString());
+      System.out.println("string value of MEDIUM is " + Size.MEDIUM.name());
+
+   }
+}
+Kết quả
+
+string value of SMALL is SMALL
+string value of MEDIUM is MEDIUM
+Trong ví dụ trên, chúng ta đã thấy biểu diễn chuỗi mặc định của một hằng số enum là tên của cùng một hằng số.
+
+2. Thay đổi giá trị chuỗi mặc định của enums
+Chúng ta có thể thay đổi cách biểu diễn chuỗi mặc định của hằng số enum bằng cách ghi đè phương thức toString(). Ví dụ,
+
+enum Size {
+   SMALL {
+
+      // overriding toString() for SMALL
+      public String toString() {
+        return "The size is small.";
+      }
+   },
+
+   MEDIUM {
+
+     // overriding toString() for MEDIUM
+      public String toString() {
+        return "The size is medium.";
+      }
+   };
+}
+
+class Main {
+   public static void main(String[] args) {
+      System.out.println(Size.MEDIUM.toString());
+   }
+}
+Đầu ra
+
+The size is medium.
+Trong chương trình trên, chúng ta đã tạo một enum Kích thước. Và chúng ta đã ghi đè phương thức toString() cho hằng số enum SMALL và MEDIUM.
+
+Lưu ý: Chúng ta không thể ghi đè phương thức name(). Đó là bởi vì name() là phương thức final.

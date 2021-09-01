@@ -1,0 +1,59 @@
+Trong hướng dẫn Java này, bạn có thể tìm hiểu về các hàm tạo enum với sự trợ giúp của một ví dụ làm việc.
+
+Trước khi bạn tìm hiểu về các hàm tạo enum, hãy đảm bảo bạn biết về các enum trong Java .
+
+Trong Java, một lớp enum có thể bao gồm một phương thức khởi tạo giống như một lớp thông thường. Các hàm tạo enum này là
+
+riêng tư(private) – có thể truy cập trong lớp
+hoặc
+gói-riêng tư(package-private) – có thể truy cập trong gói
+
+Ví dụ: enum Constructor
+/*
+Cafedev.vn - Kênh thông tin IT hàng đầu Việt Nam
+@author cafedevn
+Contact: cafedevn@gmail.com
+Fanpage: https://www.facebook.com/cafedevn
+Group: https://www.facebook.com/groups/cafedev.vn/
+Instagram: https://instagram.com/cafedevn
+Twitter: https://twitter.com/CafedeVn
+Linkedin: https://www.linkedin.com/in/cafe-dev-407054199/
+Pinterest: https://www.pinterest.com/cafedevvn/
+YouTube: https://www.youtube.com/channel/UCE7zpY_SlHGEgo67pHxqIoA/
+*/
+enum Size {
+
+   // enum constants calling the enum constructors 
+   SMALL("The size is small."),
+   MEDIUM("The size is medium."),
+   LARGE("The size is large."),
+   EXTRALARGE("The size is extra large.");
+
+   private final String pizzaSize;
+
+   // private enum constructor
+   private Size(String pizzaSize) {
+      this.pizzaSize = pizzaSize;
+   }
+
+   public String getSize() {
+      return pizzaSize;
+   }
+}
+
+class Main {
+   public static void main(String[] args) {
+      Size size = Size.SMALL;
+      System.out.println(size.getSize());
+   }
+}
+Đầu ra
+
+The size is small.
+Trong ví dụ trên, chúng tôi đã tạo một enum Size. Nó bao gồm một phương thức private khởi tạo enum. Hàm tạo nhận một giá trị chuỗi làm tham số và gán giá trị cho biến pizzaSize.
+
+Vì phương thức khởi tạo là private, chúng ta không thể truy cập nó từ bên ngoài lớp. Tuy nhiên, chúng ta có thể sử dụng hằng số enum để gọi hàm tạo.
+
+bên trong lớp Main, chúng TA đã gán SMALL cho một biến enum ksize. Hằng số SMALL sau đó gọi hàm tạo Size với chuỗi làm đối số.
+
+Cuối cùng, chúng ta gọi getSize() bằng cách sử dụng size.
